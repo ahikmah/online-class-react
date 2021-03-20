@@ -1,39 +1,40 @@
-import React from 'react'
-import '../assets/css/Login.css'
+import React, { useState } from 'react'
 import googleIcon from '../assets/images/icon-google.png'
+import {Link} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/css/LoginRegister.css'
+import FormFloating from '../component/FormFloating'
 
 function Login() {
+    
+    const [username, setUsername] = useState("")
+
+    const loginHandler = (e)=>{
+        setUsername(e.target.value)
+    }
+
+
     return (
         <div>
-            <div className="container">
-                <form className="text-center" action="pages/all-schedule.html">
+            <main className="container text-center">
+                <h1 className="title">Login</h1>
+                <form className="form login" action="#">
 
-                    <h1 className="title">Login</h1>
-                    <div className="form-group">
-                        <label for="username">Username or Email</label>
-                        <input type="text" name="username" className="form-control"/>
-                    </div>
+                    <FormFloating type= "text" id= "username" ph= "email@example.com" label= "Username or Email" changed={loginHandler}/>
+                    <FormFloating type= "password" id= "password" ph= "Password" label = "Password"/>
 
-                    <div className="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" name="password" className="form-control"/>
-                    </div>
+                    <Link to='/reset-password' className="d-flex justify-content-end forgot-password">Forgot password?</Link>
 
-                    <a href="pages/reset-password.html" className="d-flex justify-content-end forgot-password">Forgot
-                        password?</a>
-
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-login">Login</button>
+                    <div className="button-group d-flex flex-column">
+                        <button type="submit" className="btn btn-primer" onClick={loginHandler}>Login</button>
                         <button type="submit" className="btn btn-google">
-                            <img src={googleIcon}/> Login with Google</button>
+                            <img src={googleIcon} alt="google-icon"/> Login with Google</button>
                     </div>
-
-                    <div className="form-group">
-                        <p className="register">New user? <a href="#">Register</a></p>
-                    </div>
-
+                <p>Tes: {username}</p>
                 </form>
-            </div>
+                <p className="txtlogin">New user? <Link to="/register"> Register</Link></p>
+
+            </main>
         </div>
     )
 }

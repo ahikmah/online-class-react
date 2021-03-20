@@ -1,12 +1,24 @@
-import '../App.css';
+// import '../App.css';
+import {BrowserRouter, Route} from 'react-router-dom'
+import React, { Component } from 'react'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import ResetPassword from '../pages/ResetPassword'
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello World 🌍</h1>
-      <p>Is this really working?</p>
-    </div>
-  );
+export class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+      <div>
+          <Route path='/' exact component={Login} />
+          <Route path='/register' exact component={Register} />
+          <Route path='/reset-password' exact component={ResetPassword} />
+      </div>
+        
+      </BrowserRouter>
+    )
+  }
 }
 
-export default App;
+export default App
+

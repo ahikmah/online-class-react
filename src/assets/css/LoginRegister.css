@@ -1,0 +1,105 @@
+body {
+    font-family: 'Kanit', sans-serif;
+}
+
+.container{
+    width: fit-content;
+    height: 99vh;
+    align-items: center;
+    justify-content: center;
+}
+
+h1.title {
+    position: relative;
+    font-size: 3rem;
+    top:5%
+}
+
+.form.login{
+    position: relative;
+    top:15%;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+    width: 30rem;
+    height: 3.8rem;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.forgot-password {
+    font-size: 0.875rem;
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    margin-top: -1rem;
+    margin-bottom: 6.25rem;
+}
+
+small.match.password{
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.5rem;
+    color: #0EAA00;
+    margin-top: -1rem;
+    margin-bottom: 4.25rem;
+
+}
+small.notmatch.password{
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.5rem;
+    color: red;
+    margin-top: -1rem;
+    margin-bottom: 4.25rem;
+
+}
+
+.btn {
+    width: 30rem;
+    margin-bottom: 1rem;
+    height: 3.8rem;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.btn-primer {
+    background-color: #5784BA;
+    color: white;
+}
+
+.btn-google{
+    background-color: rgb(0, 13, 79, 0.08);
+    color: #010620;
+}
+
+.btn-primer:hover {
+    background-color: #5784ba6b;
+}
+
+.btn-google:hover {
+    background-color: #01062060;
+}
+
+.txtregister, .txtlogin {
+    position: relative;
+    top: calc(20% + 5px);
+    color: #ADA9BB
+}
+@media (max-width: 1025px) {
+h1.title {
+    font-size: 2.5rem;
+}
+input {
+    width: 30rem;
+    height: 3.5rem !important;
+}
+.btn {
+    width: 30rem;
+    margin-bottom: 1rem;
+    height: 3.5rem;
+    border: none;
+    font-size: 1rem;
+}
+}
