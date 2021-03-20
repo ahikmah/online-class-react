@@ -56,6 +56,11 @@ small.notmatch.password{
 
 }
 
+small.match.password>img{
+    width: 8px;
+    height: 8px;
+}
+
 .btn {
     width: 30rem;
     margin-bottom: 1rem;

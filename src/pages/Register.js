@@ -43,9 +43,9 @@ function Register() {
                     <FormFloating type= "text" id= "username" ph= "username" label= "Username" changed={usernameHandler}/>
                     <FormFloating type= "email" id= "email" ph= "name@example.com" label= "Email" changed={emailHandler}/>
                     <FormFloating type= "password" id= "password" ph= "Password" label = "Password"  changed={passwordHandler}/>
-                    <FormFloating type= "password" id= "password" ph= "Re-type Password" label = "Confirm Password" changed={rePasswordHandler}/>
+                    <FormFloating type= "password" id= "repassword" ph= "Re-type Password" label = "Confirm Password" changed={rePasswordHandler}/>
                     
-                    {match ? <small className="match password d-flex justify-content-start">Password match <img src= {matchIcon}/></small> : match === undefined ? <small className="notmatch password d-flex justify-content-start"></small> : <small className="notmatch password d-flex justify-content-start">Password not match</small>}
+                    {match ? <small className="match password d-flex justify-content-start">Password match <img src= {matchIcon} alt="match icon"/></small> : match === undefined ? <small className="notmatch password d-flex justify-content-start"></small> : <small className="notmatch password d-flex justify-content-start">Password not match</small>}
 
                     <div className="button-group d-flex flex-column">
                         <button type="submit" className="btn regis btn-primer" onClick={usernameHandler}>Register</button>
