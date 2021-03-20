@@ -39,18 +39,29 @@ a:link {
     margin-bottom: 6.25rem;
 }
 
+small.lenPwTxt.password{
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.5rem;
+    color: #010620;
+    padding-left: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+
+}
 small.match.password{
     font-family: 'Roboto', sans-serif;
     font-size: 0.5rem;
     color: #0EAA00;
+    padding-left: 1rem;
     margin-top: -1rem;
     margin-bottom: 4.25rem;
-
+    
 }
 small.notmatch.password{
     font-family: 'Roboto', sans-serif;
     font-size: 0.5rem;
     color: red;
+    padding-left: 1rem;
     margin-top: -1rem;
     margin-bottom: 4.25rem;
 
