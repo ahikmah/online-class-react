@@ -48,8 +48,8 @@ function Register() {
                     {match ? <small className="match password d-flex justify-content-start">Password match <img src= {matchIcon}/></small> : match === undefined ? <small className="notmatch password d-flex justify-content-start"></small> : <small className="notmatch password d-flex justify-content-start">Password not match</small>}
 
                     <div className="button-group d-flex flex-column">
-                        <button type="submit" className="btn btn-primer" onClick={usernameHandler}>Register</button>
-                        <button type="submit" className="btn btn-google">
+                        <button type="submit" className="btn regis btn-primer" onClick={usernameHandler}>Register</button>
+                        <button type="submit" className="btn regis btn-google">
                             <img src={googleIcon} alt="google-icon"/> Register with Google</button>
                     </div>
                 {/* <p>Tes: {username}</p> */}

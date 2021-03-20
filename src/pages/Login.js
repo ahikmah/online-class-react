@@ -26,11 +26,11 @@ function Login() {
                     <Link to='/reset-password' className="d-flex justify-content-end forgot-password">Forgot password?</Link>
 
                     <div className="button-group d-flex flex-column">
-                        <button type="submit" className="btn btn-primer" onClick={loginHandler}>Login</button>
-                        <button type="submit" className="btn btn-google">
+                        <button type="submit" className="btn login btn-primer" onClick={loginHandler}>Login</button>
+                        <button type="submit" className="btn login btn-google">
                             <img src={googleIcon} alt="google-icon"/> Login with Google</button>
                     </div>
-                <p>Tes: {username}</p>
+                {/* <p>Tes: {username}</p> */}
                 </form>
                 <p className="txtlogin">New user? <Link to="/register"> Register</Link></p>
 
