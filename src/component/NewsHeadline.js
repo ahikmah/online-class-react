@@ -14,21 +14,21 @@ function NewsHeadline(props) {
                     <span className="bn-shadow-news-dash"></span>
                     <h5 className="txt-headline-news-dash">{props.headlineTitle}</h5>
                     <div className="slider d-flex">
-                        <a href="">
+                        <Link to="">
                             <div id="sl1" className="sld active"></div>
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <div id="sl2" className="sld "></div>
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <div id="sl3" className="sld "></div>
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <div id="sl4" className="sld "></div>
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <div id="sl5" className="sld "></div>
-                        </a>
+                        </Link>
 
                     </div>
                 </div>

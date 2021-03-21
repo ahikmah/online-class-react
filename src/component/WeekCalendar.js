@@ -8,11 +8,11 @@ function WeekCalendar() {
 
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let curr = new Date
+    let curr = new Date()
 
     let monthName = monthNames[curr.getMonth()]
-    let dayName = dayNames[curr.getDay()]
-    let d = curr.getDay()
+    // let dayName = dayNames[curr.getDay()]
+    // let d = curr.getDay()
     let dt = curr.getDate()
 
     let weekDayName = []
@@ -38,7 +38,7 @@ function WeekCalendar() {
     let items=[];
     
     for (let i =0; i < 7; i++) {
-        items.push(<Calendar classes={dt === Number(weekDate[i])? classCalGroupActive.join(' '):classCalGroup} dayName = {weekDayName[i]} date= {weekDate[i]}/>)
+        items.push(<Calendar key={i} classes={dt === Number(weekDate[i])? classCalGroupActive.join(' '):classCalGroup} dayName = {weekDayName[i]} date= {weekDate[i]}/>)
     }
 
 
