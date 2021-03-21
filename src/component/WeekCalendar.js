@@ -1,55 +1,59 @@
 import React from 'react'
-import '../assets/css/WeekCalendar.css'
+// import '../assets/css/WeekCalendar.css'
 import { Link } from 'react-router-dom'
+import Calendar from './Calendar'
 
 import calendarIcon from '../assets/images/Calendar Icon.png'
 
 function WeekCalendar() {
+
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const dayNames = ["Sunday, Monday, Tuesday, Wednesday", "Thursday", "Friday", "Saturday"]
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let curr = new Date
 
     let monthName = monthNames[curr.getMonth()]
     let dayName = dayNames[curr.getDay()]
     let d = curr.getDay()
+    let dt = curr.getDate()
 
     let weekDayName = []
     let weekDate = []
+    let day;
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 0; i < 7; i++) {
         let first = curr.getDate() - curr.getDay() + i 
-        let day = new Date(curr.setDate(first)).toISOString().slice(8, 10)
-        weekDayName.push(dayNames[first].slice[0, 2])
+        day = new Date(curr.setDate(first)).toISOString().slice(8, 10)
+        weekDayName.push(dayNames[i].slice(0,2))
         weekDate.push(day)
     }
+    console.log(weekDayName);
+    console.log(weekDate);
+    console.log(weekDate[0]);
+    console.log(day);
+    console.log(dt);
+    console.log(d);
 
     let classCalGroup= 'cal-group'
-    let classCalGroupActive= ['cal-group', 'active']
+    let classCalGroupActive= ['cal-group', 'active-cal']
 
-    const printCal = () => {
-        for (let i =0; i < 6; i++) {
-            <div className={ d === Number(day.slice[1, 2]) ? classCalGroupActive : classCalGroup}>
-                <div className="day">
-                    <Link to="">{weekDayName[i]}</Link></div>
-                <div className="date">
-                    <Link to="">{weekDate[i]}</Link></div>
-            </div>
-        }
+    let items=[];
+    
+    for (let i =0; i < 7; i++) {
+        items.push(<Calendar classes={dt === Number(weekDate[i])? classCalGroupActive.join(' '):classCalGroup} dayName = {weekDayName[i]} date= {weekDate[i]}/>)
     }
+
 
     return (
         <div>
             <div className="d-flex justify-content-between">
-                <div className="sub-label-dash">{dayName}, {monthName} {d}</div>
+                <div className="sub-label">{dayName}, {monthName} {dt}</div>
                 <div className="calendar-icon">
                     <Link to=""><img src={calendarIcon} alt="calendar icon"/></Link>
                 </div>
             </div> <br/>
 
-
-
             <div id="calendar" className="container d-flex flex-row justify-content-between text-center">
-                {printCal()}
+                {items}
             </div>
 
         </div>
