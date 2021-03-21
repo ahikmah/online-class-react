@@ -15,7 +15,7 @@ function MessagePanel() {
     return (
         <>
         {/* <!-- Message Panel --> */}
-        <div className="container msg-panel col-2">
+        <div className="container msg-panel col">
                         {/* <!-- Head Section --> */}
                         <div className="msg-head d-flex justify-content-between ">
                             <div className="sub-label ">Messages</div>

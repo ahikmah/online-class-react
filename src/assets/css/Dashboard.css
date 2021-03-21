@@ -3,8 +3,8 @@
 }
 
 .content-dashboard {
-    padding-left: 20%;
-    width: 68%;
+    padding-left: 18rem;
+    width: 67%;
     min-width: 280px;
 }
 
@@ -214,12 +214,12 @@ span.timeline:after {
 .container.msg-panel {
     position: fixed;
     right: 0.5rem;
-    width: 30%;
+    width: 32%;
     height: 96%;
     overflow-y: auto;
     background-color: white;
     border-radius: 1.25rem;
-    padding: 2rem 2.5rem;
+    padding: 2rem 2rem;
 }
 
 .msg-head {
@@ -256,11 +256,16 @@ div.search-bar-message>form{
 
 .name-chat {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.32rem;
+    font-size: 1.25rem;
+}
+
+.ava-chat{
+    width: 3rem;
+    height: auto;
 }
 
 div.main-chat {
-    padding-left: 2rem;
+    padding-left: 1rem;
 }
 
 .snippet-chat,
