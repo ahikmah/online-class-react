@@ -7,7 +7,7 @@ function NewsHeadline(props) {
         <div>
             <section className="news-section" className="container">
                 <div className="news-banner-wrapper">
-                    <div className="label-section">
+                    <div className="label-section-dash">
                         News
                     </div>
                     <img className="news-bn-background" src={props.banner-pict} alt="News Banner Picture"/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/css/Sidebar.css'
+import '../assets/css/WeekCalendar.css'
 import { Link } from 'react-router-dom'
 
 import calendarIcon from '../assets/images/Calendar Icon.png'
@@ -14,7 +14,7 @@ function WeekCalendar() {
     let d = curr.getDay()
 
     let weekDayName = []
-    let weekDay = []
+    let weekDate = []
 
     for (let i = 1; i <= 7; i++) {
         let first = curr.getDate() - curr.getDay() + i 
@@ -40,8 +40,8 @@ function WeekCalendar() {
     return (
         <div>
             <div className="d-flex justify-content-between">
-                <div className="sub-label">{dayName}, {monthName} {d}</div>
-                <div id="calendar-icon">
+                <div className="sub-label-dash">{dayName}, {monthName} {d}</div>
+                <div className="calendar-icon">
                     <Link to=""><img src={calendarIcon} alt="calendar icon"/></Link>
                 </div>
             </div> <br/>

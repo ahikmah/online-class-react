@@ -1,3 +1,8 @@
+.label-section-dash {
+    font: 3.94rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+}
 .news-section {
     border-radius: 1.25rem;
     background-color: white;

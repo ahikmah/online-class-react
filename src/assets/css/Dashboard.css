@@ -1,0 +1,28 @@
+.content-dashboard {
+    padding-left: 16.525rem;
+    width: 70%;
+    min-width: 280px;
+}
+
+section.schedule-dashboard {
+    margin-top: 3rem;
+    background-color: white;
+    border-radius: 1.25rem;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    /* min-width: 0; */
+    word-wrap: break-word;
+}
+
+
+.schedule-menu>a {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: #ADA9BB;
+    margin-right: 1.5rem;
+}
+
+.schedule-menu {
+    margin: 1rem 0;
+}
