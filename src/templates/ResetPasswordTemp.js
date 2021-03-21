@@ -58,17 +58,17 @@ function ResetPassword(props) {
     }
 
     return (
-        <div>
-            <div className="container-fluid ">
+        <>
+            <div className="container-fluid reset-pass" style={{padding: "0"}}>
                 <div className="row text-center">
                     {/* <!-- image --> */}
-                    <div className="col left-panel">
+                    <div className="col-6 left-panel">
                         <Link to="/" className="btn-back "><i className="fas fa-chevron-left "></i></Link>
                         <img src={props.ava} className="img-fluid" alt="avatar "/>
                     </div>
 
                     {/* <!-- reset form --> */}
-                    <main className="col right-panel flex-column container-fluid">
+                    <main className="col-6 right-panel flex-column container-fluid">
                         <h1 className="title reset ">{props.title}</h1>
                         <p className="msg1 ">{props.msg1}</p>
                         <p className='msg2'>{props.msg2}</p>
@@ -90,7 +90,7 @@ function ResetPassword(props) {
                     </main>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
