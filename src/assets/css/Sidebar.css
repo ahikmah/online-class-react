@@ -4,7 +4,9 @@ aside.sidebar {
     flex-direction: column;
     height: 96%;
     border-radius: 1.25rem;
-    min-width: 15rem;
+    min-width: 14rem;
+    max-width: 15rem;
+    
     padding: 0;
     position: fixed;
     display: block;

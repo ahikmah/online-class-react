@@ -11,6 +11,8 @@ import PasswordChanged from './PasswordChanged'
 import DashboardStudent from './DashboardStudent'
 import DashboardFasilitator from './DashboardFasilitator'
 
+import StudentActivity from './StudentActivity'
+
 export class App extends Component {
   render() {
     return (
@@ -25,14 +27,11 @@ export class App extends Component {
 
           {/* Dashboard page */}
           <Route path='/dashboard/:id' exact component={DashboardStudent}/>
-          <Route path='/dashboard-fas/' exact component={DashboardFasilitator}/>
-          {/* <Route path='/student-for-you' exact component={Dashboard}/> */}
-
-          {/* <Route path='/fas-dashboard' exact component={Dashboard}/> */}
+          <Route path='/dashboard-fas' exact component={DashboardFasilitator}/>
 
           {/* Activity page */}
-          {/* <Route path='/student-activity' exact component={Acivity}/>
-          <Route path='/student-my-class' exact component={Acivity}/>
+          <Route path='/student-activity' exact component={StudentActivity}/>
+          {/* <Route path='/student-my-class' exact component={Acivity}/>
           <Route path='/student-class-detail' exact component={Acivity}/>
           <Route path='/student-class-progress' exact component={Acivity}/>
 

@@ -42,11 +42,11 @@ function Sidebar(props) {
 
                 {/* Menu section */}
                 <nav className="d-flex flex-column">
-                    <Link to="all-schedule.html" className={props.activeMenu===1 ? classNavItemActive.join(' '):classNavItem.join(' ')}>
-                        <img src={props.activeMenu ? dashboardIconActive : dashboardIcon} alt="icon dashboard"/>
+                    <Link to="/dashboard/all-schedule" className={props.activeMenu===1 ? classNavItemActive.join(' '):classNavItem.join(' ')}>
+                        <img src={props.activeMenu===1 ? dashboardIconActive : dashboardIcon} alt="icon dashboard"/>
                         <span>Dashboard</span></Link>
-                    <Link to="activity.html" className={props.activeMenu===2 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
-                        <img src={activityIcon} alt="icon activity"/>
+                    <Link to="/student-activity" className={props.activeMenu===2 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                        <img src={props.activeMenu===2 ? activityIconActive : activityIcon} alt="icon activity"/>
                         <span>Activity</span></Link>
                     <Link to="profile.html" className={props.activeMenu===3 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={settingIcon} alt="icon setting"/>
