@@ -1,0 +1,109 @@
+/* .navbar>button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.navbar>img {
+    width: 40px;
+}
+
+.navbar {
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: #5784BA;
+    height: auto;
+    position: sticky;
+    padding: 0.5rem 1rem;
+    min-width: 280px;
+    visibility: hidden;
+} */
+
+aside.sidebar {
+    background-color: #5784BA;
+    display: flex;
+    flex-direction: column;
+    height: 93.5%;
+    max-height: 680px;
+    border-radius: 1.25rem;
+    max-width: 15.75rem;
+    /* max-height: 640px; */
+    padding: 0;
+    position: fixed;
+    display: block;
+}
+
+.side-notif-section {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.side-notif-section>span {
+    position: relative;
+    right: 0.34rem;
+    top: 0.125rem;
+    border-radius: 50%;
+    height: 0.5rem;
+    width: 0.5rem;
+    border: #5784BA solid 0.14rem;
+    background-color: red;
+}
+
+.side-profile-section {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin-bottom: 4.625rem;
+    padding: 0 2rem;
+}
+
+.side-avatar {
+    margin-bottom: 1.83rem;
+}
+
+.side-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.side-status {
+    font-size: 0.75rem;
+}
+
+.side-nav-item {
+    background-color: #5784BA;
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding-top: 0.9rem;
+    margin-top: -1.25rem;
+    height: 5rem;
+    padding-left: 2.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.nav>span {
+    margin-left: 1.9rem;
+}
+
+.nav-link,
+#name {
+    text-decoration: none;
+    color: white;
+}
+
+.active-sidebar {
+    background-color: white;
+    color: black;
+}
+
+.nav-link:hover {
+    color: black;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.logout {
+    color: red;
+}

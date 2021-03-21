@@ -19,6 +19,31 @@ export class App extends Component {
           <Route path='/verify-code' exact component={VerifyCode} />
           <Route path='/create-new-password' exact component={CreateNewPassword} />
           <Route path='/password-changed' exact component={PasswordChanged} />
+
+
+          Dashboard page
+          {/* <Route path='/student-all-schedule' exact component={Dashboard}/>
+          <Route path='/student-for-you' exact component={Dashboard}/>
+
+          <Route path='/fas-dashboard' exact component={Dashboard}/> */}
+
+          {/* Activity page */}
+          {/* <Route path='/student-activity' exact component={Acivity}/>
+          <Route path='/student-my-class' exact component={Acivity}/>
+          <Route path='/student-class-detail' exact component={Acivity}/>
+          <Route path='/student-class-progress' exact component={Acivity}/>
+
+          <Route path='/fas-activity' exact component={Acivity}/>
+          <Route path='/fas-class-detail' exact component={Acivity}/>
+          <Route path='/fas-class-member' exact component={Acivity}/>
+          <Route path='/fas-scoring' exact component={Acivity}/> */}
+
+          {/* Profile */}
+          {/* <Route path='/profile' exact component={Profile}/> */}
+
+          {/* Notification */}
+          {/* <Route path='/notif' exact component={Notify}/> */}
+
       </div>
         
       </BrowserRouter>

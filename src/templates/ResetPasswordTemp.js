@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../assets/css/ResetPassword.css'
-import {Link, Redirect} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import FormFloating from '../component/FormFloating'
 import FormCodeVerif from '../component/FormCodeVerif'
 import matchIcon from '../assets/images/match-icon.png'
@@ -40,6 +40,7 @@ function ResetPassword(props) {
         formActive = <FormCodeVerif type= "text" id= "verif-code" ph= "0" label= "Verifivation Code"/>
         txtResend =  <p className="txtresend">Didn’t receive a code?<Link to="/reset-password">Resend</Link></p>
     } else if (form===3 || form ===4){
+        nextLink='/password-changed'
         formActive = <FormFloating type= "password" id= "password" ph= "New Password" label= "Password" changed={rePasswordHandler}/>
         pwLengthMsg = <small className="lenPwTxt password d-flex justify-content-start">Must be at least 8 character</small> 
         formActive2 = <FormFloating type= "password" id= "repassword" ph= "Confirmation Password" label= "Confirmation Password" changed={passwordHandler}/>
@@ -50,8 +51,10 @@ function ResetPassword(props) {
 
     if(pwModal===true) pwModalClass.pop()
 
-    const Submit = () => {
-        return <Redirect to={nextLink} push/>
+    let history = useHistory();
+    const submitHandler = (e) => {
+        e.preventDefault();
+        history.push(nextLink);
     }
 
     return (
@@ -69,7 +72,7 @@ function ResetPassword(props) {
                         <h1 className="title reset ">{props.title}</h1>
                         <p className="msg1 ">{props.msg1}</p>
                         <p className='msg2'>{props.msg2}</p>
-                        <form onSubmit={Submit} className="reset-form">
+                        <form onSubmit={submitHandler} className="reset-form">
                            {formActive}
                            {pwLengthMsg}
                            {txtResend}
