@@ -5,15 +5,13 @@ import '../assets/css/Dashboard.css'
 import Sidebar from '../component/Sidebar'
 import NewsHeadline from '../component/NewsHeadline'
 import newsBanner from '../assets/images/news-banner.png'
-import WeekCalendar from '../component/WeekCalendar';
-
+import plusIcon from '../assets/images/Plus Icon white.png'
+import WeekCalendar from '../component/WeekCalendar'
 import MessagePanel from '../component/MessagePanel'
+import FasClassListCard from '../component/FasClassListCard'
 
 
-function Dashboard(props) {
-    let activeMenu = props.menu
-    let activeClass = 'active-menu-schedule'
-
+function DashboardFasilitator() {
     return (
         <>
             <div className="container-fluid dashboard">
@@ -31,17 +29,18 @@ function Dashboard(props) {
 
                         {/* <!-- Schedule Section --> */}
                         <div className="container schedule">
-                            <WeekCalendar role="student"/>
-
-                            {/* <!-- Schedule Menu --> */}
-                            <div id="schedule-menu" className="text-center">
-                                <Link to="/dashboard/all-schedule" className={activeMenu===0?activeClass:null}>All Schedule</Link>
-                                <Link to="/dashboard/for-you" className={activeMenu===1?activeClass:null}>For you</Link>
-                            </div>
-
-                            {/* <!-- timeline --> */}
-                            {props.timeline}
+                            <WeekCalendar role="fasilitator"/>
+                            <br/><br/>
+                            {/* Class List */}
+                            <FasClassListCard time= "08.00 - 09.40" name= "Front-end fundamentals" member= "24"/>
+                            <FasClassListCard time= "11.00 - 11.40" name= "HTML for Beginners" member= "32"/>
                             
+                            <Link to=""> 
+                                <div className="new-task-button d-flex justify-content-evenly align-items-center">
+                                    <img src={plusIcon} alt="new task icon button"/>
+                                    New Task
+                                </div>
+                            </Link>                        
 
                         </div>
 
@@ -67,4 +66,4 @@ function Dashboard(props) {
     )
 }
 
-export default Dashboard
+export default DashboardFasilitator

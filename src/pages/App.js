@@ -8,7 +8,8 @@ import VerifyCode from './VerifyCode'
 import CreateNewPassword from './CreateNewPassword'
 import PasswordChanged from './PasswordChanged'
 
-import Dashboard from './Dashboard'
+import DashboardStudent from './DashboardStudent'
+import DashboardFasilitator from './DashboardFasilitator'
 
 export class App extends Component {
   render() {
@@ -23,7 +24,8 @@ export class App extends Component {
 
 
           {/* Dashboard page */}
-          <Route path='/dashboard/:id' exact component={Dashboard}/>
+          <Route path='/dashboard/:id' exact component={DashboardStudent}/>
+          <Route path='/dashboard-fas/' exact component={DashboardFasilitator}/>
           {/* <Route path='/student-for-you' exact component={Dashboard}/> */}
 
           {/* <Route path='/fas-dashboard' exact component={Dashboard}/> */}
