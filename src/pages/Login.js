@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import googleIcon from '../assets/images/icon-google.png'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css'
 import FormFloating from '../component/FormFloating'
@@ -14,11 +14,19 @@ function Login() {
     }
 
 
+
+    let history = useHistory();
+    const submitHandler = (e) => {
+        e.preventDefault();
+        history.push('/student-all-schedule');
+    }
+
+
     return (
-        <div>
-            <main className="container text-center">
+        <>
+            <main className="container login text-center">
                 <h1 className="title">Login</h1>
-                <form className="form login" action="#">
+                <form className="form login" onSubmit={submitHandler}>
 
                     <FormFloating type= "text" id= "username" ph= "email@example.com" label= "Username or Email" changed={loginHandler}/>
                     <FormFloating type= "password" id= "password" ph= "Password" label = "Password"/>
@@ -35,7 +43,7 @@ function Login() {
                 <p className="txtlogin">New user? <Link to="/register"> Register</Link></p>
 
             </main>
-        </div>
+        </>
     )
 }
 

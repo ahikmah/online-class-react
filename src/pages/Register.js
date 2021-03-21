@@ -36,9 +36,9 @@ function Register() {
 
     return (
         <div>
-            <main className="container text-center">
+            <main className="container register text-center">
                 <h1 className="title">Register</h1>
-                <form className="form login" action="#">
+                <form className="form register" action="#">
 
                     <FormFloating type= "text" id= "username" ph= "username" label= "Username" changed={usernameHandler}/>
                     <FormFloating type= "email" id= "email" ph= "name@example.com" label= "Email" changed={emailHandler}/>
