@@ -1,0 +1,85 @@
+const NewClassList = [
+    {
+        id: 1,
+        name: "Know more Javascript",
+        category: "Software",
+        description: "Javascript from the basic for...",
+        level: "Beginner",
+        pricing: "Free",
+    },
+    {
+        id: 2,
+        name: "HTML and CSS to code",
+        category: "Software",
+        description: "Start combining HTML and CSS to...",
+        level: "Intermediate",
+        pricing: "$10",
+    },
+    {
+        id: 3,
+        name: "Indonesian war history",
+        category: "History",
+        description: "From the first colonialization until...",
+        level: "Advance",
+        pricing: "$50",
+    },
+    {
+        id: 4,
+        name: "Buddhism and Modern Psychology",
+        category: "Psychology",
+        description: "Buddhism and science are deeply...",
+        level: "Beginner",
+        pricing: "Free",
+    },
+    {
+        id: 5,
+        name: "Financial markets",
+        category: "Finance",
+        description: "An overview of the ideas, methods...",
+        level: "Intermediate",
+        pricing: "$10",
+    },
+    {
+        id: 6,
+        name: "Indonesian war history",
+        category: "History",
+        description: "From the first colonialization until...",
+        level: "Advance",
+        pricing: "$50",
+    },
+    {
+        id: 7,
+        name: "Algorithm specialization",
+        category: "Math",
+        description: "Learn to think like a computer...",
+        level: "Advance",
+        pricing: "$50",
+    },
+    {
+        id: 8,
+        name: "Business and Financial Modeling",
+        category: "Software",
+        description: "Designed to help you make...",
+        level: "Beginner",
+        pricing: "Free",
+    },
+    {
+        id: 9,
+        name: "Marketing in a Digital World",
+        category: "Software",
+        description: "Designed to help you make...",
+        level: "Intermediate",
+        pricing: "$10",
+    },
+    {
+        id: 10,
+        name: "Social Psychology",
+        category: "Psychology",
+        description: "This class offers some answers...",
+        level: "Advance",
+        pricing: "$50",
+    }
+
+]
+
+export default NewClassList
