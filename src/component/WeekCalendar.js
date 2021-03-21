@@ -1,5 +1,4 @@
 import React from 'react'
-// import '../assets/css/WeekCalendar.css'
 import { Link } from 'react-router-dom'
 import Calendar from './Calendar'
 
@@ -26,12 +25,12 @@ function WeekCalendar() {
         weekDayName.push(dayNames[i].slice(0,2))
         weekDate.push(day)
     }
-    console.log(weekDayName);
-    console.log(weekDate);
-    console.log(weekDate[0]);
-    console.log(day);
-    console.log(dt);
-    console.log(d);
+    // console.log(weekDayName);
+    // console.log(weekDate);
+    // console.log(weekDate[0]);
+    // console.log(day);
+    // console.log(dt);
+    // console.log(d);
 
     let classCalGroup= 'cal-group'
     let classCalGroupActive= ['cal-group', 'active-cal']
@@ -46,7 +45,7 @@ function WeekCalendar() {
     return (
         <div>
             <div className="d-flex justify-content-between">
-                <div className="sub-label">{dayName}, {monthName} {dt}</div>
+                <div className="sub-label">Today, {monthName} {dt}</div>
                 <div className="calendar-icon">
                     <Link to=""><img src={calendarIcon} alt="calendar icon"/></Link>
                 </div>

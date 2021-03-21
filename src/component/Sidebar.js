@@ -2,6 +2,10 @@ import React from 'react'
 import '../assets/css/Sidebar.css'
 import { Link } from 'react-router-dom'
 
+
+import Avatar from '../assets/images/avatar.png'
+
+
 // Import icon nav
 import dashboardIcon from '../assets/images/icon-dashboard.png'
 import activityIcon from '../assets/images/icon-activity.png'
@@ -15,52 +19,49 @@ import activityIconActive from '../assets/images/icon-activity-active.png'
 
 function Sidebar(props) {
 
-    // Add active class to the active menu
+    // Add active class to the activeMenu
     const classNavItem = ['side-nav-item nav-link']
-    const classNavItemActive =  classNavItem.push('active-sidebar')
+    const classNavItemActive =  ['side-nav-item nav-link','active-sidebar']
 
     return (
-        <div>
-            <aside className="sidebar">
+        <>
+            <aside className="sidebar col-2">
 
                 {/* <!-- Notification --> */}
                 <div className="side-notif-section">
-                    <Link to=""><i className="fas fa-bell" style="color: white;"></i></Link>
+                    <Link to=""><i className="fas fa-bell" style={{color: "white"}}></i></Link>
                     <span></span>
                 </div>
-                {/* <!-- End of Notification --> */}
 
                 {/* <!-- Profile --> */}
                 <div className="side-profile-section d-flex flex-column">
-                    <div className="side-avatar"> <img src="../assets/images/avatar.png" alt=""/></div>
+                    <div className="side-avatar"> <img src={Avatar} alt="avatar"/></div>
                     <Link to="profile.html" className="side-name">Emir Kharisma</Link>
                     <small className="side-status">online</small>
                 </div>
-                {/* <!-- End of Profile --> */}
 
-                {/* <!-- Menu --> */}
+                {/* Menu section */}
                 <nav className="d-flex flex-column">
-                    <Link to="all-schedule.html" className={props.active-menu===1 ? classNavItemActive.join(' '):classNavItem.join(' ')}>
-                        <img src={props.active-menu ? dashboardIconActive : dashboardIcon} alt="icon dashboard"/>
+                    <Link to="all-schedule.html" className={props.activeMenu===1 ? classNavItemActive.join(' '):classNavItem.join(' ')}>
+                        <img src={props.activeMenu ? dashboardIconActive : dashboardIcon} alt="icon dashboard"/>
                         <span>Dashboard</span></Link>
-                    <Link to="activity.html" className={props.active-menu===2 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
-                        <img src={props.active-menu ? activityIconActive : activityIcon} alt="icon activity"/>
+                    <Link to="activity.html" className={props.activeMenu===2 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                        <img src={activityIcon} alt="icon activity"/>
                         <span>Activity</span></Link>
-                    <Link to="profile.html" className={props.active-menu===3 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                    <Link to="profile.html" className={props.activeMenu===3 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={settingIcon} alt="icon setting"/>
                         <span>Settings</span></Link>
-                    <Link to="" className={props.active-menu===4 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                    <Link to="" className={props.activeMenu===4 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={helpIcon} alt="icon help"/>
                         <span>Help</span></Link>
-                    <Link to="/" className={props.active-menu===5 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                    <Link to="/" className={props.activeMenu===5 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={logoutIcon} alt="icon logout"/>
                         <span>Logout</span></Link>
                     <div className="side-nav-item"></div>
                 </nav>
-                {/* <!-- End of Menu --> */}
 
             </aside>
-        </div>
+        </>
     )
 }
 

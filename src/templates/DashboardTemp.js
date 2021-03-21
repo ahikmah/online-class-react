@@ -1,55 +1,56 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/css/Dashboard.css'
 import Sidebar from '../component/Sidebar'
 import NewsHeadline from '../component/NewsHeadline'
-import WeekCalendar from '../component/WeekCalendar'
-import MessagePanel from '../component/MessagePanel'
-import AllSchedule from '../pages/AllSchedule'
-import ForYou from '../pages/ForYou'
-import '../assets/css/Dashboard.css'
-import NewsBanner from '../assets/images/news-banner.png'
+import newsBanner from '../assets/images/news-banner.png'
+import WeekCalendar from '../component/WeekCalendar';
 
-function DashboardTemp(props) {
-    
+import MessagePanel from '../component/MessagePanel'
+
+
+function Dashboard(props) {
+    let activeMenu = props.menu
+    let activeClass = 'active-menu-schedule'
+
     return (
-        <div>
-            <div className="container-fluid">
+        <>
+            <div className="container-fluid dashboard">
                 <div className="row">
                     {/* <!-- Sidebar --> */}
-                    <Sidebar active-menu={props.num-menu}/>
+                    <Sidebar
+                    activeMenu={1}
+                    />
 
                     {/* <!-- Content --> */}
-                    <div className="content-dashboard" className="col-7">
+                    <main className="col-7 content-dashboard">
 
-                        {/* <!-- News --> */}
-                        <NewsHeadline
-                            banner-pict = {NewsBanner}
-                            headline = 'New update for front end development className sylabus!'
-                        />
-                        
-                        {/* <!-- Schedule --> */}
-                        <section className="schedule-dashboard" className="container">
+                        {/* <!-- News Section --> */}
+                        <NewsHeadline bannerImage= {newsBanner} headlineTitle= "New update for front end development class sylabus!"/>
+
+                        {/* <!-- Schedule Section --> */}
+                        <div className="container schedule">
                             <WeekCalendar/>
+
                             {/* <!-- Schedule Menu --> */}
-                            <div className="schedule-menu" className="text-center">
-                                <Link to="all-schedule.html" className="active-menu-schedule">All Schedule</Link>
-                                <Link to="for-you.html">For you</Link>
+                            <div id="schedule-menu" className="text-center">
+                                <Link to="/dashboard/all-schedule" className={activeMenu===0?activeClass:null}>All Schedule</Link>
+                                <Link to="/dashboard/for-you" className={activeMenu===1?activeClass:null}>For you</Link>
                             </div>
 
                             {/* <!-- timeline --> */}
-                            {/* ALL SCHEDULE CONTENT */}
+                            {props.timeline}
+                            
 
-                        </section>
+                        </div>
 
-
-                        {/* <!-- End of Schedule --> */}
-
-                    </div>
+                    </main>
                     {/* <!-- End of Content --> */}
 
 
                     {/* <!-- Message Panel --> */}
                     <MessagePanel/>
-                    {/* <!-- End of Message Panel --> */}
 
 
                     {/* <!-- Msg float --> */}
@@ -58,9 +59,13 @@ function DashboardTemp(props) {
                     </div>
 
                 </div>
-            </div>
-        </div>
+                </div>
+
+
+
+
+        </>
     )
 }
 
-export default DashboardTemp
+export default Dashboard

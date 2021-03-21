@@ -1,39 +1,39 @@
 import React from 'react'
-import '../assets/css/NewsHeadline.css'
 import { Link } from 'react-router-dom'
+
 
 function NewsHeadline(props) {
     return (
-        <div>
-            <section className="news-section" className="container">
-                <div className="news-banner-wrapper">
+        <>
+            <section className="container news">
+                <div className="banner-wrapper-dash">
                     <div className="label-section-dash">
                         News
                     </div>
-                    <img className="news-bn-background" src={props.banner-pict} alt="News Banner Picture"/>
-                    <span className="news-bn-shadow"></span>
-                    <h5 className="news-headline">{props.headline}</h5>
+                    <img className="bn-background-news-dash" src={props.bannerImage} alt=""/>
+                    <span className="bn-shadow-news-dash"></span>
+                    <h5 className="txt-headline-news-dash">{props.headlineTitle}</h5>
                     <div className="slider d-flex">
-                        <Link to="">
+                        <a href="">
                             <div id="sl1" className="sld active"></div>
-                        </Link>
-                        <Link to="">
+                        </a>
+                        <a href="">
                             <div id="sl2" className="sld "></div>
-                        </Link>
-                        <Link to="">
+                        </a>
+                        <a href="">
                             <div id="sl3" className="sld "></div>
-                        </Link>
-                        <Link to="">
+                        </a>
+                        <a href="">
                             <div id="sl4" className="sld "></div>
-                        </Link>
-                        <Link to="">
+                        </a>
+                        <a href="">
                             <div id="sl5" className="sld "></div>
-                        </Link>
+                        </a>
 
                     </div>
                 </div>
             </section>
-        </div>
+        </>
     )
 }
 

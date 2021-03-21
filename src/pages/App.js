@@ -8,11 +8,12 @@ import VerifyCode from './VerifyCode'
 import CreateNewPassword from './CreateNewPassword'
 import PasswordChanged from './PasswordChanged'
 
+import Dashboard from './Dashboard'
+
 export class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <div>
           <Route path='/' exact component={Login} />
           <Route path='/register' exact component={Register} />
           <Route path='/reset-password' exact component={ResetPassword} />
@@ -21,11 +22,11 @@ export class App extends Component {
           <Route path='/password-changed' exact component={PasswordChanged} />
 
 
-          Dashboard page
-          {/* <Route path='/student-all-schedule' exact component={Dashboard}/>
-          <Route path='/student-for-you' exact component={Dashboard}/>
+          {/* Dashboard page */}
+          <Route path='/dashboard/:id' exact component={Dashboard}/>
+          {/* <Route path='/student-for-you' exact component={Dashboard}/> */}
 
-          <Route path='/fas-dashboard' exact component={Dashboard}/> */}
+          {/* <Route path='/fas-dashboard' exact component={Dashboard}/> */}
 
           {/* Activity page */}
           {/* <Route path='/student-activity' exact component={Acivity}/>
@@ -43,8 +44,6 @@ export class App extends Component {
 
           {/* Notification */}
           {/* <Route path='/notif' exact component={Notify}/> */}
-
-      </div>
         
       </BrowserRouter>
     )

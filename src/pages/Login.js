@@ -18,7 +18,7 @@ function Login() {
     let history = useHistory();
     const submitHandler = (e) => {
         e.preventDefault();
-        history.push('/student-all-schedule');
+        history.push('/dashboard/all-schedule');
     }
 
 
