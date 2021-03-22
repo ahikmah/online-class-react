@@ -16,6 +16,7 @@ import StudentMyClass from './StudentMyClass'
 import StudentClassDetail from './StudentClassDetail'
 
 import FasilitatorActivity from './FasilitatorActivity'
+import FasilitatorClassDetail from './FasilitatorClassDetail'
 
 export class App extends Component {
   render() {
@@ -41,6 +42,8 @@ export class App extends Component {
 
           
           <Route path='/fas-activity' exact component={FasilitatorActivity}/>
+
+          <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
           {/* <Route path='/student-classdetail' exact component={StudentClassDetail}/> */}
           {/* <Route path='/student-classprogress' exact component={StudentClassProgress}/> */}
           {/* <Route path='/student-my-class' exact component={Acivity}/>

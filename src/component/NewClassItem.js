@@ -14,8 +14,7 @@ function NewClassItem(props) {
                 <div className="col">{props.level}</div>
                 <div className="col">{props.pricing}</div>
                 <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                <div className="col col-1 ls 
-                ">
+                <div className="col col-1 ls">
                     <Link to=""><img src={iconList} alt="icon list"/></Link>
                 </div>
             </div>

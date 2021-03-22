@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 function MessagePanel() {
 
-    const items = MessageList.map((msg, i)=>{
-    return  <MessageItem key={i.id} ava={msg.ava} name={msg.name} 
+    const items = MessageList.map((msg)=>{
+    return  <MessageItem key={msg.id} ava={msg.ava} name={msg.name} 
         content={msg.content} time ={msg.time} />
     })
 
