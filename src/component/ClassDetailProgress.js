@@ -1,6 +1,7 @@
 import React from 'react'
 import ClassProgressItem from './ClassProgressItem'
 import ClassProgressList from '../assets/data/classprogress'
+import '../assets/css/ClassProgress.css'
 
 function ClassDetailProgress() {
     const classProgressItems = ClassProgressList.map(cl=>{
