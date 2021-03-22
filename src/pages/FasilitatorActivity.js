@@ -51,7 +51,11 @@ function FasilitatorActivity() {
                         </section>
                         {/* <!-- End of My Class --> */}
 
+<<<<<<< HEAD
                         {/* <!-- Create New Class Section --> */}
+=======
+                        {/* <!-- New Class Section --> */}
+>>>>>>> 18c1effd60e1a767d08d571288eea855ca790e19
                         <section className=" container wrapper new-class ">
                         <div className="sub-label ">Create New Class</div>
                         <div className="container new-class">
