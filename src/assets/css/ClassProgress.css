@@ -27,7 +27,12 @@
 small#bn-progress{
     margin: 0;
 }
-
+.tb-myclass-progress {
+    padding-right: 0;
+    padding-left: 0.625rem;
+    margin: 0 0.3125rem;
+    white-space: pre;
+}
 .progress {
     position: absolute;
     top: 22rem;
@@ -37,7 +42,7 @@ small#bn-progress{
 .completed {
     font-style: italic;
     color: #979797;
-    ;
+    
 }
 
 .badge-unfinished>span {

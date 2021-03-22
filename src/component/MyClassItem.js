@@ -24,7 +24,7 @@ function MyClassItem(props) {
             <div className="row tdata tb-myclass">
                 <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
                 <div className="col overflow-hidden">
-                    <Link to="class-progress.html">{props.name}</Link></div>
+                    <Link to="/student-class-detail/information">{props.name}</Link></div>
                 <div className="col">
                     <Link to="">{props.category}</Link></div>
                 <div className="col ds">{props.desc}</div>

@@ -38,25 +38,25 @@ const ClassProgressList = [
     {
         id: 7,
         name: "Learning React.js",
-        note: "Friday, 6 November 2020 08.00 - 09.40",
+        note: "Friday, 6 November 2020 | 08.00 - 09.40",
         score: "unfinished",
     },
     {
         id: 8,
         name: "Sass Essential Training",
-        note: "Friday, 13 November 2020 08.00 - 09.40",
+        note: "Friday, 13 November 2020 | 08.00 - 09.40",
         score: "unfinished",
     },
     {
         id: 9,
         name: "UX for Web Design",
-        note: "Friday, 20 November 2020 08.00 - 09.40",
+        note: "Friday, 20 November 2020 | 08.00 - 09.40",
         score: "unfinished",
     },
     {
         id: 10,
         name: "Final-term Exam",
-        note: "Friday, 27 November 2020 08.00 - 09.40",
+        note: "Friday, 27 November 2020 | 08.00 - 09.40",
         score: "unfinished",
     },
 

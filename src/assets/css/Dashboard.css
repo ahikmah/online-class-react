@@ -226,6 +226,11 @@ span.timeline:after {
     margin-bottom: 1rem;
 }
 
+form>.form-group{
+    width: 100%;
+    height: fit-content;
+}
+
 .form-group>label {
     /* color: #D2DEED; */
     position: absolute;

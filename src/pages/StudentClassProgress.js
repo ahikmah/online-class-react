@@ -50,23 +50,23 @@ function ClassDetail() {
                                 </div>
                                 <hr/>
                                 <div class="row tdata tb-myclass">
-                            <div class="col-1"><input type="checkbox" checked="true" disabled="disabled"/><span class="checkmark"></span></div>
-                            <div class="col">
-                                <a href=" "> HTML Essential Training</a></div>
-                            <div class="col completed">
-                                You have completed this topic
-                            </div>
-                            <div class="col-2 text-center"><span class="scr " style={{color: "#2BE7D0"}}>100</span></div>
-                        </div>
-                        <div class="row tdata tb-myclass">
-                            <div class="col-1"><input type="checkbox" checked="true"  disabled="disabled"/><span class="checkmark"></span></div>
-                            <div class="col">
-                                <a href=" ">CSS Essential Training</a></div>
-                            <div class="col completed">
-                                You have completed this topic
-                            </div>
-                            <div class="col-2 text-center"><span class="scr" style={{color: "#E7852B"}}>42</span></div>
-                        </div>
+                                    <div class="col-1"><input type="checkbox" checked="true" disabled="disabled"/><span class="checkmark"></span></div>
+                                    <div class="col">
+                                        <a href=" "> HTML Essential Training</a></div>
+                                    <div class="col completed">
+                                        You have completed this topic
+                                    </div>
+                                    <div class="col-2 text-center"><span class="scr " style={{color: "#2BE7D0"}}>100</span></div>
+                                </div>
+                                <div class="row tdata tb-myclass">
+                                    <div class="col-1"><input type="checkbox" checked="true"  disabled="disabled"/><span class="checkmark"></span></div>
+                                    <div class="col">
+                                        <a href=" ">CSS Essential Training</a></div>
+                                    <div class="col completed">
+                                        You have completed this topic
+                                    </div>
+                                    <div class="col-2 text-center"><span class="scr" style={{color: "#E7852B"}}>42</span></div>
+                                </div>
                         <div class="row tdata tb-myclass">
                             <div class="col-1"><input type="checkbox" checked="true"  disabled="disabled"/><span class="checkmark"></span></div>
                             <div class="col">

@@ -25,9 +25,9 @@ function MessagePanel() {
                         </div>
 
                         {/* <!-- Search box --> */}
-                        <div  className="row search-bar-message">
+                        <div  className="search-bar-message">
                             <form action="# ">
-                                <div className="col form-group ">
+                                <div className="form-group">
                                     <label htmlFor="search "><i className="fas fa-search "></i></label>
                                     <input type="text " className="form-control search " name="search " placeholder="Search"/>
                                 </div>

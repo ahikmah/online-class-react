@@ -35,7 +35,11 @@ export class App extends Component {
           {/* Activity page */}
           <Route path='/student-activity' exact component={StudentActivity}/>
           <Route path='/student-myclass' exact component={StudentMyClass}/>
-          <Route path='/student-classdetail' exact component={StudentClassDetail}/>
+
+          <Route path='/student-class-detail/:id' exact component={StudentClassDetail}/>
+
+          
+          {/* <Route path='/student-classdetail' exact component={StudentClassDetail}/> */}
           <Route path='/student-classprogress' exact component={StudentClassProgress}/>
           {/* <Route path='/student-my-class' exact component={Acivity}/>
           <Route path='/student-class-detail' exact component={Acivity}/>
