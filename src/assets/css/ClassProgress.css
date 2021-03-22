@@ -1,0 +1,50 @@
+
+#bn-score {
+    position: absolute;
+    top: 11rem;
+    left: 80%;
+}
+
+#score {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#score-label {
+    position: relative;
+    top: 1rem;
+}
+
+#bn-progress {
+    color: #5784BA;
+    position: absolute;
+    top: 20rem;
+    left: 22rem;
+}
+.progress-bar {
+    background-color: #5784BA;
+}
+small#bn-progress{
+    margin: 0;
+}
+
+.progress {
+    position: absolute;
+    top: 22rem;
+    left: 22rem;
+}
+
+.completed {
+    font-style: italic;
+    color: #979797;
+    ;
+}
+
+.badge-unfinished>span {
+    color: #BA5757;
+    font-size: 0.75rem;
+    border-radius: 0.9375rem;
+    padding: 0.3rem;
+    background-color: #EDD2D2;
+    /* text-align: center; */
+}

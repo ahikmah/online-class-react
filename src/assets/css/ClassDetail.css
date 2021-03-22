@@ -1,0 +1,89 @@
+section.banner-wrapper{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 18.75rem;
+}
+
+img#bn-background {
+    overflow: hidden;
+    width: 100%;
+    height: 18.75rem;
+    position: relative;
+}
+
+img#bn-thumbnail {
+    position: absolute;
+    top: 9rem;
+    left: 4rem;
+    height: auto;
+}
+
+div#bn-class-name {
+    position: absolute;
+    top: 13rem;
+    left: 22rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+div#bn-class-info {
+    position: absolute;
+    top: 16rem;
+    left: 22rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#bn-class-info>span {
+    margin-right: 1rem;
+}
+
+.btn.btn-register {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background-color: #57BA61;
+    color: white;
+    border-radius: 1.4625rem;
+    position: absolute;
+    top: 13rem;
+    left: 80%;
+    width: 9.75rem;
+    font-size: 1.5rem;
+}
+
+section.body-wrapper {
+    border-radius: 0 0 1.25rem 1.25rem;
+    background-color: white;
+    overflow: hidden;
+    padding: 0;
+    padding: 10rem 4rem 4rem 4rem;
+}
+
+.desc-title {
+    /* font-family: 'Montserrat', sans-serif; */
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}
+
+.desc-body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.desc-body>li {
+    margin: 0.5rem;
+}
+
+#tab-menu>a {
+    font-family: 'Roboto', sans-serif;
+    margin-right: 3rem;
+}
+
+#tab-menu>a.active {
+    border-bottom: solid 0.1875rem #5784BA;
+    padding-bottom: 1rem;
+    color: #5784BA;
+}

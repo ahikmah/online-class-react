@@ -13,6 +13,8 @@ import DashboardFasilitator from './DashboardFasilitator'
 
 import StudentActivity from './StudentActivity'
 import StudentMyClass from './StudentMyClass'
+import StudentClassDetail from './StudentClassDetail'
+import StudentClassProgress from './StudentClassProgress'
 
 export class App extends Component {
   render() {
@@ -33,6 +35,8 @@ export class App extends Component {
           {/* Activity page */}
           <Route path='/student-activity' exact component={StudentActivity}/>
           <Route path='/student-myclass' exact component={StudentMyClass}/>
+          <Route path='/student-classdetail' exact component={StudentClassDetail}/>
+          <Route path='/student-classprogress' exact component={StudentClassProgress}/>
           {/* <Route path='/student-my-class' exact component={Acivity}/>
           <Route path='/student-class-detail' exact component={Acivity}/>
           <Route path='/student-class-progress' exact component={Acivity}/>

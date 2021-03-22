@@ -47,8 +47,9 @@ aside.sidebar {
     color: white;
 }
 
-.side-status {
+small.side-status {
     font-size: 0.75rem;
+    margin: 0;
 }
 
 .side-nav-item {

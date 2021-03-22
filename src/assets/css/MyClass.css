@@ -6,11 +6,11 @@ form.search-myclass{
     width: 70%;
     height: fit-content;
     display: flex;
-    margin-right: 1rem;
+    justify-content: space-between;
 }
 .form-group{
     margin: 0;
-    width: 100%;
+    width: 90%;
 }
 
 .form-group>label.search-myclass {
@@ -28,7 +28,7 @@ form.search-myclass{
     max-height: fit-content;
 }
 
-.btn-search-myclass {
+button.btn-search-myclass {
     background-color: #5784BA;
     padding: 0.5rem 1rem;
     /* margin-left: 5rem; */
