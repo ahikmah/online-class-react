@@ -1,0 +1,76 @@
+.search-group-myclass{
+    align-items: center;
+}
+
+form.search-myclass{
+    width: 70%;
+    height: fit-content;
+    display: flex;
+    margin-right: 1rem;
+}
+.form-group{
+    margin: 0;
+    width: 100%;
+}
+
+.form-group>label.search-myclass {
+    color: #D2DEED;
+    position: absolute;
+    padding: 0.5rem;
+}
+.form-group>input.search-myclass {
+    font-size: 0.875rem;
+    padding: 0.5rem 2rem;
+    background-color: white;
+    height: fit-content;
+    border-radius: 5px;
+    margin: 0;
+    max-height: fit-content;
+}
+
+.btn-search-myclass {
+    background-color: #5784BA;
+    padding: 0.5rem 1rem;
+    /* margin-left: 5rem; */
+    color: #fff;
+    font-size: 0.875rem;
+    height:auto;
+    width: auto;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.sorting-myclass>.form-group>label{
+    font-size: 0.8rem;
+    height: fit-content;
+    color: #9A9A9A;
+    position: absolute;
+    font-weight: 500;
+}
+
+.sorting-myclass>.form-group>select{
+    width:12rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.5rem 0.5rem 3.5rem;
+    height: fit-content;
+}
+
+.sel-sorting {
+    background: linear-gradient(90deg, white 90%, #E9E9E9 20%);
+    padding: 0.6rem 3rem 0.6rem 4rem;
+    font-size: 0.875rem;
+    border-radius: 0.3125rem;
+    border: none;
+}
+.row.theader.tb-myclass{
+    margin-top: 2rem;
+    margin-bottom:0;
+}
+.tb-myclass{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.tdata:hover {
+    box-shadow: inset 0px 0px 30px rgba(0, 4, 250, 0.1);
+}

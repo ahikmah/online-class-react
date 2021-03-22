@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar'
 import { Link } from 'react-router-dom'
 import '../assets/css/Activity.css'
-import iconList from '../assets/images/icon-list.png'
 import MyClassItem from '../component/MyClassItem'
 import NewClassItem from '../component/NewClassItem'
 import MyClassList from '../assets/data/studentmyclass'
@@ -57,13 +56,13 @@ function StudentActivity() {
                                 <div className="col th">Class Name</div>
                                 <div className="col th">Category</div>
                                 <div className="col th">Description</div>
-                                <div className="col pr th">Progress</div>
+                                <div className="col pr th d-flex justify-content-center">Progress</div>
                                 <div className="col badge-pr th">Status</div>
-                                <div className="col col th">Score</div>
-                                <div className="col col-1 th"></div>
+                                <div className="col col th d-flex justify-content-center">Score</div>
+                                <div className="col col-1 th d-flex justify-content-center"></div>
                             </div>
                             {classItems}
-                            <small className="d-flex justify-content-center"><Link to="my-className.html">view all ></Link></small>
+                            <small className="d-flex justify-content-center"><Link to="/student-myclass">view all</Link></small>
                         </section>
                         {/* <!-- End of My Class --> */}
 
@@ -123,6 +122,7 @@ function StudentActivity() {
                                 "></div>
                             </div>
                             {newClassItems}
+
                             <div className="pagination">
                                 <div className="col d-flex justify-content-start align-items-center">Showing 10 out of 64</div>
                                 <div className="col d-flex justify-content-end align-items-center">

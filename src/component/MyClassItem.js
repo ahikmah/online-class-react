@@ -23,12 +23,12 @@ function MyClassItem(props) {
         <>
             <div className="row tdata tb-myclass">
                 <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
-                <div className="col">
+                <div className="col overflow-hidden">
                     <Link to="class-progress.html">{props.name}</Link></div>
                 <div className="col">
                     <Link to="">{props.category}</Link></div>
                 <div className="col ds">{props.desc}</div>
-                <div className="col pr">
+                <div className="col pr d-flex justify-content-center">
                     <div className={ProgressClass.join(' ')}>
                         <span>{props.progress.slice(1)}%</span>
                         <div className="slice">
@@ -38,8 +38,8 @@ function MyClassItem(props) {
                     </div>
                 </div>
                 <div className="col badge-pr"><span>{props.status}</span></div>
-                <div className="col"><span className="scr" style={{color: scoreColor}}>{props.score}</span></div>
-                <div className="col col-1">
+                <div className="col  d-flex justify-content-center"><span className="scr" style={{color: scoreColor}}>{props.score}</span></div>
+                <div className="col col-1  d-flex justify-content-center">
                     <Link to=""><img src={iconList} alt="icon list"/></Link>
                 </div>
             </div>

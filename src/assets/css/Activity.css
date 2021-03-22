@@ -3,7 +3,7 @@
 }
 
 
-.content-activity {
+main.content-activity {
     padding-left: 16.525rem;
     width: 100%;
 }
@@ -140,6 +140,7 @@ form.search-activity{
 .form-group.search-bar-activity>input {
     font-size: 0.875rem;
     padding: 0.5rem 2rem;
+    background: white;
 }
 .col.form-group.btn-group.search-bar-activity{
     margin: 0;
