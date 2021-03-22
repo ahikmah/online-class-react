@@ -37,7 +37,7 @@ function StudentMyClass() {
 
                             <section className="search-group-myclass d-flex justify-content-between align-items-center">
                                     <form className="search-myclass" action="# " style={{paddingLeft: "0"}}>
-                                        <div className="form-group">
+                                        <div className="form-group my-class">
                                             <label for="search" className="srch search-myclass"><i className="fas fa-search "></i></label>
                                             <input type="text" className="form-control search-myclass" name="search " placeholder="Quick Search"/>
                                         </div>
@@ -46,7 +46,7 @@ function StudentMyClass() {
 
 
                                     <form className="sorting-myclass" action=" # ">
-                                        <div className="col form-group">
+                                        <div className="col form-group my-class">
                                             <label for="sorting" className="sorting">Sort by:</label>
                                             <select className="selectpicker sel-sorting">
                                                 <option>All Categories</option>

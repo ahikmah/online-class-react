@@ -1,0 +1,51 @@
+.class-name-input{
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+select.cnc, input.input-time{
+    width: fit-content;
+    height: fit-content;
+    
+}
+
+input.input-time{
+    text-align: center;
+    width: fit-content;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border: none;
+    border-bottom: solid #000 1px;
+}
+
+.class-name-input{
+    height: fit-content;
+}
+
+.pricing-radio{
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
+
+
+
+textarea.form-control.cnc{
+    width: 98%;
+    margin-left: 0.8rem;
+    background-color:#EBEBEB ;
+    box-shadow: none;
+}
+
+.btn-create{
+    background-color: #57BA61;
+    color: white;
+    font-size: 1rem;
+    border-radius: 20px;
+    height: 40px;
+    width: 320px;
+    text-align: center;
+    margin-top: 1rem;
+    vertical-align: center;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator { background: none; display:none; }

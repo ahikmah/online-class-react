@@ -62,12 +62,12 @@ function StudentActivity() {
                                 <div className="col col-1 th d-flex justify-content-center"></div>
                             </div>
                             {classItems}
-                            <small className="d-flex justify-content-center"><Link to="/student-myclass">view all</Link></small>
+                            <small className="d-flex justify-content-center"><Link to="/student-myclass">view all{' >'}</Link></small>
                         </section>
                         {/* <!-- End of My Class --> */}
 
                         {/* <!-- New Class Section --> */}
-                        <div className=" container wrapper new-class ">
+                        <section className=" container wrapper new-class ">
                         <div className="container new-class">
                             <div className="sub-label ">New Class</div>
 
@@ -141,7 +141,8 @@ function StudentActivity() {
                             </div>
                         </div>
 
-                    </div>
+                    </section>
+                        
                     </main>
 
                 </div>

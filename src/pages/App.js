@@ -15,6 +15,8 @@ import StudentActivity from './StudentActivity'
 import StudentMyClass from './StudentMyClass'
 import StudentClassDetail from './StudentClassDetail'
 
+import FasilitatorActivity from './FasilitatorActivity'
+
 export class App extends Component {
   render() {
     return (
@@ -29,7 +31,7 @@ export class App extends Component {
 
           {/* Dashboard page */}
           <Route path='/dashboard/:id' exact component={DashboardStudent}/>
-          <Route path='/dashboard-fas' exact component={DashboardFasilitator}/>
+          <Route path='/fas-dashboard' exact component={DashboardFasilitator}/>
 
           {/* Activity page */}
           <Route path='/student-activity' exact component={StudentActivity}/>
@@ -38,6 +40,7 @@ export class App extends Component {
           <Route path='/student-class-detail/:id' exact component={StudentClassDetail}/>
 
           
+          <Route path='/fas-activity' exact component={FasilitatorActivity}/>
           {/* <Route path='/student-classdetail' exact component={StudentClassDetail}/> */}
           {/* <Route path='/student-classprogress' exact component={StudentClassProgress}/> */}
           {/* <Route path='/student-my-class' exact component={Acivity}/>

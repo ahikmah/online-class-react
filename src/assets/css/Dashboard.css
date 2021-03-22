@@ -231,14 +231,14 @@ form>.form-group{
     height: fit-content;
 }
 
-.form-group>label {
+.form-group.msg>label {
     /* color: #D2DEED; */
     position: absolute;
     padding: 0.6rem;
     color: #000;
 }
 
-.form-group>input {
+.form-group.msg>input {
     font-size: 0.875rem;
     padding: 0.6rem 2.5rem;
     border-radius: 1rem;

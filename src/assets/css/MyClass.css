@@ -8,12 +8,12 @@ form.search-myclass{
     display: flex;
     justify-content: space-between;
 }
-.form-group{
+.form-group.my-class{
     margin: 0;
     width: 90%;
 }
 
-.form-group>label.search-myclass {
+.form-group.my-class>label.search-myclass {
     color: #D2DEED;
     position: absolute;
     padding: 0.5rem;
@@ -40,12 +40,13 @@ button.btn-search-myclass {
     margin: 0;
 }
 
-.sorting-myclass>.form-group>label{
+.sorting-myclass>.form-group.my-class>label{
     font-size: 0.8rem;
     height: fit-content;
     color: #9A9A9A;
     position: absolute;
     font-weight: 500;
+    padding: 0.5rem;
 }
 
 .sorting-myclass>.form-group>select{
