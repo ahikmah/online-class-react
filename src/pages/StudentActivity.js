@@ -4,7 +4,38 @@ import Sidebar from '../component/Sidebar'
 import { Link } from 'react-router-dom'
 import '../assets/css/Activity.css'
 import iconList from '../assets/images/icon-list.png'
+import MyClassItem from '../component/MyClassItem'
+import NewClassItem from '../component/NewClassItem'
+import MyClassList from '../assets/data/studentmyclass'
+import NewClassList from '../assets/data/newclass'
+
 function StudentActivity() {
+    // Display top 3 My Class list
+    const myclasssize = 3
+    const classItems = MyClassList.slice(0, myclasssize).map((cl)=>{
+        return <MyClassItem
+            key={cl.id}
+            name={cl.name}
+            category={cl.category}
+            desc={cl.description}
+            progress={cl.progress}
+            status={cl.status}
+            score={cl.score}/>
+    })
+
+    const newclasssize = 10
+    const newClassItems = NewClassList.slice(0, newclasssize).map((nc)=>{
+        return <NewClassItem
+        key = {nc.id}
+        name = {nc.name}
+        category = {nc.category}
+        desc = {nc.description}
+        level = {nc.level}
+        pricing = {nc.pricing}
+        />
+    })
+
+
     return (
         <>
             <div className="container-fluid activity">
@@ -31,74 +62,7 @@ function StudentActivity() {
                                 <div className="col col th">Score</div>
                                 <div className="col col-1 th"></div>
                             </div>
-
-                            <div className="row tdata tb-myclass">
-                                <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
-                                <div className="col">
-                                    <Link to="class-progress.html"> Front-end fundamentals</Link></div>
-                                <div className="col">
-                                    <Link to=""> Software</Link></div>
-                                <div className="col ds">Learn the fundamentals of front end...</div>
-                                <div className="col pr">
-                                    <div className="c100 p80 small">
-                                        <span>80%</span>
-                                        <div className="slice">
-                                            <div className="bar"></div>
-                                            <div className="fill"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col badge-pr"><span>Ongoing</span></div>
-                                <div className="col"><span className="scr" style={{color: "#51E72B"}}>86</span></div>
-                                <div className="col col-1">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata tb-myclass">
-                                <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
-                                <div className="col">
-                                    <Link to="">HTML for Beginners</Link></div>
-                                <div className="col">
-                                    <Link to="">Software</Link></div>
-                                <div className="col ds">HTML from scratch</div>
-                                <div className="col pr">
-                                    <div className="c100 p25 small">
-                                        <span>25%</span>
-                                        <div className="slice">
-                                            <div className="bar"></div>
-                                            <div className="fill"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col badge-pr"><span>Ongoing</span></div>
-                                <div className="col"><span className="scr" style={{color: "#51E72B"}}>71</span></div>
-                                <div className="col col-1">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata tb-myclass">
-                                <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
-                                <div className="col">
-                                    <Link to="">History of Europe</Link></div>
-                                <div className="col">
-                                    <Link to="">History</Link></div>
-                                <div className="col ds">The history of Europe concerns itself...</div>
-                                <div className="col pr">
-                                    <div className="c100 p69 small">
-                                        <span>69%</span>
-                                        <div className="slice">
-                                            <div className="bar"></div>
-                                            <div className="fill"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col badge-pr"><span>Ongoing</span></div>
-                                <div className="col"><span className="scr" style={{color: "#CCE72B"}}>62</span></div>
-                                <div className="col col-1">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-
+                            {classItems}
                             <small className="d-flex justify-content-center"><Link to="my-className.html">view all ></Link></small>
                         </section>
                         {/* <!-- End of My Class --> */}
@@ -138,10 +102,10 @@ function StudentActivity() {
                                 <select className="selectpicker sel-filter" style={{width: "4.2rem"}}>
                                     <option>Pricing</option>
                                     <option>Free</option>
-                                    <option> $10</option> 
+                                    <option>{'<'} $10</option> 
                                     <option> $10 - $20</option>
                                     <option>$20 - $50</option>
-                                    <option> $50</option>
+                                    <option> {'>'}$50</option>
                                 </select>
                             </div>
 
@@ -158,152 +122,11 @@ function StudentActivity() {
                                 <div className="col col-1 ls th 
                                 "></div>
                             </div>
-
-                            <div className="row tdata2">
-                                <div className="col nm "><Link to="className-detail.html"> Know more Java script</Link></div>
-                                <div className="col 
-                                "><Link to=""> Software </Link></div>
-                                <div className="col 
-                                ">Javascript from the basic for...</div>
-                                <div className="col">Beginner</div>
-                                <div className="col">Free</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">HTML and CSS to code</Link></div>
-                                <div className="col 
-                                "><Link to=""> Software </Link></div>
-                                <div className="col 
-                                ">Start combining HTML and CSS to...</div>
-                                <div className="col">Intermediate</div>
-                                <div className="col">$10</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Indonesian war history</Link></div>
-                                <div className="col 
-                                "><Link to="">History</Link></div>
-                                <div className="col 
-                                ">From the first colonialization until...</div>
-                                <div className="col">Advance</div>
-                                <div className="col">$50</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Buddhism and Modern Psychology</Link></div>
-                                <div className="col 
-                                "><Link to="">Psychology</Link></div>
-                                <div className="col 
-                                ">Buddhism and science are deeply...</div>
-                                <div className="col">Beginner</div>
-                                <div className="col">Free</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Financial markets</Link></div>
-                                <div className="col 
-                                "><Link to="">Finance</Link></div>
-                                <div className="col 
-                                ">An overview of the ideas, methods...</div>
-                                <div className="col">Intermediate</div>
-                                <div className="col">$10</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Corporate finance</Link></div>
-                                <div className="col 
-                                "><Link to="">Finance</Link></div>
-                                <div className="col 
-                                ">Introduction to the fundamentals...</div>
-                                <div className="col ">Advance</div>
-                                <div className="col">$50</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Algorithm specialization</Link></div>
-                                <div className="col 
-                                "><Link to="">Math</Link></div>
-                                <div className="col 
-                                ">Learn to think like Link computer...</div>
-                                <div className="col">Advance</div>
-                                <div className="col">$50</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to=""> Business and Financial Modeling</Link></div>
-                                <div className="col 
-                                "><Link to=""> Software </Link></div>
-                                <div className="col 
-                                ">Designed to help you make...</div>
-                                <div className="col">Beginner</div>
-                                <div className="col">Free</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Marketing in Link Digital World</Link></div>
-                                <div className="col 
-                                "><Link to=""> Software </Link></div>
-                                <div className="col 
-                                ">This className examines how digital...</div>
-                                <div className="col">Intermediate</div>
-                                <div className="col">$10</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-                            <div className="row tdata2">
-                                <div className="col nm"><Link to="">Social Psychology</Link></div>
-                                <div className="col 
-                                "><Link to="">Psychology</Link></div>
-                                <div className="col 
-                                ">This className offers some answers...</div>
-                                <div className="col">Advance</div>
-                                <div className="col">$50</div>
-                                <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                                <div className="col col-1 ls 
-                                ">
-                                    <Link to=""><img src={iconList} alt="icon list"/></Link>
-                                </div>
-                            </div>
-
+                            {newClassItems}
                             <div className="pagination">
                                 <div className="col d-flex justify-content-start align-items-center">Showing 10 out of 64</div>
                                 <div className="col d-flex justify-content-end align-items-center">
-                                    <span className="pg"><Link to="">0</Link></span> 
+                                    <span className="pg"><Link to="">{'<'}</Link></span> 
                                     <span className="pg active-pg"><Link to="">1</Link></span>
                                     <span className="pg"><Link to="">2</Link></span>
                                     <span className="pg 
@@ -313,7 +136,7 @@ function StudentActivity() {
                                     <span className="pg 
                                     "><Link to="">5</Link></span>
                                     <span style={{paddingTop: "0.3rem"}}><Link to=" ">...</Link></span>
-                                    <span className=" pg "><Link to=" ">100</Link></span>
+                                    <span className=" pg "><Link to=" ">{'>'}</Link></span>
                                 </div>
                             </div>
                         </div>
