@@ -18,7 +18,7 @@ import StudentClassDetail from './StudentClassDetail'
 import FasilitatorActivity from './FasilitatorActivity'
 import FasilitatorClassDetail from './FasilitatorClassDetail'
 
-import ProgressModal from '../component/ProgressPopup'
+import Profile from './Profile'
 
 export class App extends Component {
   render() {
@@ -47,6 +47,10 @@ export class App extends Component {
 
           <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
           <Route path='/fas-class-detail/member/:pop' exact component={FasilitatorClassDetail}/>
+
+
+          <Route path='/profile' exact component={Profile}/>
+
           {/* <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/> */}
           {/* <Route path='/student-classdetail' exact component={StudentClassDetail}/> */}
           {/* <Route path='/student-classprogress' exact component={StudentClassProgress}/> */}
@@ -60,7 +64,6 @@ export class App extends Component {
           <Route path='/fas-scoring' exact component={Acivity}/> */}
 
           {/* Profile */}
-          {/* <Route path='/profile' exact component={Profile}/> */}
 
           {/* Notification */}
           {/* <Route path='/notif' exact component={Notify}/> */}

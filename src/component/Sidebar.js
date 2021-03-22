@@ -23,21 +23,25 @@ function Sidebar(props) {
     const classNavItem = ['side-nav-item nav-link']
     const classNavItemActive =  ['side-nav-item nav-link','active-sidebar']
 
+    const customProfile = {background: "linear-gradient(180deg, white 60%, #5784BA 60%)"}
+    const customSpan = props.activeMenu===0?{border: "white solid 0.14rem"}:{border: "#5784BA solid 0.14rem"};
+
+
     return (
         <>
-            <aside className="sidebar col-2">
+            <aside className="sidebar col-2" style={props.activeMenu===0? customProfile:null}>
 
                 {/* <!-- Notification --> */}
                 <div className="side-notif-section">
-                    <Link to=""><i className="fas fa-bell" style={{color: "white"}}></i></Link>
-                    <span></span>
+                    <Link to=""><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
+                    <span style={customSpan}></span>
                 </div>
 
                 {/* <!-- Profile --> */}
-                <div className="side-profile-section d-flex flex-column">
+                <div className="side-profile-section d-flex flex-column 'active-sidebar'">
                     <div className="side-avatar"> <img src={Avatar} alt="avatar"/></div>
-                    <Link to="profile.html" className="side-name">Emir Kharisma</Link>
-                    <small className="side-status">online</small>
+                    <Link to="/profile" className= {props.activeMenu===0?"side-name active-sidebar":"side-name"}>Emir Kharisma</Link>
+                    <small className={props.activeMenu===0?"side-status active-sidebar":"side-status"}>online</small>
                 </div>
 
                 {/* Menu section */}

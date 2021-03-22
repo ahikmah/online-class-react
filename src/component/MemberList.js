@@ -9,7 +9,6 @@ function MemberList() {
         return <MemberItem key={member.id} ava={member.ava} name={member.name} link={"/fas-class-detail/member/"+member.id}/> })
     return (
         <div>
-            
             {MemberItems}
         </div>
     )
