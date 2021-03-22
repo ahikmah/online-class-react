@@ -8,7 +8,7 @@ import MemberList from '../component/MemberList'
 
 function FasilitatorClassDetail() {
     let {id} = useParams()
-    let content, active
+    let content, active, pops
 
     if (id==="information"){
         content = <ClassDetailInformation/>

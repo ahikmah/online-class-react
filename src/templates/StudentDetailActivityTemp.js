@@ -42,8 +42,8 @@ function ClassDetail(props) {
                                 </div> : null}
 
                                 {activeMenu === 1 ? <small id="bn-progress">{props.progress}% to complete</small> : null}
-                                {activeMenu === 1 ? <div class="progress" style={{height: "0.5rem", width: "55%"}}>
-                                    <div class="progress-bar" role="progressbar" style={{width: widthProg }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                {activeMenu === 1 ? <div className="progress" style={{height: "0.5rem", width: "55%"}}>
+                                    <div className="progress-bar" role="progressbar" style={{width: widthProg }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div> : null}
                             </section>
 

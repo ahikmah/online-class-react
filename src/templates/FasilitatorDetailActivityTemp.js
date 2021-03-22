@@ -3,16 +3,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar'
 import { Link } from 'react-router-dom'
 import '../assets/css/ClassDetail.css'
-import '../assets/css/ModalMember.css'
+import ProgressModal from '../component/ProgressPopup'
 import BannerClass from '../assets/images/banner-class.png'
 import ThumbnailClass from '../assets/images/thumbnail-class.png'
+import { useParams } from "react-router-dom"
 
-import avaAr from '../assets/images/ava-chat1.png'
 
 function ClassDetail(props) {
     const activeMenu = props.menu
     const activeClass = 'active'
     const widthProg = props.progress+"%"
+    let {pop} = useParams() 
+
+    const popClass = ["overlay", "hidden"]
+    if (pop) popClass.pop()
 
     return (
         <>
@@ -37,16 +41,10 @@ function ClassDetail(props) {
                                     <span>Category: {props.category}</span>
                                     <span>Price: {props.price}</span>
                                 </div>
-                                {/* {activeMenu === 0 ? <button className="btn btn-register">Register</button>:null} */}
-
-                                {/* {activeMenu === 1? <div id="bn-score">
-                                    <div id="score-label">Your score</div>
-                                    <div id="score" style={{color: "#51E72B"}}>{props.score}</div>
-                                </div> : null} */}
 
                                 <small id="bn-progress">{props.progress}% to complete</small>
-                                <div class="progress" style={{height: "0.5rem", width: "55%"}}>
-                                    <div class="progress-bar" role="progressbar" style={{width: widthProg }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div className="progress" style={{height: "0.5rem", width: "55%"}}>
+                                    <div className="progress-bar" role="progressbar" style={{width: widthProg }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </section>
 
@@ -62,12 +60,10 @@ function ClassDetail(props) {
                                 
                                 {/* CONTENT BODY HERE */}
                                 {props.body}
-                                <div class="modal">
-                                    {/* <button class="show-modal">&times;</button> */}
-                                    <h1 className="tesmodal">HALO WODL</h1>
-                                    <img src={avaAr} alt="avatar member" className="ava-member"/>
+
+                                <div className={popClass.join(' ')}>
+                                    {<ProgressModal i={Number(pop)}/>}
                                 </div>
-                                {/* <div class="overlay"></div> */}
 
                             </section>                            
                         </section>
