@@ -41,29 +41,14 @@ export class App extends Component {
           <Route path='/student-myclass' exact component={StudentMyClass}/>
 
           <Route path='/student-class-detail/:id' exact component={StudentClassDetail}/>
+          <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
 
           
           <Route path='/fas-activity' exact component={FasilitatorActivity}/>
-
-          <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
           <Route path='/fas-class-detail/member/:pop' exact component={FasilitatorClassDetail}/>
 
 
           <Route path='/profile' exact component={Profile}/>
-
-          {/* <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/> */}
-          {/* <Route path='/student-classdetail' exact component={StudentClassDetail}/> */}
-          {/* <Route path='/student-classprogress' exact component={StudentClassProgress}/> */}
-          {/* <Route path='/student-my-class' exact component={Acivity}/>
-          <Route path='/student-class-detail' exact component={Acivity}/>
-          <Route path='/student-class-progress' exact component={Acivity}/>
-
-          <Route path='/fas-activity' exact component={Acivity}/>
-          <Route path='/fas-class-detail' exact component={Acivity}/>
-          <Route path='/fas-class-member' exact component={Acivity}/>
-          <Route path='/fas-scoring' exact component={Acivity}/> */}
-
-          {/* Profile */}
 
           {/* Notification */}
           {/* <Route path='/notif' exact component={Notify}/> */}
