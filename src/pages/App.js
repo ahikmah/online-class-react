@@ -19,6 +19,7 @@ import FasilitatorActivity from './FasilitatorActivity'
 import FasilitatorClassDetail from './FasilitatorClassDetail'
 
 import Profile from './Profile'
+import Notify from './AllNotif'
 
 export class App extends Component {
   render() {
@@ -51,7 +52,7 @@ export class App extends Component {
           <Route path='/profile' exact component={Profile}/>
 
           {/* Notification */}
-          {/* <Route path='/notif' exact component={Notify}/> */}
+          <Route path='/notif' exact component={Notify}/>
         
       </BrowserRouter>
     )

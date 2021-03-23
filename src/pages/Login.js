@@ -38,7 +38,7 @@ function Login() {
                         <button type="submit" className="btn login btn-google">
                             <img src={googleIcon} alt="google-icon"/> Login with Google</button>
                     </div>
-                {/* <p>Tes: {username}</p> */}
+                <p className="hidden">Tes: {username}</p>
                 </form>
                 <p className="txtlogin">New user? <Link to="/register"> Register</Link></p>
 

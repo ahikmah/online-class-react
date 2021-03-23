@@ -25,6 +25,7 @@ function Register() {
     const rePasswordHandler= (e) => {
         setRePassword(e.target.value)
     }
+    console.log(username,email);
 
     let match;
 
