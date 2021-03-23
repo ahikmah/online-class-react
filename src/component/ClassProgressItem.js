@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 function ClassProgressItem(props) {
 
     let scoreColor;
@@ -24,7 +24,7 @@ function ClassProgressItem(props) {
             <div className="row tdata tb-myclass-progress">
                 <div className="col-1"><input type="checkbox" checked={props.score==="unfinished"? false:true} disabled="disabled"/><span className="checkmark"></span></div>
                 <div className="col">
-                    <a href=" ">{props.name}</a></div>
+                    <Link to=" ">{props.name}</Link></div>
                 <div className={props.score==='unfinished' ? classActive[0] : classActive.join(' ')}>
                     {props.note}
                 </div>

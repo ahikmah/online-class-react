@@ -50,9 +50,9 @@ function ClassDetail(props) {
 
                             <section className="body-wrapper">
                                 <div id="tab-menu">
-                                    <a href="/student-class-detail/information" className={activeMenu===0?activeClass:null}>Information</a>
-                                    <a href="/student-class-detail/progress" className={activeMenu===1?activeClass:null}>Class Progress</a>
-                                    <a href="/student-class-detail/discussion" className={activeMenu===2?activeClass:null}>Class Discusion</a>
+                                    <Link to="/student-class-detail/information" className={activeMenu===0?activeClass:null}>Information</Link>
+                                    <Link to="/student-class-detail/progress" className={activeMenu===1?activeClass:null}>Class Progress</Link>
+                                    <Link to="/student-class-detail/discussion" className={activeMenu===2?activeClass:null}>Class Discusion</Link>
                                 </div>
                                 <hr/>
                                 

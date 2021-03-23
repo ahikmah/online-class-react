@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 function ClassProgressItem(props) {
 
     let scoreColor;
@@ -22,7 +22,7 @@ function ClassProgressItem(props) {
         <div>
             <div className="row tdata tb-myclass-progress-prev">
                 <div className="col-8">
-                    <a href=" ">{props.name}</a>
+                    <Link to=" ">{props.name}</Link>
                 </div>
                 {props.score==='unfinished' ? colUnfinished : colScore}
             </div>
