@@ -1,0 +1,31 @@
+.all-notif{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    margin-left:-0.3rem;
+    background:linear-gradient(90deg, rgba(0, 0, 0, 0.53) 14%, #5784BA 10%);
+    height: 96%;
+    /* max-height:; */
+    width: 100%;
+    border-radius: 1.25rem;
+    color: white;
+    /* padding: 16rem; */
+    padding-top: 3rem;
+    padding-left: 15rem;
+    position: fixed;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.close-btn-notif{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+.head-timeline{
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    /* font-weight: bold; */
+}
+.list-notif{
+    margin-top: 1rem;
+}

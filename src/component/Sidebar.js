@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/css/Sidebar.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 
 
 import Avatar from '../assets/images/avatar.png'
@@ -16,6 +16,8 @@ import logoutIcon from '../assets/images/icon-logout.png'
 import dashboardIconActive from '../assets/images/icon-dashboard-active.png'
 import activityIconActive from '../assets/images/icon-activity-active.png'
 
+import ExpandNotif from '../component/ExpandNotif'
+
 
 function Sidebar(props) {
 
@@ -26,6 +28,15 @@ function Sidebar(props) {
     const customProfile = {background: "linear-gradient(180deg, white 60%, #5784BA 60%)"}
     const customSpan = props.activeMenu===0?{border: "white solid 0.14rem"}:{border: "#5784BA solid 0.14rem"};
 
+    
+    let history = useHistory();
+    const tess=history.location.pathname.slice(-5)
+    // console.log('ini history', history.location.pathname.slice(-5));
+    // let {id} = useParams()
+    // console.log('ini param side',id);
+
+    const popClass = ["hidden"]
+    if (tess==='notif') popClass.pop()
 
     return (
         <>
@@ -33,7 +44,7 @@ function Sidebar(props) {
 
                 {/* <!-- Notification --> */}
                 <div className="side-notif-section">
-                    <Link to=""><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
+                    <Link to={history.location.pathname+"/notif"}><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
                     <span style={customSpan}></span>
                 </div>
 
@@ -65,6 +76,12 @@ function Sidebar(props) {
                 </nav>
             </aside>
 
+
+
+            {/* <ExpandNotif/> */}
+            <div className={popClass}>
+                {<ExpandNotif/>}
+            </div>
 
             
         </>

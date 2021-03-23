@@ -1,7 +1,6 @@
 import React from 'react'
-import Sidebar from '../component/Sidebar'
 import '../assets/css/AllNotif.css'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import CloseIcon from '../assets/images/Close-Icon.png'
 import ListNotif1 from '../assets/images/listnotif1.png'
 import ListNotif2 from '../assets/images/listnotif2.png'
@@ -12,18 +11,12 @@ import ListNotif6 from '../assets/images/listnotif6.png'
 import ListNotif7 from '../assets/images/listnotif7.png'
 import ListNotifClass from '../assets/images/listnotifclass.png'
 
-function AllNotif() {
+function ExpandNotif() {
+    // let history = useHistory();
+    
     return (
-        <div>
-            <div className="container-fluid dashboard">
-                <div className="row">
-                    {/* <!-- Sidebar --> */}
-                    <Sidebar
-                    
-                    />
-                </div>
-
-                <main className="all-notif hidden">
+        <>
+            <main className="all-notif">
                     <Link to="" className="close-btn-notif">
                         <img src={CloseIcon} alt="close icon"/>
                     </Link>
@@ -197,10 +190,8 @@ function AllNotif() {
                     </section>
                
                 </main>
-            
-            </div>
-        </div>
+        </>
     )
 }
 
-export default AllNotif
+export default ExpandNotif

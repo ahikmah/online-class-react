@@ -6,10 +6,9 @@ aside.sidebar {
     border-radius: 1.25rem;
     min-width: 14rem;
     max-width: 15rem;
-    
+
     padding: 0;
     position: fixed;
-    display: block;
     margin-left: 0.5rem;
 }
 

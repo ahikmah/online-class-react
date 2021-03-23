@@ -75,7 +75,7 @@ function StudentActivity() {
                             <div className="row">
                                 <form action="# " style={{padding: "0"}} className="search-activity">
                                     <div className="col form-group btn-group search-bar-activity">
-                                        <label for="search"><i className="fas fa-search "></i></label>
+                                        <label htmlFor="search"><i className="fas fa-search "></i></label>
                                         <input type="text" className="form-control search-activity " name="search " placeholder="Quick Search"/>
                                         <button className="btn btn-search-activity">Search</button>
                                     </div>

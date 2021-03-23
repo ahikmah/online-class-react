@@ -110,7 +110,7 @@ function FasilitatorActivity() {
                                 </div>
 
                                 <div className="row">
-                                    <label htmlFor="descriptio">Description</label>
+                                    <label htmlFor="description">Description</label>
                                     <textarea className="form-control cnc" rows="12"></textarea>
                                     
                                 </div>

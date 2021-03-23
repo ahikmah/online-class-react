@@ -7,6 +7,7 @@ import ForYou from '../component/ForYou'
 function Dashboard() {
     let {id} = useParams()
     let content, active
+    console.log(id);
 
     if (id==="all-schedule") {
         content = <AllSchedule/>
