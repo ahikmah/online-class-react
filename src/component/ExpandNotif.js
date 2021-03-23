@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/css/AllNotif.css'
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import CloseIcon from '../assets/images/Close-Icon.png'
 import ListNotif1 from '../assets/images/listnotif1.png'
 import ListNotif2 from '../assets/images/listnotif2.png'
@@ -12,7 +12,6 @@ import ListNotif7 from '../assets/images/listnotif7.png'
 import ListNotifClass from '../assets/images/listnotifclass.png'
 
 function ExpandNotif() {
-    // let history = useHistory();
     
     return (
         <>

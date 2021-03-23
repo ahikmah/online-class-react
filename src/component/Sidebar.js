@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/css/Sidebar.css'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 
 import Avatar from '../assets/images/avatar.png'
@@ -31,9 +31,6 @@ function Sidebar(props) {
     
     let history = useHistory();
     const tess=history.location.pathname.slice(-5)
-    // console.log('ini history', history.location.pathname.slice(-5));
-    // let {id} = useParams()
-    // console.log('ini param side',id);
 
     const popClass = ["hidden"]
     if (tess==='notif') popClass.pop()
@@ -63,7 +60,7 @@ function Sidebar(props) {
                     <Link to="/student-activity" className={props.activeMenu===2 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={props.activeMenu===2 ? activityIconActive : activityIcon} alt="icon activity"/>
                         <span>Activity</span></Link>
-                    <Link to="profile.html" className={props.activeMenu===3 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
+                    <Link to="/profile" className={props.activeMenu===3 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>
                         <img src={settingIcon} alt="icon setting"/>
                         <span>Settings</span></Link>
                     <Link to="" className={props.activeMenu===4 ? classNavItemActive.join(' ') : classNavItem.join(' ')}>

@@ -34,8 +34,8 @@ export class App extends Component {
 
           {/* Dashboard page */}
           <Route path='/dashboard/:id' exact component={DashboardStudent}/>
-          <Route path='/dashboard/all-schedule/:nt' exact component={DashboardStudent}/>
-          <Route path='/dashboard/for-you/:nt' exact component={DashboardStudent}/>
+          <Route path='/dashboard/all-schedule/:id' exact component={DashboardStudent}/>
+          <Route path='/dashboard/for-you/:id' exact component={DashboardStudent}/>
           <Route path='/fas-dashboard' exact component={DashboardFasilitator}/>
 
           {/* Activity page */}
@@ -43,17 +43,16 @@ export class App extends Component {
           <Route path='/student-activity/:nt' exact component={StudentActivity}/>
           <Route path='/student-myclass/' exact component={StudentMyClass}/>
           <Route path='/student-myclass/:nt' exact component={StudentMyClass}/>
-
           <Route path='/student-class-detail/:id' exact component={StudentClassDetail}/>
-          <Route path='/student-class-detail/:id/:nt' exact component={StudentClassDetail}/>
+          <Route path='/student-class-detail/:id/:id' exact component={StudentClassDetail}/>
 
 
           <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
-          <Route path='/fas-class-detail/:id:/:nt' exact component={FasilitatorClassDetail}/>
+          <Route path='/fas-class-detail/:id:/:id' exact component={FasilitatorClassDetail}/>
 
           
           <Route path='/fas-activity' exact component={FasilitatorActivity}/>
-          <Route path='/fas-class-detail/member/:pop' exact component={FasilitatorClassDetail}/>
+          <Route path='/fas-class-detail/member/:id' exact component={FasilitatorClassDetail}/>
 
 
           <Route path='/profile' exact component={Profile}/>

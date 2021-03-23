@@ -113,6 +113,10 @@ small.match.password>img{
     color: #ADA9BB
 }
 
+.txtlogin>a, .txtregister>a, .txtresend>a{
+    color: #5784BA;
+}
+
 .txtregister {
     position: absolute;
     bottom: calc(0% + 5px);

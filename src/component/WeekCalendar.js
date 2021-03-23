@@ -23,17 +23,11 @@ function WeekCalendar(props) {
     let day;
     
     for (let i = 0; i < 7; i++) {
-        let first = curr.getDate() - curr.getDay() + i+1 
+        let first = curr.getDate() - curr.getDay() + i 
         day = new Date(curr.setDate(first)).toISOString().slice(8, 10)
         weekDayName.push(dayNames[i].slice(0,2))
         weekDate.push(day)
     }
-    // console.log(weekDayName);
-    // console.log(weekDate);
-    // console.log(weekDate[0]);
-    // console.log(day);
-    // console.log(dt);
-    // console.log(d);
 
     if(role === "student"){
         sublabel = <div className="sub-label">Today, {monthName} {dt}</div>
