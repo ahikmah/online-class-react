@@ -1,6 +1,6 @@
 // import '../App.css';
 import {BrowserRouter, Route} from 'react-router-dom'
-import React, { Component } from 'react'
+import React from 'react'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import ResetPassword from './ResetPassword'
@@ -20,8 +20,7 @@ import FasilitatorClassDetail from './FasilitatorClassDetail'
 
 import Profile from './Profile'
 
-export class App extends Component {
-  render() {
+function App (){
     return (
       <BrowserRouter>
           <Route path='/' exact component={Login} />
@@ -60,7 +59,7 @@ export class App extends Component {
 
       </BrowserRouter>
     )
-  }
+  
 }
 
 export default App

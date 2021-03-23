@@ -15,6 +15,8 @@ function ResetPassword(props) {
     let form = props.fc;
     let pwModal = props.pwChanged;
     let nextLink, formActive, formActive2, txtResend, match, pwLengthMsg, matchMsg;
+
+    
     const pwModalClass = ['pw-changed','d-flex', 'text-center', 'flex-column', 'justify-content-evenly', 'align-items-center', 'hidden'];
 
     const passwordHandler= (e) => {
