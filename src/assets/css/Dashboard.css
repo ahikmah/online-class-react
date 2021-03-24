@@ -3,7 +3,7 @@
 }
 
 .content-dashboard {
-    padding-left: 18rem;
+    padding-left: 17rem;
     width: 67%;
     min-width: 280px;
 }
@@ -123,7 +123,6 @@ div.day{
     padding: 0;
     margin-top: 3rem;
     padding: 2rem 2.5rem;
-    word-wrap: break-word;
 }
 
 
@@ -195,9 +194,9 @@ span.timeline:after {
 }
 
 .option-menu {
+    width: fit-content;
     position: relative;
     text-align: right;
-    top: -1.5rem;
 }
 
 .thumbnail-item {
@@ -209,6 +208,9 @@ span.timeline:after {
 .duration {
     display: inline;
     margin-top: auto;
+}
+.duration>small{
+    margin-left: 0;
 }
 
 .container.msg-panel {
@@ -262,6 +264,9 @@ div.search-bar-message>form{
 .name-chat {
     font-family: 'Kanit', sans-serif;
     font-size: 1.25rem;
+    width: 9rem;
+    white-space: nowrap;
+    text-overflow: ellipsis
 }
 
 .ava-chat{
@@ -347,4 +352,69 @@ button.msg-float {
     margin-bottom: 3rem;
     left: 50%;
     transform: translate(-50%);
+}
+
+@media (max-width: 1024px){
+    .content-dashboard {
+        padding-left: 15.5rem;
+    }
+    .container.news, .banner-wrapper-dash, .bn-background-news-dash{
+        height: 18rem;
+    }
+    .bn-shadow-news-dash {
+        top: 88%;
+    }
+
+    .name-chat{
+        font-size: 1rem;
+    }
+
+    .container.schedule{
+        padding: 1rem 1rem
+    }
+
+    #calendar{
+        padding: initial;
+    }
+    .calendar-icon>a>img{
+        width: 80%;
+    }
+    .day>a,
+    .date>a {
+        font-size: 0.9rem;
+    }
+
+    .txt-headline-news-dash{
+        font-size: 1.25rem;
+    }
+
+    #schedule-menu>a{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width:768px){
+    .msg-panel{
+        display: none;
+    }
+    .content-dashboard {
+        width: max-content;
+        padding-right: 0;
+    }
+    .class-item{
+        width: 15rem;
+    }
+}
+@media (max-width:500px){
+    .row>aside.sidebar{
+        display: none;
+    }
+    .content-dashboard {
+        width: max-content;
+        padding: initial;
+    }
+
+    .container-fluid.dashboard{
+        padding: 0.5rem;
+    }
 }
