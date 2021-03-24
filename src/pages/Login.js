@@ -24,7 +24,9 @@ function Login() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if(username==='ahikmah' && password=='12345') {history.push('/dashboard/all-schedule')}else{
+        if(username==='ahikmah' && password==='12345'){
+            history.push('/dashboard/all-schedule')
+        }else{
             alert('Wrong Username or Password!')
         }
     }
@@ -32,8 +34,8 @@ function Login() {
 
     return (
         <>
-            <main className="container login text-center">
-                <h1 className="title">Login</h1>
+            <main className="container login">
+                <h1 className="title login">Login</h1>
                 <form className="form login" onSubmit={submitHandler}>
 
                     <FormFloating type= "text" id= "username" ph= "email@example.com" label= "Username or Email" changed={changeHandler}/>
@@ -46,7 +48,6 @@ function Login() {
                         <button type="submit" className="btn login btn-google">
                             <img src={googleIcon} alt="google-icon"/> Login with Google</button>
                     </div>
-                {/* <p>Tes: {username}</p> */}
                 </form>
                 <p className="txtlogin">New user? <Link to="/register"> Register</Link></p>
 

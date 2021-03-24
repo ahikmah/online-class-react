@@ -4,8 +4,8 @@ function FormFloating(props) {
     return (            
         <div>
             <div className="form-floating">
-                <input type={props.type} id={props.id} className="form-control" placeholder={props.ph} onChange={props.changed}/>
-                <label htmlFor={props.id}>{props.label}</label>
+                <input type={props.type} id={props.id} className="form-control form-input-float" placeholder={props.ph} onChange={props.changed}/>
+                <label htmlFor={props.id} className="label-form-float">{props.label}</label>
             </div>
         </div>
     )

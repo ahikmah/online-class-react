@@ -3,34 +3,24 @@ body {
 }
 
 .container.login, .container.register{
-    width: fit-content;
+    width: 40%;
     height: 100vh;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    min-width: 280px;
 }
 
-h1.title {
-    position: relative;
+h1.title.login, h1.title.register {
     font-size: 3rem;
-    top:5%
 }
 
-.form.login{
-    position: relative;
-    top:15%;
-}
-
-.form.register{
-    position: relative;
-    top:10%;
-}
-
-input {
+input.form-control.form-input-float {
     font-family: 'Roboto', sans-serif;
     margin-bottom: 1rem;
-    width: 30rem;
     height: 3.8rem;
 }
 
@@ -48,7 +38,7 @@ a:link {
 
 small.lenPwTxt.password{
     font-family: 'Roboto', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color: #010620;
     padding-left: 1rem;
     margin-top: -1rem;
@@ -57,7 +47,7 @@ small.lenPwTxt.password{
 }
 small.match.password{
     font-family: 'Roboto', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color: #0EAA00;
     padding-left: 1rem;
     margin-top: -1rem;
@@ -66,7 +56,7 @@ small.match.password{
 }
 small.notmatch.password{
     font-family: 'Roboto', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color: red;
     padding-left: 1rem;
     margin-top: -1rem;
@@ -75,12 +65,12 @@ small.notmatch.password{
 }
 
 small.match.password>img{
-    width: 8px;
-    height: 8px;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-top: 0.2rem;
 }
 
 .btn {
-    width: 30rem;
     margin-bottom: 1rem;
     height: 3.8rem;
     border: none;
@@ -105,11 +95,7 @@ small.match.password>img{
     background-color: #01062060;
 }
 
-.txtlogin{
-    position: absolute;
-    bottom: calc(0% + 5px);
-    left: 50%;
-    transform: translate(-50%);
+.txtlogin, .txtregister{
     color: #ADA9BB
 }
 
@@ -117,26 +103,41 @@ small.match.password>img{
     color: #5784BA;
 }
 
-.txtregister {
-    position: absolute;
-    bottom: calc(0% + 5px);
-    left: 50%;
-    transform: translate(-50%);
-    color: #ADA9BB
+
+@media (max-width:1024px){
+    h1.title.login, h1.title.register {
+        font-size: 2.5rem;
+    }
+    input.form-control.form-input-float {
+        height: 3rem;
+        font-size: 0.8rem;
+    }
+    label.label-form-float{
+        font-size: 0.8rem;
+
+    }
+    .btn {
+        height: 3rem;
+        font-size: 1rem;
+    }
+    .forgot-password, .txtlogin, .txtregister{
+        font-size: 0.8rem;
+    }
+    
 }
-@media (max-width: 1280px) {
-h1.title {
-    font-size: 2.5rem;
+
+@media (max-width:768px){
+    .container.login, .container.register{
+        width:60%;
+    }
 }
-input {
-    width: 30rem;
-    height: 3.5rem !important;
+@media (max-width:426px){
+    .container.login, .container.register{
+        width:85%;
+    }
 }
-.btn.login, .btn.regis {
-    width: 30rem;
-    margin-bottom: 1rem;
-    height: 3.5rem;
-    border: none;
-    font-size: 1.20rem;
-}
+@media (max-width:320px){
+    .container.login, .container.register{
+        width:95%;
+    }
 }

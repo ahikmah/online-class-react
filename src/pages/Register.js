@@ -38,7 +38,7 @@ function Register() {
     return (
         <div>
             <main className="container register text-center">
-                <h1 className="title">Register</h1>
+                <h1 className="title register">Register</h1>
                 <form className="form register" action="#">
 
                     <FormFloating type= "text" id= "username" ph= "username" label= "Username" changed={usernameHandler}/>
@@ -53,7 +53,6 @@ function Register() {
                         <button type="submit" className="btn regis btn-google">
                             <img src={googleIcon} alt="google-icon"/> Register with Google</button>
                     </div>
-                {/* <p>Tes: {username}</p> */}
                 </form>
                 <p className="txtregister">Already have account? <Link to="/">Login</Link></p>
 

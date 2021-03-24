@@ -14,6 +14,7 @@ function ClassDetail(props) {
     const activeClass = 'active'
     const widthProg = props.progress+"%"
     let {pop} = useParams() 
+    console.log(pop);
 
     const popClass = ["overlay", "hidden"]
     if (pop) popClass.pop()

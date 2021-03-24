@@ -11,6 +11,13 @@ function ResetPassword(props) {
     const [password, setPassword] = useState("")
     const [repassword, setRePassword] = useState("")
 
+    const passwordHandler= (e) => {
+        setPassword(e.target.value)
+    }
+    const rePasswordHandler= (e) => {
+        setRePassword(e.target.value)
+    }
+
 
     let form = props.fc;
     let pwModal = props.pwChanged;
@@ -18,13 +25,11 @@ function ResetPassword(props) {
 
     
     const pwModalClass = ['pw-changed','d-flex', 'text-center', 'flex-column', 'justify-content-evenly', 'align-items-center', 'hidden'];
+    const msg2Class = ['msg2', 'dhidden']
 
-    const passwordHandler= (e) => {
-        setPassword(e.target.value)
-    }
-    const rePasswordHandler= (e) => {
-        setRePassword(e.target.value)
-    }
+    if(props.msg2!==null) msg2Class.pop()
+    if(pwModal===true) pwModalClass.pop()
+
 
     // Is password matching?
     if(password === repassword && (password) && repassword){
@@ -51,7 +56,6 @@ function ResetPassword(props) {
 
 
 
-    if(pwModal===true) pwModalClass.pop()
 
     let history = useHistory();
     const submitHandler = (e) => {
@@ -64,16 +68,16 @@ function ResetPassword(props) {
             <div className="container-fluid reset-pass" style={{padding: "0"}}>
                 <div className="row text-center">
                     {/* <!-- image --> */}
-                    <div className="col-6 left-panel">
+                    <div className="col-6 left-panel container-fluid">
                         <Link to="/" className="btn-back "><i className="fas fa-chevron-left "></i></Link>
-                        <img src={props.ava} className="img-fluid" alt="avatar "/>
+                        <img src={props.ava} className="img-fluid image-reset" alt="avatar "/>
                     </div>
 
                     {/* <!-- reset form --> */}
                     <main className="col-6 right-panel flex-column container-fluid">
                         <h1 className="title reset ">{props.title}</h1>
                         <p className="msg1 ">{props.msg1}</p>
-                        <p className='msg2'>{props.msg2}</p>
+                        <p className={msg2Class.join(" ")}>{props.msg2}</p>
                         <form onSubmit={submitHandler} className="reset-form">
                            {formActive}
                            {pwLengthMsg}
@@ -85,7 +89,7 @@ function ResetPassword(props) {
                         </form>
 
                         <div className={pwModalClass.join(" ")}>
-                            <h3 className="txtPwChanged ">Password Changed!</h3>
+                            <h1 className="txtPwChanged ">Password Changed!</h1>
                             <img className="changedIcon" src={changedIcon} alt="changed Icon" />
                             <Link className="txtLoginBack" to="/">Login to your account</Link>
                         </div>
