@@ -7,14 +7,14 @@ function NewClassItem(props) {
         <>
             <div className="row tdata2">
                 <div className="col nm "><Link to="className-detail.html">{props.name}</Link></div>
-                <div className="col 
+                <div className="col tbh
                 "><Link to="">{props.category}</Link></div>
-                <div className="col 
+                <div className="col tbh
                 ">{props.desc}</div>
                 <div className="col">{props.level}</div>
                 <div className="col">{props.pricing}</div>
                 <div className="col badge-rg"><Link to=""><span>Register</span></Link></div>
-                <div className="col col-1 ls">
+                <div className="col col-1 ls tbh">
                     <Link to=""><img src={iconList} alt="icon list"/></Link>
                 </div>
             </div>

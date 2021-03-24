@@ -1,11 +1,11 @@
 .container-fluid.dashboard{
     padding: 1rem;
+    min-width: 360px;
 }
 
 .content-dashboard {
     padding-left: 17rem;
     width: 67%;
-    min-width: 280px;
 }
 
 .container.news {

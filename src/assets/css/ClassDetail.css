@@ -87,3 +87,259 @@ section.body-wrapper {
     padding-bottom: 1rem;
     color: #5784BA;
 }
+
+@media (max-width:1024px){
+    section.label-section{
+        font-weight: 500;
+        font-size: medium;
+    }
+    section.container.class-detail{
+        padding: 0;
+    }
+    main.col-sm-12.content-activity{
+        padding-left: 15.5rem;
+        padding-right: 0;
+    }
+    section.banner-wrapper,img#bn-background {
+        height: 10rem;
+    }
+    img#bn-thumbnail {
+        top: 6rem;
+        left: 4rem;
+        height: 80%;
+    }
+
+    div#bn-class-name {
+        top: 6rem;
+        left: 13rem;
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+    div#bn-class-info {
+        top: 8.3rem;
+        left: 13rem;
+        /* font-weight:normal; */
+        font-size: 0.875rem;
+    }
+
+    .btn.btn-register {
+        color: white;
+        position: absolute;
+        top: 6rem;
+        /* left: 24rem; */
+        /* right: 1rem; */
+        width: 6rem;
+        height: auto;
+        font-size: 1rem;
+    }
+    section.body-wrapper{
+        padding-top: 5rem;
+    }
+    .desc-title {
+        font-size: 1.25;
+        margin-bottom: auto;
+    }
+    .desc-body{
+        font-size: 1rem;
+    }
+
+    div#bn-score{
+        top: 4rem;
+        left: 80%;
+    }
+    div#score{
+        font-size: 3rem;
+    }
+    small#bn-progress{
+        top: 10rem;
+        left:13rem;
+    }
+    .banner-wrapper>.progress{
+        top: 12rem;
+        left:13rem;
+    }
+    #tab-menu>a {
+        font-size: 0.85rem;
+
+    }
+}
+
+@media (max-width:768px){
+    section.banner-wrapper,img#bn-background {
+        height: 10rem;
+    }
+    img#bn-thumbnail {
+        top: 6rem;
+        left: 2rem;
+        height: 70%;
+    }
+
+    div#bn-class-name {
+        top: 6rem;
+        left: 10rem;
+        font-weight: 500;
+        font-size: 1.25rem;
+    }
+
+    div#bn-class-info {
+        top: 8.3rem;
+        left: 10rem;
+        font-size: 0.8rem;
+    }
+
+    .btn.btn-register {
+        color: white;
+        position: absolute;
+        top: 6rem;
+        left:23rem;
+        width: 6rem;
+        height: auto;
+        font-size: 0.875rem;
+    }
+    section.body-wrapper{
+        padding: 6rem 1.5rem 1.5rem;
+    }
+    .desc-title {
+        font-size: 1rem;
+        margin-bottom: auto;
+    }
+    .desc-body{
+        font-size: 0.87rem;
+    }
+
+    div#tab-menu{
+        font-size: 0.87rem;
+    }
+    div#tab-menu>a{
+        margin-right: 2rem;
+    }
+
+    div#bn-score{
+        top: 4rem;
+        left: 79%;
+    }
+    div#score-label{
+        font-size: 0.8rem;
+    }
+    div#score{
+        font-size: 2.5rem;
+    }
+    small#bn-progress{
+        top: 10.5rem;
+        left:10rem;
+    }
+    .banner-wrapper>.progress{
+        top: 12rem;
+        left:10rem;
+    }
+
+    .row.tdata.tb-myclass-progress{
+        margin: initial;
+        padding: initial;
+    }
+    .row.tdata.tb-myclass-progress{
+        font-size: small;
+    }
+    .row.tdata.tb-myclass-progress>div.col{
+        width: 0.6rem !important;
+        white-space: pre-line;
+        overflow: hidden;
+    }
+    .col.completed{
+        /* width: 0.2rem; */
+        white-space: pre-line;
+        overflow: hidden;
+    }
+    .col-2.text-center{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 500px){
+    main.col-sm-12.content-activity{
+        padding: initial;
+    }
+
+    img#bn-thumbnail {
+        top: 6rem;
+        left: 2rem;
+    }
+
+    div#bn-class-name {
+        top: 6rem;
+        left: 10rem;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    div#bn-class-info {
+        top: 7.5rem;
+        left: 10rem;
+        font-size: 0.75rem;
+    }
+
+    .btn.btn-register {
+        color: white;
+        position: absolute;
+        top: 10.5rem;
+        left:10rem;
+        width: 6rem;
+        height: auto;
+        font-size: 0.875rem;
+    }
+
+    
+
+    #bn-class-info>span {
+        margin-right: 0.7rem;
+    }
+    #tab-menu>a {
+        font-size: 0.8rem;
+        margin-right: 1rem;
+    }
+
+    div#bn-score{
+        top: 0rem;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .row.tdata.tb-myclass-progress{
+        font-size: 0.7rem;
+    }
+    span.scr{
+        font-size: 1.3rem;
+    }
+    .badge-unfinished>span{
+        font-size: 0.6rem;
+    }
+    div.col{
+        padding: 0.3rem;
+    }
+    div#tab-menu>a{
+        margin-right: 1rem;
+    }
+}
+
+@media(max-width:376px){
+    #tab-menu>a {
+        font-size: 0.7rem;
+        margin-right: 0.7rem;
+    }
+    section.body-wrapper{
+        padding: 5rem 1rem 1rem;
+    }
+    div#tab-menu>a{
+        font-size: 0.7rem;
+        margin-right: 0.8rem;
+    }
+    img.ava-member{
+        height: 70%;
+    }
+    div#bn-score{
+        top: 1rem;
+        left: 50%;
+        transform: translate(-50%);
+    }
+}

@@ -54,12 +54,12 @@ function StudentActivity() {
                                     <span className="checkmark"></span>
                                 </div>
                                 <div className="col th">Class Name</div>
-                                <div className="col th">Category</div>
-                                <div className="col th">Description</div>
-                                <div className="col pr th d-flex justify-content-center">Progress</div>
-                                <div className="col badge-pr th">Status</div>
-                                <div className="col col th d-flex justify-content-center">Score</div>
-                                <div className="col col-1 th d-flex justify-content-center"></div>
+                                <div className="col th tbh">Category</div>
+                                <div className="col th tbh">Description</div>
+                                <div className="col  pr th d-flex justify-content-center">Progress</div>
+                                <div className="col badge-pr th tbh">Status</div>
+                                <div className="col th d-flex justify-content-center">Score</div>
+                                <div className="col col-1 th tbh"></div>
                             </div>
                             {classItems}
                             <small className="d-flex justify-content-center"><Link to="/student-myclass">view all{' >'}</Link></small>
@@ -111,14 +111,14 @@ function StudentActivity() {
                             {/* <!-- New Class List --> */}
                             <div className="row theader2">
                                 <div className="col nm th">Class Name</div>
-                                <div className="col th 
+                                <div className="col th tbh
                                 ">Category</div>
-                                <div className="col th 
+                                <div className="col th tbh
                                 ">Description</div>
                                 <div className="col th">Level</div>
                                 <div className="col th">Pricing</div>
                                 <div className="col th"></div>
-                                <div className="col col-1 ls th 
+                                <div className="col col-1 ls th tbh
                                 "></div>
                             </div>
                             {newClassItems}

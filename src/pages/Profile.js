@@ -15,7 +15,7 @@ import StorageIcon from '../assets/images/Storage Icon.png'
 function Profile() {
     return (
         <div>
-            <div className="container-fluid activity">
+            <div className="container-fluid profile">
                 <div className="row">
                     <Sidebar activeMenu={0}/>
 
@@ -52,7 +52,7 @@ function Profile() {
                                         <hr/>
                                     </div>
                                     <hr/>
-                                    <div className="sub-menu d-flex">
+                                    <div className="sub-menu d-flex align-items-center">
                                         <div className="menu-icons">
                                             <Link to=""><img src={PINIcon} alt=""/></Link>
                                         </div>
@@ -64,7 +64,7 @@ function Profile() {
                                         <hr/>
                                     </div>
                                     <hr/>
-                                    <div className="sub-menu d-flex">
+                                    <div className="sub-menu d-flex align-items-center">
                                         <div className="menu-icons">
                                             <Link to=""><img src={ChatIcon} alt=""/></Link>
                                         </div>
@@ -76,7 +76,7 @@ function Profile() {
                                         <hr/>
                                     </div>
                                     <hr/>
-                                    <div className="sub-menu d-flex">
+                                    <div className="sub-menu d-flex align-items-center">
                                         <div className="menu-icons">
                                             <Link to=""><img src={NotifIcon} alt=""/></Link>
                                         </div>
@@ -87,7 +87,7 @@ function Profile() {
                                         <hr/>
                                     </div>
                                     <hr/>
-                                    <div className="sub-menu d-flex">
+                                    <div className="sub-menu d-flex align-items-center">
                                         <div className="menu-icons">
                                             <Link to=""><img src={SecurityIcon} alt=""/></Link>
                                         </div>
@@ -98,7 +98,7 @@ function Profile() {
                                         <hr/>
                                     </div>
                                     <hr/>
-                                    <div className="sub-menu d-flex">
+                                    <div className="sub-menu d-flex align-items-center">
                                         <div className="menu-icons">
                                             <Link to=""> <img src={StorageIcon} alt=""/></Link>
                                         </div>

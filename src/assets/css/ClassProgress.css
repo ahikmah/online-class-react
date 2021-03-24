@@ -3,6 +3,9 @@
     position: absolute;
     top: 11rem;
     left: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #score {

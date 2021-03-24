@@ -11,9 +11,9 @@ function MyClassItem(props) {
                 <div className="col col-1"><input type="checkbox"/><span className="checkmark"></span></div>
                 <div className="col overflow-hidden">
                     <Link to="/student-class-detail/information">{props.name}</Link></div>
-                <div className="col">
+                <div className="col tbh">
                     <Link to="">{props.category}</Link></div>
-                <div className="col ds">{props.desc}</div>
+                <div className="col ds tbh">{props.desc}</div>
                 <div className="col d-flex justify-content-center">{props.schedule}</div>
                 <div className="col d-flex justify-content-center">{props.students}
                     <img src={studentIcon} alt="Student Icon"/>

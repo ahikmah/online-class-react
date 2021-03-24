@@ -49,3 +49,25 @@ textarea.form-control.cnc{
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator { background: none; display:none; }
+
+
+@media (max-width:768px){
+
+    .wrapper>.container.new-class{
+        padding-top: 0.5rem;
+    }
+
+    form.create-new-class>.row.d-flex{
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    form.create-new-class>.row.d-flex>.col-5.d-flex.form-group.cnc{
+        width: 100%;
+    }
+    /* .col.d-flex.justify-content-start.form-group.cnc.sch{
+        display: flex;
+        flex-direction: column;
+    } */
+}

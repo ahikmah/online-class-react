@@ -1,8 +1,11 @@
 
+.container-fluid.profile{
+    padding: 1rem;
+    min-width: 360px;
+}
 .content-profile {
     padding-left: 16.525rem;
     width: 100%;
-    min-width: 360px;
 }
 
 
@@ -91,4 +94,63 @@ a {
     position: absolute;
     right: 1rem;
     top: 0.3rem;
+}
+
+@media (max-width: 768px){
+    #banner-wrapper-profile,
+    #banner-wrapper-profile>img#bn-background,
+    #banner-wrapper-profile>span#bn-shadow{
+        height: 14rem;
+    }
+
+    #banner-wrapper-profile>img#bn-ava {
+        width: 25%;
+    }
+    #banner-wrapper-profile>div#bn-setting{
+        transform: translate(50%, -50%);
+    }
+    #banner-wrapper-profile>div#bn-name{
+        font-size: 1.25rem;
+    }
+    #main-section-profile{
+        padding: 1rem 2rem;
+    }
+    #main-section-profile >#title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+    }
+    div.menu>hr{
+        margin: 0.5rem 0;
+    }
+    
+    .menu-icons>a>img{
+        width: 1.25rem;
+    }
+}
+
+@media (max-width:500px){
+    main.content-profile{
+        padding: initial;
+    }
+    .container-fluid.profile{
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width:320px){
+    #main-section-profile{
+        padding: 1rem;
+    }
+
+    #banner-wrapper-profile,
+    #banner-wrapper-profile>img#bn-background,
+    #banner-wrapper-profile>span#bn-shadow{
+        height: 10rem;
+    }
+
+    .menu>.sub-menu{
+        font-size: small;
+    }
+    
 }

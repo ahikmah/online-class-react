@@ -69,12 +69,12 @@ function StudentMyClass() {
                                 <span className="checkmark"></span>
                             </div>
                             <div className="col th">Class Name</div>
-                            <div className="col th">Category</div>
-                            <div className="col th">Description</div>
-                            <div className="col pr th  d-flex justify-content-center">Progress</div>
-                            <div className="col badge-pr th">Status</div>
-                            <div className="col col th  d-flex justify-content-center">Score</div>
-                            <div className="col col-1 th  d-flex justify-content-center"></div>
+                            <div className="col th tbh">Category</div>
+                            <div className="col th tbh">Description</div>
+                            <div className="col pr th d-flex justify-content-center">Progress</div>
+                            <div className="col badge-pr th tbh">Status</div>
+                            <div className="col th  d-flex justify-content-center">Score</div>
+                            <div className="col col-1 th  tbh"></div>
                         </div>
 
                         {classItems}

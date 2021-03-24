@@ -40,8 +40,8 @@ function FasilitatorActivity() {
                                     <span className="checkmark"></span>
                                 </div>
                                 <div className="col th">Class Name</div>
-                                <div className="col th">Category</div>
-                                <div className="col th">Description</div>
+                                <div className="col th tbh">Category</div>
+                                <div className="col th tbh">Description</div>
                                 <div className="col th d-flex justify-content-center">Schedule</div>
                                 <div className="col th d-flex justify-content-center">Students</div>
                                 <div className="col col-1 th d-flex justify-content-center"></div>
@@ -59,14 +59,14 @@ function FasilitatorActivity() {
                                 <div className="row d-flex">
                                     <div className="col-5 d-flex form-group cnc">
                                         <label htmlFor="className" className="col-3">Class Name</label>
-                                        <p className="col col-1">:</p>
+                                        <p className="col col-1 tbh">:</p>
                                         <input type="text" className="col class-name-input"/>
                                     </div>
 
 
                                     <div className="col d-flex justify-content-start  form-group cnc pick-pricing">
                                         <label htmlFor="pricing" className="col col-2">Pricing</label>
-                                        <p className="col col-1">:</p>
+                                        <p className="col col-1 tbh">:</p>
                                         <input type="radio" className="form-check-input" id="free" name="pricing" value="free"/>
                                             <label htmlFor="free" className="pricing-radio">Free</label>
                                         <input type="radio" className="form-check-input" id="paid" name="pricing" value="paid"/>
@@ -80,7 +80,7 @@ function FasilitatorActivity() {
 
                                     <div className="col-5 d-flex form-group cnc">
                                         <label htmlFor="className" className="col col-3">Categories</label>
-                                        <p className="col col-1">:</p>
+                                        <p className="col col-1 tbh">:</p>
                                         <select className="selectpicker cnc">
                                                 <option>Software</option>
                                                 <option>History</option>
@@ -92,9 +92,9 @@ function FasilitatorActivity() {
                                     </div>
 
 
-                                    <div className="col d-flex justify-content-start  form-group cnc">
+                                    <div className="col d-flex justify-content-start  form-group cnc sch">
                                         <label htmlFor="className" className="col col-2">Schedule</label>
-                                        <p className="col col-1">:</p>
+                                        <p className="col col-1 tbh">:</p>
                                         <select className="selectpicker cnc input-time">
                                                 <option>Sunday</option>
                                                 <option>Monday</option>
