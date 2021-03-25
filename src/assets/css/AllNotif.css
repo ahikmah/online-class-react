@@ -23,7 +23,6 @@
 .head-timeline{
     margin-top: 2rem;
     font-size: 1.25rem;
-    /* font-weight: bold; */
 }
 .list-notif{
     margin-top: 1rem;
@@ -38,5 +37,33 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.521);
     overflow: hidden;
-    z-index: 2;
+    z-index: 100;
+}
+
+@media (max-width:768px){
+    .all-notif{
+        font-size: 0.8rem;
+    }
+    .col.list-notif-content{
+        margin-left: 1.5rem;
+    }
+}
+@media (max-width:500px){
+    .all-notif{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        margin-left:0;
+        width: 90%;
+        z-index: 36;
+        text-overflow: ellipsis;
+        font-size: small;
+        /* padding-left: 1rem; */
+    }
+    .col.list-notif-content{
+        width: 50%;
+        margin-left: 1.5rem;
+        /* white-space: nowrap; */
+        text-overflow: ellipsis;
+    }
 }

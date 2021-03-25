@@ -1,4 +1,4 @@
-import React, { useRef} from 'react'
+import React, { useState } from 'react'
 import '../assets/css/Sidebar.css'
 import { Link } from 'react-router-dom'
 
@@ -28,19 +28,18 @@ function Sidebar(props) {
     const customProfile = {background: "linear-gradient(180deg, white 60%, #5784BA 60%)"}
     const customSpan = props.activeMenu===0?{border: "white solid 0.14rem"}:{border: "#5784BA solid 0.14rem"};
 
-    const ref = useRef(null)
+    const [notifFlag, setNotifFlag] = useState(false)
 
-    const handleClick = () => {
-        ref.current.showNotif()
+    const clickHandler=()=>{
+        setNotifFlag(!notifFlag)
     }
-
 
     return (
         <>
             <aside className="sidebar col-2" style={props.activeMenu===0? customProfile:null}>
                 {/* <!-- Notification --> */}
                 <div className="side-notif-section">
-                    <Link to="?" onClick={handleClick}><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
+                    <Link to="?" onClick={clickHandler}><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
                     <span style={customSpan}></span>
                 </div>
 
@@ -74,8 +73,7 @@ function Sidebar(props) {
 
 
 
-            {/* <ExpandNotif/> */}
-            <ExpandNotif ref={ref}/>
+            {notifFlag?<ExpandNotif clc = {clickHandler} flg={notifFlag}/>:null}
         </>
     )
 }

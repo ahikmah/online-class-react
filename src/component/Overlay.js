@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Overlay() {
+function Overlay(props) {
     return (
-        <div className="overlay-msg"></div>
+        <div className="overlay-msg" onClick={props.hf}></div>
     )
 }
 

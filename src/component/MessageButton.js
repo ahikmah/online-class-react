@@ -9,7 +9,7 @@ function MessageButton() {
     const clickHandler = () =>{
         setMsgFlag(!msgFlag)
     }
-    console.log(msgFlag);
+    // console.log(msgFlag);
     if(msgFlag)document.body.style.overflow = 'hidden'
     if(!msgFlag)document.body.style.overflow = 'unset'
 
@@ -18,7 +18,7 @@ function MessageButton() {
             <button className="msg-float" type="button" onClick={clickHandler}> 
             Messages <i className="far fa-comment-dots"></i>
             </button>
-            {msgFlag ? <Overlay/> : null }
+            {msgFlag ? <Overlay hf={clickHandler}/> : null }
             {msgFlag ? <MessagePanel show={1}/> : null }
         </>
     )
