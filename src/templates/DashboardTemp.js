@@ -56,12 +56,8 @@ function Dashboard(props) {
 
                     {/* <!-- Msg float --> */}
                     <MessageButton/>
-
                 </div>
                 </div>
-
-
-
 
         </>
     )

@@ -6,6 +6,7 @@ import '../assets/css/Activity.css'
 import '../assets/css/FasilitatorActivity.css'
 import FasMyClassItem from '../component/FasMyClassItem'
 import MyClassList from '../assets/data/fasmyclass'
+import Navbar from '../component/Navbar'
 // import NewClassList from '../assets/data/newclass'
 
 function FasilitatorActivity() {
@@ -23,6 +24,7 @@ function FasilitatorActivity() {
 
     return (
         <>
+        <Navbar activeMenu={2}/>
             <div className="container-fluid activity">
                 <div className="row">
                     <Sidebar activeMenu={2}/>

@@ -316,7 +316,7 @@ span>a {
     section.search-group-myclass{
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: flex-start;
     }
     section.search-group-myclass>form.search-myclass{
         width: 100%;

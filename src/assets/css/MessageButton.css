@@ -1,25 +1,26 @@
 .msg-float {
-    border-radius: 5px;
+    border-radius: 10px 10px 0 0;
     position: fixed;
-    background-color: white;
-    width: 14rem;
-    /* display: flex; */
+    background-color: #5784ba;
+    width: 12rem;
     padding: 0.5rem 1rem;
     bottom: 0;
     right: 0;
-    border: #989898 solid 1px;
     visibility: hidden;
+    border: none;
 }
 
 button.msg-float {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
-    color: #000;
+    color: white;
 }
 
 @media(max-width:768px){
     .msg-float{
         visibility: visible;
+        z-index: 10;
     }
 }

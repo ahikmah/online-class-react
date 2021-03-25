@@ -222,6 +222,7 @@ span.timeline:after {
     background-color: white;
     border-radius: 1.25rem;
     padding: 2rem 2rem;
+    z-index: 1;
 }
 
 .msg-head {
@@ -307,25 +308,6 @@ div.main-chat {
     color: #000;
 }
 
-.msg-float {
-    border-radius: 5px;
-    position: fixed;
-    background-color: white;
-    width: 14rem;
-    /* display: flex; */
-    padding: 0.5rem 1rem;
-    bottom: 0;
-    right: 0;
-    border: #989898 solid 1px;
-}
-
-button.msg-float {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    color: #000;
-}
-
 
 
 
@@ -394,7 +376,7 @@ button.msg-float {
 }
 
 @media (max-width:768px){
-    .msg-panel{
+    .hide-msg-panel{
         display: none;
     }
     .content-dashboard {

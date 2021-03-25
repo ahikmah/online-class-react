@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../assets/css/MessageButton.css'
+import MessagePanel from '../component/MessagePanel'
+import Overlay from '../component/Overlay'
+
 function MessageButton() {
+    const [msgFlag, setMsgFlag] = useState(false)
+
+    const clickHandler = () =>{
+        setMsgFlag(!msgFlag)
+    }
+    console.log(msgFlag);
+    if(msgFlag)document.body.style.overflow = 'hidden'
+    if(!msgFlag)document.body.style.overflow = 'unset'
+
     return (
         <>
-            <div class="">
-                <button class="msg-float" type="button"> Messages <i class="far fa-comment-dots"></i></button>
-            </div>
+            <button className="msg-float" type="button" onClick={clickHandler}> 
+            Messages <i className="far fa-comment-dots"></i>
+            </button>
+            {msgFlag ? <Overlay/> : null }
+            {msgFlag ? <MessagePanel show={1}/> : null }
         </>
     )
 }

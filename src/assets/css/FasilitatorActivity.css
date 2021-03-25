@@ -61,13 +61,21 @@ input[type="time"]::-webkit-calendar-picker-indicator { background: none; displa
         font-size: 0.8rem;
         display: flex;
         flex-direction: column;
-        justify-content: start;
     }
     form.create-new-class>.row.d-flex>.col-5.d-flex.form-group.cnc{
         width: 100%;
     }
-    /* .col.d-flex.justify-content-start.form-group.cnc.sch{
+    .col-5.d-flex.form-group.cnc, .col.d-flex.justify-content-start.form-group.cnc.sch,.col.d-flex.justify-content-start.form-group.cnc.pick-pricing{
+        padding: 0;
+    }
+    .btn.btn-create{
         display: flex;
-        flex-direction: column;
-    } */
+        justify-content: center;
+    }
+    .create-new-class>.row>label{
+        padding-left: 0;
+    }
+    textarea.form-control.cnc{
+        margin-left: 0;
+    }
 }
