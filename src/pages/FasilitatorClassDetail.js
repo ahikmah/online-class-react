@@ -8,7 +8,8 @@ import MemberList from '../component/MemberList'
 
 function FasilitatorClassDetail() {
     let {id} = useParams()
-    let content, active
+    console.log('ini class',id);
+    let content, active, userid
 
     if (id==="information"){
         content = <ClassDetailInformation/>
@@ -22,6 +23,8 @@ function FasilitatorClassDetail() {
     } else if (id === "member"){
         content = <MemberList/>
         active = 3
+    } else if (Number(id)>0){
+        userid = Number(id)
     }
     
     return (
@@ -34,6 +37,7 @@ function FasilitatorClassDetail() {
             price = "Free"
             body = {content}
             progress= "80"
+            user={userid}
             />
         </div>
     )

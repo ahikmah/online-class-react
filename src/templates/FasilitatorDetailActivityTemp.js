@@ -13,11 +13,9 @@ function ClassDetail(props) {
     const activeMenu = props.menu
     const activeClass = 'active'
     const widthProg = props.progress+"%"
-    let {pop} = useParams() 
-    console.log(pop);
 
     const popClass = ["overlay", "hidden"]
-    if (pop) popClass.pop()
+    if (props.user) popClass.pop()
 
     return (
         <>
@@ -64,7 +62,7 @@ function ClassDetail(props) {
                                 {props.body}
 
                                 <div className={popClass.join(' ')}>
-                                    {<ProgressModal i={Number(pop)}/>}
+                                    {<ProgressModal i={Number(props.user)}/>}
                                 </div>
 
                             </section>                            
