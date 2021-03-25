@@ -10,7 +10,7 @@ import WeekCalendar from '../component/WeekCalendar'
 import MessagePanel from '../component/MessagePanel'
 import FasClassListCard from '../component/FasClassListCard'
 import Navbar from '../component/Navbar'
-
+import MessageButton from '../component/MessageButton'
 function DashboardFasilitator() {
     return (
         <>
@@ -53,9 +53,7 @@ function DashboardFasilitator() {
 
 
                     {/* <!-- Msg float --> */}
-                    <div className="hidden">
-                        <button className="msg-float" type="button"> Messages <i className="far fa-comment-dots"></i></button>
-                    </div>
+                    <MessageButton/>
 
                 </div>
                 </div>

@@ -70,6 +70,7 @@ function ClassDetail(props) {
                             </section>                            
                         </section>
                     </main>
+
                 </div>
             </div>
         </>

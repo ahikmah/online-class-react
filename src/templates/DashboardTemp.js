@@ -9,6 +9,7 @@ import WeekCalendar from '../component/WeekCalendar';
 
 import MessagePanel from '../component/MessagePanel'
 import Navbar from '../component/Navbar'
+import MessageButton from '../component/MessageButton'
 
 function Dashboard(props) {
     let activeMenu = props.menu
@@ -54,9 +55,7 @@ function Dashboard(props) {
 
 
                     {/* <!-- Msg float --> */}
-                    <div className="hidden">
-                        <button className="msg-float" type="button"> Messages <i className="far fa-comment-dots"></i></button>
-                    </div>
+                    <MessageButton/>
 
                 </div>
                 </div>

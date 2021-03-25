@@ -292,6 +292,9 @@ span>a {
     form.sorting-myclass{
         margin-left: 1rem;
     }
+    button.btn.btn-search-activity{
+        width: fit-content;
+    }
 }
 @media (max-width:500px){
     .theader,.theader2, .tdata, .tdata2{

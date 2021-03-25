@@ -1,7 +1,5 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../assets/css/Navbar.css'
-
-import Avatar from '../assets/images/avatar.png'
 
 
 // Import icon nav
@@ -17,12 +15,6 @@ import activityIconActive from '../assets/images/icon-activity-active.png'
 import React from 'react'
 
 function Navbar(props) {
-     // Add active class to the activeMenu
-     const classNavItem = ['side-nav-item nav-link']
-     const classNavItemActive =  ['side-nav-item nav-link','active-sidebar']
- 
-     const customProfile = {background: "linear-gradient(180deg, white 60%, #5784BA 60%)"}
-    //  const customSpan = props.activeMenu===0?{border: "white solid 0.14rem"}:{border: "#5784BA solid 0.14rem"};
     return (
         <div>
             <nav className="nav">
