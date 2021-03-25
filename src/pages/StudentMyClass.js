@@ -6,7 +6,7 @@ import '../assets/css/Activity.css'
 import '../assets/css/MyClass.css'
 import MyClassItem from '../component/MyClassItem'
 import MyClassList from '../assets/data/studentmyclass'
-
+import Navbar from '../component/Navbar'
 function StudentMyClass() {
     // Display top 3 My Class list
     const myclasssize = 10
@@ -22,6 +22,7 @@ function StudentMyClass() {
     })
     return (
         <>
+        <Navbar activeMenu={2}/>
             <div className="container-fluid activity">
                 <div className="row">
                     <Sidebar activeMenu={2}/>

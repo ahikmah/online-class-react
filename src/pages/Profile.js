@@ -11,10 +11,11 @@ import ChatIcon from '../assets/images/Chats Icon.png'
 import NotifIcon from '../assets/images/Notif Icon.png'
 import SecurityIcon from '../assets/images/Security Icon.png'
 import StorageIcon from '../assets/images/Storage Icon.png'
-
+import Navbar from '../component/Navbar'
 function Profile() {
     return (
-        <div>
+        <>
+        <Navbar activeMenu={0}/>
             <div className="container-fluid profile">
                 <div className="row">
                     <Sidebar activeMenu={0}/>
@@ -118,7 +119,7 @@ function Profile() {
             {/* <!-- End of Content --> */}
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

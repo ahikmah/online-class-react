@@ -7,7 +7,7 @@ import ProgressModal from '../component/ProgressPopup'
 import BannerClass from '../assets/images/banner-class.png'
 import ThumbnailClass from '../assets/images/thumbnail-class.png'
 import { useParams } from "react-router-dom"
-
+import Navbar from '../component/Navbar'
 
 function ClassDetail(props) {
     const activeMenu = props.menu
@@ -21,6 +21,7 @@ function ClassDetail(props) {
 
     return (
         <>
+        <Navbar activeMenu={2}/>
             <div className="container-fluid activity">
                 <div className="row">
                     <Sidebar activeMenu={2}/>

@@ -134,7 +134,9 @@ a {
         padding: initial;
     }
     .container-fluid.profile{
-        padding: 0.5rem;
+        padding-top: 4.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
 

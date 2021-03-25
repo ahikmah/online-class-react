@@ -7,6 +7,7 @@ import MyClassItem from '../component/MyClassItem'
 import NewClassItem from '../component/NewClassItem'
 import MyClassList from '../assets/data/studentmyclass'
 import NewClassList from '../assets/data/newclass'
+import Navbar from '../component/Navbar'
 
 function StudentActivity() {
     // Display top 3 My Class list
@@ -37,6 +38,7 @@ function StudentActivity() {
 
     return (
         <>
+        <Navbar activeMenu={2}/>
             <div className="container-fluid activity">
                 <div className="row">
                     <Sidebar activeMenu={2}/>

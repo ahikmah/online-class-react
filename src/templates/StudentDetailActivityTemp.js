@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import '../assets/css/ClassDetail.css'
 import BannerClass from '../assets/images/banner-class.png'
 import ThumbnailClass from '../assets/images/thumbnail-class.png'
-
+import Navbar from '../component/Navbar'
 function ClassDetail(props) {
     const activeMenu = props.menu
     const activeClass = 'active'
@@ -13,6 +13,7 @@ function ClassDetail(props) {
 
     return (
         <>
+        <Navbar activeMenu={2}/>
             <div className="container-fluid activity">
                 <div className="row">
                     <Sidebar activeMenu={2}/>

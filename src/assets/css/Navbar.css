@@ -1,0 +1,30 @@
+nav.nav{
+    top: 0;
+    background-color: #5784BA;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    height: fit-content;
+    z-index: 1;
+    /* display: none; */
+    visibility: hidden;
+}
+
+nav.nav>a>img{
+    width: 1.45rem;
+    height: auto;
+}
+
+@media (max-width:500px){
+    nav.nav{
+        visibility: visible;
+    }
+    .container-fluid.dashboard,
+    .container-fluid.activity,
+    .container-fluid.profile
+    {
+        padding-top: 4.5rem;
+    }
+}

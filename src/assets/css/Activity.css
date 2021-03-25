@@ -306,7 +306,9 @@ span>a {
     }
 
     .container-fluid.activity{
-        padding: 0.5rem;
+        padding-top: 4.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
     section.search-group-myclass{
         display: flex;
@@ -330,6 +332,9 @@ span>a {
     }
     div.row>form.search-activity{
         width: 100%;
+    }
+    .col.col-1.th, .col.col-1{
+        padding-left: 0.8rem;
     }
 }
 

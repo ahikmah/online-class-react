@@ -75,3 +75,9 @@ button.btn-search-myclass {
 .tdata:hover {
     box-shadow: inset 0px 0px 30px rgba(0, 4, 250, 0.1);
 }
+
+@media (max-width:500px){
+    main.col-sm-12.content-activity{
+        width: 100%;
+    }
+}

@@ -9,11 +9,12 @@ import plusIcon from '../assets/images/Plus Icon white.png'
 import WeekCalendar from '../component/WeekCalendar'
 import MessagePanel from '../component/MessagePanel'
 import FasClassListCard from '../component/FasClassListCard'
-
+import Navbar from '../component/Navbar'
 
 function DashboardFasilitator() {
     return (
         <>
+        <Navbar activeMenu={1}/>
             <div className="container-fluid dashboard">
                 <div className="row">
                     {/* <!-- Sidebar --> */}

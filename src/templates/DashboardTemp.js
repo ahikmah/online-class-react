@@ -8,7 +8,7 @@ import newsBanner from '../assets/images/news-banner.png'
 import WeekCalendar from '../component/WeekCalendar';
 
 import MessagePanel from '../component/MessagePanel'
-
+import Navbar from '../component/Navbar'
 
 function Dashboard(props) {
     let activeMenu = props.menu
@@ -16,6 +16,7 @@ function Dashboard(props) {
 
     return (
         <>
+        <Navbar activeMenu={1}/>
             <div className="container-fluid dashboard">
                 <div className="row">
                     {/* <!-- Sidebar --> */}
