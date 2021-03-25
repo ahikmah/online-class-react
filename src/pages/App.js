@@ -33,21 +33,21 @@ function App (){
 
           {/* Dashboard page */}
           <Route path='/dashboard/:id' exact component={DashboardStudent}/>
-          <Route path='/dashboard/all-schedule/:id' exact component={DashboardStudent}/>
-          <Route path='/dashboard/for-you/:id' exact component={DashboardStudent}/>
+          {/* <Route path='/dashboard/all-schedule/:id' exact component={DashboardStudent}/> */}
+          {/* <Route path='/dashboard/for-you/:id' exact component={DashboardStudent}/> */}
           <Route path='/fas-dashboard' exact component={DashboardFasilitator}/>
 
           {/* Activity page */}
-          {/* <Route path='/student-activity' exact component={StudentActivity}/> */}
-          <Route path='/student-activity/:nt?' exact component={StudentActivity}/>
+          <Route path='/student-activity/' exact component={StudentActivity}/>
+          {/* <Route path='/student-activity/:nt?' exact component={StudentActivity}/> */}
           <Route path='/student-myclass/' exact component={StudentMyClass}/>
-          <Route path='/student-myclass/:nt' exact component={StudentMyClass}/>
+          {/* <Route path='/student-myclass/:nt' exact component={StudentMyClass}/> */}
           <Route path='/student-class-detail/:id' exact component={StudentClassDetail}/>
-          <Route path='/student-class-detail/:id/:nt' exact component={StudentClassDetail}/>
+          {/* <Route path='/student-class-detail/:id/:nt' exact component={StudentClassDetail}/> */}
 
 
           <Route path='/fas-class-detail/:id' exact component={FasilitatorClassDetail}/>
-          <Route path='/fas-class-detail/:id:/:nt' exact component={FasilitatorClassDetail}/>
+          {/* <Route path='/fas-class-detail/:id:/:nt' exact component={FasilitatorClassDetail}/> */}
 
           
           <Route path='/fas-activity' exact component={FasilitatorActivity}/>

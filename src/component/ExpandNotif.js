@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useImperativeHandle, forwardRef} from 'react'
 import '../assets/css/AllNotif.css'
 import {Link} from 'react-router-dom'
 import CloseIcon from '../assets/images/Close-Icon.png'
@@ -11,12 +11,27 @@ import ListNotif6 from '../assets/images/listnotif6.png'
 import ListNotif7 from '../assets/images/listnotif7.png'
 import ListNotifClass from '../assets/images/listnotifclass.png'
 
-function ExpandNotif() {
+const ExpandNotif = forwardRef((props, ref) => {
+
+    const [notifFlag, setNotifFlag] = useState(false)
+    const showNotif = () => {
+        setNotifFlag(true)
+    }
     
+    const hideNotif = () => {
+        setNotifFlag(false)
+    }
+
+    useImperativeHandle(ref, ()=>{
+        return{
+            showNotif: showNotif
+        }
+    })
+
     return (
-        <>
+        <div className={notifFlag?"overlay-notif":"hidden"} onClick={hideNotif}>
             <main className="all-notif">
-                    <Link to="" className="close-btn-notif">
+                    <Link to="?" onClick={hideNotif} className="close-btn-notif">
                         <img src={CloseIcon} alt="close icon"/>
                     </Link>
                     <h3 className="notif-title text-center">Notification</h3>
@@ -189,8 +204,8 @@ function ExpandNotif() {
                     </section>
                
                 </main>
-        </>
+        </div>
     )
-}
+})
 
 export default ExpandNotif

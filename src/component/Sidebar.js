@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useRef} from 'react'
 import '../assets/css/Sidebar.css'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 import Avatar from '../assets/images/avatar.png'
@@ -28,20 +28,19 @@ function Sidebar(props) {
     const customProfile = {background: "linear-gradient(180deg, white 60%, #5784BA 60%)"}
     const customSpan = props.activeMenu===0?{border: "white solid 0.14rem"}:{border: "#5784BA solid 0.14rem"};
 
-    
-    let history = useHistory();
-    const tess=history.location.pathname.slice(-5)
+    const ref = useRef(null)
 
-    const popClass = ["hidden"]
-    if (tess==='notif') popClass.pop()
+    const handleClick = () => {
+        ref.current.showNotif()
+    }
+
 
     return (
         <>
             <aside className="sidebar col-2" style={props.activeMenu===0? customProfile:null}>
-
                 {/* <!-- Notification --> */}
                 <div className="side-notif-section">
-                    <Link to={history.location.pathname+"/notif"}><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
+                    <Link to="?" onClick={handleClick}><i className="fas fa-bell" style={{color:props.activeMenu===0?"black": "white"}}></i></Link>
                     <span style={customSpan}></span>
                 </div>
 
@@ -76,11 +75,7 @@ function Sidebar(props) {
 
 
             {/* <ExpandNotif/> */}
-            <div className={popClass}>
-                {<ExpandNotif/>}
-            </div>
-
-            
+            <ExpandNotif ref={ref}/>
         </>
     )
 }

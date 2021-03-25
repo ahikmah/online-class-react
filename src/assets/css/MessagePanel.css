@@ -26,3 +26,9 @@
 @media(max-width:230px){
     
 }
+
+@media(min-width: 1024px){
+    .overlay-msg{
+        display: none;
+    }
+}

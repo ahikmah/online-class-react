@@ -1,19 +1,18 @@
 .all-notif{
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    margin-left:-0.3rem;
-    background:linear-gradient(90deg, rgba(0, 0, 0, 0.53) 14%, #5784BA 10%);
+    margin-left:15rem;
+    margin-top: 1rem;
+    padding: 2rem;
+    background-color: #5784BA;
     height: 96%;
-    /* max-height:; */
-    width: 100%;
+    width: 60%;
     border-radius: 1.25rem;
     color: white;
-    /* padding: 16rem; */
     padding-top: 3rem;
-    padding-left: 15rem;
     position: fixed;
     overflow-y: auto;
-    z-index: 1;
+    z-index: 11;
 }
 
 .close-btn-notif{
@@ -28,4 +27,16 @@
 }
 .list-notif{
     margin-top: 1rem;
+}
+
+.overlay-notif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.521);
+    overflow: hidden;
+    z-index: 2;
 }
