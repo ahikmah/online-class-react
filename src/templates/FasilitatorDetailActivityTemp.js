@@ -6,7 +6,6 @@ import '../assets/css/ClassDetail.css'
 import ProgressModal from '../component/ProgressPopup'
 import BannerClass from '../assets/images/banner-class.png'
 import ThumbnailClass from '../assets/images/thumbnail-class.png'
-import { useParams } from "react-router-dom"
 import Navbar from '../component/Navbar'
 
 function ClassDetail(props) {
