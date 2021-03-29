@@ -12,9 +12,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const [userList, setuserList] = useState();
 
-    console.log(username);
-    console.log(password);
-
     useEffect(() => {
         Axios.get('http://localhost:8000/data/users').then((res) =>
             setuserList(res.data.result)
@@ -40,7 +37,7 @@ function Login() {
                 username === userList[index].username &&
                 md5(password) === userList[index].password
             ) {
-                history.push('/dashboard/all-schedule');
+                history.push('/dashboard/all-schedule/');
             } else {
                 alert('Wrong Username or Password!');
             }
