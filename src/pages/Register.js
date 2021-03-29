@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import googleIcon from '../assets/images/icon-google.png';
 import matchIcon from '../assets/images/match-icon.png';
 import { Link, useHistory } from 'react-router-dom';
@@ -8,17 +8,56 @@ import FormFloating from '../component/FormFloating';
 import Axios from 'axios';
 
 function Register() {
+    useEffect(() => {
+        Axios.get('http://localhost:8000/data/users').then((res) =>
+            setuserList(res.data.result)
+        );
+    }, []);
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRePassword] = useState('');
 
+    const [userList, setuserList] = useState();
+
+    const [usernameIsTaken, setUsernameIsTaken] = useState(false);
+    const [emailIsTaken, setEmailIsTaken] = useState(false);
+
+    const checkUsername = async () => {
+        try {
+            const usernameCheck = await userList.findIndex(
+                (x) => x.username === username
+            );
+
+            if (usernameCheck !== -1) setUsernameIsTaken(true);
+        } catch (err) {
+            // console.log(err);
+        }
+    };
+    const checkEmail = async () => {
+        try {
+            const emailCheck = await userList.findIndex(
+                (x) => x.email === email
+            );
+
+            if (emailCheck !== -1) setEmailIsTaken(true);
+        } catch (err) {
+            // console.log(err);
+        }
+    };
+
+    checkUsername();
+    checkEmail();
+
     const usernameHandler = (e) => {
         setUsername(e.target.value);
+        setUsernameIsTaken(false);
     };
 
     const emailHandler = (e) => {
         setEmail(e.target.value);
+        setEmailIsTaken(false);
     };
     const passwordHandler = (e) => {
         setPassword(e.target.value);
@@ -26,28 +65,31 @@ function Register() {
     const rePasswordHandler = (e) => {
         setRePassword(e.target.value);
     };
-    // console.log(username,email);
-    let history = useHistory();
-    const registerHandler = (e) => {
-        e.preventDefault();
-        const dataUser = {
-            username: username,
-            email: email,
-            password: password,
-        };
 
-        Axios.post('http://localhost:8000/data/users', dataUser, {
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then((res) => {
-                console.log(res.data);
-                history.push('/');
-                alert('your account has been successfully registered');
+    let history = useHistory();
+
+    const registerHandler = (e) => {
+        if (!usernameIsTaken && !emailIsTaken) {
+            e.preventDefault();
+            const dataUser = {
+                username: username,
+                email: email,
+                password: password,
+            };
+
+            Axios.post('http://localhost:8000/data/users', dataUser, {
+                headers: { 'Content-Type': 'application/json' },
             })
-            .catch((err) => {
-                console.log(dataUser);
-                console.log(err.response.data);
-            });
+                .then((res) => {
+                    // console.log(res.data);
+                    history.push('/');
+                    alert('your account has been successfully registered');
+                })
+                .catch((err) => {
+                    // console.log(dataUser);
+                    console.log(err.response.data);
+                });
+        }
     };
 
     let match;
@@ -70,6 +112,15 @@ function Register() {
                         label='Username'
                         changed={usernameHandler}
                     />
+                    {usernameIsTaken ? (
+                        <small
+                            className=' password d-flex justify-content-start'
+                            style={{ color: 'red', marginTop: '-10px' }}
+                        >
+                            Username has already been taken.
+                        </small>
+                    ) : null}
+
                     <FormFloating
                         type='email'
                         id='email'
@@ -77,6 +128,14 @@ function Register() {
                         label='Email'
                         changed={emailHandler}
                     />
+                    {emailIsTaken ? (
+                        <small
+                            className=' password d-flex justify-content-start'
+                            style={{ color: 'red', marginTop: '-10px' }}
+                        >
+                            Email has already been taken.
+                        </small>
+                    ) : null}
                     <FormFloating
                         type='password'
                         id='password'
@@ -94,7 +153,7 @@ function Register() {
 
                     {match ? (
                         <small className='match password d-flex justify-content-start'>
-                            Password match{' '}
+                            Password match
                             <img src={matchIcon} alt='match icon' />
                         </small>
                     ) : match === undefined ? (
