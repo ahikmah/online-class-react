@@ -69,7 +69,7 @@ function Sidebar(props) {
                                 : 'side-name'
                         }
                     >
-                        Emir Kharisma
+                        {props.name}
                     </Link>
                     <small
                         className={
@@ -103,7 +103,7 @@ function Sidebar(props) {
                         <span>Dashboard</span>
                     </Link>
                     <Link
-                        to='/student-activity'
+                        to='/student/activity'
                         className={
                             props.activeMenu === 2
                                 ? classNavItemActive.join(' ')

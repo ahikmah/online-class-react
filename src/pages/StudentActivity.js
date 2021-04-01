@@ -1,52 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { Link } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import MyClassItem from '../component/MyClassItem';
 import NewClassItem from '../component/NewClassItem';
-import MyClassList from '../assets/data/studentmyclass';
-import NewClassList from '../assets/data/newclass';
 import Navbar from '../component/Navbar';
-// import Axios from 'axios';
+import axios from 'axios';
 
 function StudentActivity() {
-    // Display top 3 My Class list
-    const myclasssize = 3;
-    const classItems = MyClassList.slice(0, myclasssize).map((cl) => {
-        return (
-            <MyClassItem
-                key={cl.id}
-                name={cl.name}
-                category={cl.category}
-                desc={cl.description}
-                progress={cl.progress}
-                status={cl.status}
-                score={cl.score}
-            />
-        );
-    });
+    const [myClassList, setMyClassList] = useState();
+    const [newClassList, setNewClassList] = useState();
 
-    const newclasssize = 10;
-    const newClassItems = NewClassList.slice(0, newclasssize).map((nc) => {
-        return (
-            <NewClassItem
-                key={nc.id}
-                name={nc.name}
-                category={nc.category}
-                desc={nc.description}
-                level={nc.level}
-                pricing={nc.pricing}
-            />
-        );
-    });
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/data/student/myclass/6')
+            .then((res) => {
+                setMyClassList(res.data.result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        axios
+            .get('http://localhost:8000/data/courses')
+            .then((res) => {
+                setNewClassList(res.data.result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    let classItems, newClassItems, newClassFilter;
+
+    if (myClassList && newClassList) {
+        const myclasssize = 3;
+        classItems = myClassList.slice(0, myclasssize).map((cl, index) => {
+            return (
+                <MyClassItem
+                    key={index}
+                    name={cl.course_name}
+                    category={cl.category}
+                    desc={cl.description}
+                    progress={cl.progress_in_percent}
+                    status={cl.status}
+                    score={cl.score}
+                />
+            );
+        });
+        newClassFilter = newClassList.filter((el) => {
+            return myClassList.every((f) => {
+                return f.course_name !== el.name;
+            });
+        });
+
+        const newclasssize = 10;
+        newClassItems = newClassFilter
+            .slice(0, newclasssize)
+            .map((nc, index) => {
+                return (
+                    <NewClassItem
+                        key={index}
+                        name={nc.name}
+                        category={nc.category}
+                        desc={nc.description}
+                        level={nc.level}
+                        pricing={nc.price}
+                    />
+                );
+            });
+        console.log('myclass', myClassList);
+        console.log('newclass', newClassList);
+
+        console.log('filter', newClassFilter);
+    }
 
     return (
         <>
             <Navbar activeMenu={2} />
             <div className='container-fluid activity'>
                 <div className='row'>
-                    <Sidebar activeMenu={2} />
+                    <Sidebar
+                        name={myClassList ? myClassList[0].student_name : null}
+                        activeMenu={2}
+                    />
 
                     <main className='col-sm-12 content-activity'>
                         {/* <!-- My Class Section --> */}
@@ -58,16 +95,18 @@ function StudentActivity() {
                                     <input type='checkbox' />
                                     <span className='checkmark'></span>
                                 </div>
-                                <div className='col th'>Class Name</div>
-                                <div className='col th tbh'>Category</div>
-                                <div className='col th tbh'>Description</div>
+                                <div className='col col-2  th'>Class Name</div>
+                                <div className='col  th tbh'>Category</div>
+                                <div className='col col-3 th tbh'>
+                                    Description
+                                </div>
                                 <div className='col  pr th d-flex justify-content-center'>
                                     Progress
                                 </div>
                                 <div className='col badge-pr th tbh'>
                                     Status
                                 </div>
-                                <div className='col th d-flex justify-content-center'>
+                                <div className='col  th d-flex justify-content-center'>
                                     Score
                                 </div>
                                 <div className='col col-1 th tbh'></div>

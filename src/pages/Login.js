@@ -35,7 +35,11 @@ class Login extends Component {
             .post('http://localhost:8000/data/users/login', dataLogin)
             .then((res) => {
                 if (res.data.success) {
-                    this.props.history.push('/dashboard/all-schedule');
+                    res.data.role === 'student'
+                        ? this.props.history.push(
+                              '/student/dashboard/all-schedule'
+                          )
+                        : this.props.history.push('/facilitator/dashboard');
                 }
             })
             .catch((err) => {

@@ -35,35 +35,43 @@ function App() {
             <Route path='/password-changed' exact component={PasswordChanged} />
 
             {/* Dashboard page */}
-            <Route path='/dashboard/:id?' exact component={DashboardStudent} />
             <Route
-                path='/fas-dashboard'
+                path='/student/dashboard/:id?'
+                exact
+                component={DashboardStudent}
+            />
+            <Route
+                path='/facilitator/dashboard'
                 exact
                 component={DashboardFasilitator}
             />
 
             {/* Activity page */}
             <Route
-                path='/student-activity/'
+                path='/student/activity/'
                 exact
                 component={StudentActivity}
             />
-            <Route path='/student-myclass/' exact component={StudentMyClass} />
+            <Route path='/student/myclass/' exact component={StudentMyClass} />
             <Route
-                path='/student-class-detail/:id'
+                path='/student/class-detail/:id'
                 exact
                 component={StudentClassDetail}
             />
 
-            <Route path='/fas-activity' exact component={FasilitatorActivity} />
             <Route
-                path='/fas-class-detail/:id'
+                path='/facilitator/activity'
+                exact
+                component={FasilitatorActivity}
+            />
+            <Route
+                path='/facilitator/class-detail/:id'
                 exact
                 component={FasilitatorClassDetail}
             />
 
             <Route
-                path='/fas-class-detail/member/:id'
+                path='/facilitator/class-detail/member/:id'
                 exact
                 component={FasilitatorClassDetail}
             />
