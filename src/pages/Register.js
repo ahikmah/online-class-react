@@ -1,54 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import googleIcon from '../assets/images/icon-google.png';
 import matchIcon from '../assets/images/match-icon.png';
 import { Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
-import Axios from 'axios';
+import axios from 'axios';
 
 function Register() {
-    useEffect(() => {
-        Axios.get('http://localhost:8000/data/users').then((res) =>
-            setuserList(res.data.result)
-        );
-    }, []);
-
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repassword, setRePassword] = useState('');
-
-    const [userList, setuserList] = useState();
-
+    const [password, setPassword] = useState();
+    const [repassword, setRePassword] = useState();
     const [usernameIsTaken, setUsernameIsTaken] = useState(false);
     const [emailIsTaken, setEmailIsTaken] = useState(false);
-
-    const checkUsername = async () => {
-        try {
-            const usernameCheck = await userList.findIndex(
-                (x) => x.username === username
-            );
-
-            if (usernameCheck !== -1) setUsernameIsTaken(true);
-        } catch (err) {
-            // console.log(err);
-        }
-    };
-    const checkEmail = async () => {
-        try {
-            const emailCheck = await userList.findIndex(
-                (x) => x.email === email
-            );
-
-            if (emailCheck !== -1) setEmailIsTaken(true);
-        } catch (err) {
-            // console.log(err);
-        }
-    };
-
-    checkUsername();
-    checkEmail();
 
     const usernameHandler = (e) => {
         setUsername(e.target.value);
@@ -69,25 +34,29 @@ function Register() {
     let history = useHistory();
 
     const registerHandler = (e) => {
-        if (!usernameIsTaken && !emailIsTaken) {
-            e.preventDefault();
+        e.preventDefault();
+        if (password === repassword) {
             const dataUser = {
                 username: username,
                 email: email,
                 password: password,
             };
-
-            Axios.post('http://localhost:8000/data/users', dataUser, {
-                headers: { 'Content-Type': 'application/json' },
-            })
+            axios
+                .post('http://localhost:8000/data/users', dataUser, {
+                    headers: { 'Content-Type': 'application/json' },
+                })
                 .then((res) => {
-                    // console.log(res.data);
                     history.push('/');
                     alert('your account has been successfully registered');
                 })
                 .catch((err) => {
-                    // console.log(dataUser);
-                    console.log(err.response.data);
+                    if (err.response.data.conflict === 'username') {
+                        setUsernameIsTaken(true);
+                    } else if (err.response.data.conflict === 'email') {
+                        setEmailIsTaken(true);
+                    } else {
+                        alert('Data cannot be empty');
+                    }
                 });
         }
     };

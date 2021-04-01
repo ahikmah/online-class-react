@@ -10,7 +10,6 @@ class Login extends Component {
     state = {
         username: null,
         password: null,
-        userList: null,
     };
 
     usernameHandler = (e) => {
@@ -28,6 +27,7 @@ class Login extends Component {
         e.preventDefault();
         const dataLogin = {
             username: this.state.username,
+            email: this.state.username,
             password: this.state.password,
         };
 
@@ -36,9 +36,10 @@ class Login extends Component {
             .then((res) => {
                 if (res.data.success) {
                     this.props.history.push('/dashboard/all-schedule');
-                } else {
-                    alert(res.data.message);
                 }
+            })
+            .catch((err) => {
+                if (err.response.data.message) alert(err.response.data.message);
             });
     };
 
