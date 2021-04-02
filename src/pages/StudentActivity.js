@@ -11,6 +11,12 @@ import axios from 'axios';
 function StudentActivity() {
     const [myClassList, setMyClassList] = useState();
     const [newClassList, setNewClassList] = useState();
+    const [searchCourse, setSearchCourse] = useState();
+    const [filterCategory, setFilterCategory] = useState();
+    const [filterLevel, setFilterLevel] = useState();
+    const [filterPrice, setFilterPrice] = useState();
+
+    let classItems, newClassItems, newClassFilter;
 
     useEffect(() => {
         axios
@@ -31,14 +37,13 @@ function StudentActivity() {
                 console.log(err);
             });
     }, []);
-    let classItems, newClassItems, newClassFilter;
 
-    if (myClassList && newClassList) {
+    if (myClassList) {
         const myclasssize = 3;
-        classItems = myClassList.slice(0, myclasssize).map((cl, index) => {
+        classItems = myClassList.slice(0, myclasssize).map((cl) => {
             return (
                 <MyClassItem
-                    key={index}
+                    key={cl.id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}
@@ -48,6 +53,9 @@ function StudentActivity() {
                 />
             );
         });
+    }
+
+    if (newClassList && myClassList) {
         newClassFilter = newClassList.filter((el) => {
             return myClassList.every((f) => {
                 return f.course_name !== el.name;
@@ -55,25 +63,360 @@ function StudentActivity() {
         });
 
         const newclasssize = 10;
-        newClassItems = newClassFilter
-            .slice(0, newclasssize)
-            .map((nc, index) => {
-                return (
-                    <NewClassItem
-                        key={index}
-                        name={nc.name}
-                        category={nc.category}
-                        desc={nc.description}
-                        level={nc.level}
-                        pricing={nc.price}
-                    />
-                );
-            });
-        console.log('myclass', myClassList);
-        console.log('newclass', newClassList);
-
-        console.log('filter', newClassFilter);
+        newClassItems = newClassFilter.slice(0, newclasssize).map((nc) => {
+            return (
+                <NewClassItem
+                    key={nc.id}
+                    name={nc.name}
+                    category={nc.category}
+                    desc={nc.description}
+                    level={nc.level}
+                    pricing={nc.price}
+                />
+            );
+        });
     }
+
+    const searchValue = (e) => {
+        setSearchCourse(e.target.value);
+    };
+
+    // const searchHandler = (e) => {
+    //     e.preventDefault();
+    //     if (searchCourse) {
+    //         axios
+    //             .get('http://localhost:8000/data/courses/?q=' + searchCourse)
+    //             .then((res) => {
+    //                 setNewClassList(res.data.result);
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
+    //     } else {
+    //         axios
+    //             .get('http://localhost:8000/data/courses')
+    //             .then((res) => {
+    //                 setNewClassList(res.data.result);
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
+    //     }
+    // };
+    const filterHandler = (e) => {
+        e.preventDefault();
+        if (searchCourse && !filterCategory && !filterLevel && !filterPrice) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                    // setFilterCategory();
+                    // setFilterLevel();
+                    // setFilterPrice();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            filterCategory &&
+            !filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?category=' +
+                        filterCategory
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            !filterCategory &&
+            filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?level=' +
+                        filterLevel
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            !filterCategory &&
+            !filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            filterCategory &&
+            filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?category=' +
+                        filterCategory +
+                        '&level=' +
+                        filterLevel
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            filterCategory &&
+            !filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?category=' +
+                        filterCategory +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            !filterCategory &&
+            filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?level=' +
+                        filterLevel +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            !searchCourse &&
+            filterCategory &&
+            filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?category=' +
+                        filterCategory +
+                        '&level=' +
+                        filterLevel +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            filterCategory &&
+            !filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&category=' +
+                        filterCategory
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            !filterCategory &&
+            filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&level=' +
+                        filterLevel
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            !filterCategory &&
+            !filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            filterCategory &&
+            filterLevel &&
+            !filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&category=' +
+                        filterCategory +
+                        '&level=' +
+                        filterLevel
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            filterCategory &&
+            !filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&category=' +
+                        filterCategory +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            !filterCategory &&
+            filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&level=' +
+                        filterLevel +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (
+            searchCourse &&
+            filterCategory &&
+            filterLevel &&
+            filterPrice
+        ) {
+            axios
+                .get(
+                    'http://localhost:8000/data/courses/filter?q=' +
+                        searchCourse +
+                        '&category=' +
+                        filterCategory +
+                        '&level=' +
+                        filterLevel +
+                        '&price=' +
+                        filterPrice
+                )
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else if (!searchCourse) {
+            axios
+                .get('http://localhost:8000/data/courses/filter')
+                .then((res) => {
+                    setNewClassList(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            setSearchCourse();
+            setFilterCategory();
+            setFilterLevel();
+            setFilterPrice();
+        }
+    };
+    const categoryHandler = (e) => {
+        setFilterCategory(e.currentTarget.value);
+    };
+    const levelHandler = (e) => {
+        setFilterLevel(e.currentTarget.value);
+    };
+    const priceHandler = (e) => {
+        setFilterPrice(e.currentTarget.value);
+    };
 
     return (
         <>
@@ -113,7 +456,7 @@ function StudentActivity() {
                             </div>
                             {classItems}
                             <small className='d-flex justify-content-center'>
-                                <Link to='/student-myclass'>
+                                <Link to='/student/myclass'>
                                     view all{' >'}
                                 </Link>
                             </small>
@@ -141,8 +484,12 @@ function StudentActivity() {
                                                 className='form-control search-activity '
                                                 name='search '
                                                 placeholder='Quick Search'
+                                                onChange={searchValue}
                                             />
-                                            <button className='btn btn-search-activity'>
+                                            <button
+                                                className='btn btn-search-activity'
+                                                onClick={filterHandler}
+                                            >
                                                 Search
                                             </button>
                                         </div>
@@ -151,33 +498,42 @@ function StudentActivity() {
 
                                 {/* <!-- Filter Group --> */}
                                 <div className='filter-group d-flex'>
-                                    <select className='selectpicker sel-filter'>
-                                        <option>Categories</option>
-                                        <option>Software</option>
-                                        <option>History</option>
-                                        <option>Psychology</option>
-                                        <option>Finance</option>
-                                        <option>Math</option>
+                                    <select
+                                        className='selectpicker sel-filter'
+                                        onChange={categoryHandler}
+                                        onClick={filterHandler}
+                                    >
+                                        <option value=''>Categories</option>
+                                        <option value='software'>
+                                            Software
+                                        </option>
+                                        <option value='history'>History</option>
+                                        <option value='psychology'>
+                                            Psychology
+                                        </option>
+                                        <option value='finance'>Finance</option>
+                                        <option value='math'>Math</option>
                                     </select>
                                     <select
                                         className='selectpicker sel-filter'
                                         style={{ width: '3.5rem' }}
+                                        onClick={filterHandler}
+                                        onChange={levelHandler}
                                     >
-                                        <option>Level</option>
-                                        <option>Beginner</option>
-                                        <option>Intermediate</option>
-                                        <option>Advance</option>
+                                        <option value=''>Level</option>
+                                        <option value={1}>Beginner</option>
+                                        <option value={2}>Intermediate</option>
+                                        <option value={3}>Advance</option>
                                     </select>
                                     <select
                                         className='selectpicker sel-filter'
                                         style={{ width: '4.2rem' }}
+                                        onClick={filterHandler}
+                                        onChange={priceHandler}
                                     >
-                                        <option>Pricing</option>
-                                        <option>Free</option>
-                                        <option>{'<'} $10</option>
-                                        <option> $10 - $20</option>
-                                        <option>$20 - $50</option>
-                                        <option> {'>'}$50</option>
+                                        <option value=''>Pricing</option>
+                                        <option value='free'>Free</option>
+                                        <option value='paid'>Paid</option>
                                     </select>
                                 </div>
 
