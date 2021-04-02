@@ -513,6 +513,7 @@ function StudentActivity() {
                                         </option>
                                         <option value='finance'>Finance</option>
                                         <option value='math'>Math</option>
+                                        <option value='science'>Science</option>
                                     </select>
                                     <select
                                         className='selectpicker sel-filter'
