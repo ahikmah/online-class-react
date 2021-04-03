@@ -16,7 +16,7 @@ function MyClassItem(props) {
                     <span className='checkmark'></span>
                 </div>
                 <div className='col overflow-hidden'>
-                    <Link to='/student-class-detail/information'>
+                    <Link to='/student/class-detail/information'>
                         {props.name}
                     </Link>
                 </div>
