@@ -81,28 +81,6 @@ function StudentActivity() {
         setSearchCourse(e.target.value);
     };
 
-    // const searchHandler = (e) => {
-    //     e.preventDefault();
-    //     if (searchCourse) {
-    //         axios
-    //             .get('http://localhost:8000/data/courses/?q=' + searchCourse)
-    //             .then((res) => {
-    //                 setNewClassList(res.data.result);
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-    //     } else {
-    //         axios
-    //             .get('http://localhost:8000/data/courses')
-    //             .then((res) => {
-    //                 setNewClassList(res.data.result);
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-    //     }
-    // };
     const filterHandler = (e) => {
         e.preventDefault();
         if (searchCourse && !filterCategory && !filterLevel && !filterPrice) {
@@ -113,9 +91,6 @@ function StudentActivity() {
                 )
                 .then((res) => {
                     setNewClassList(res.data.result);
-                    // setFilterCategory();
-                    // setFilterLevel();
-                    // setFilterPrice();
                 })
                 .catch((err) => {
                     console.log(err);

@@ -85,7 +85,7 @@ function Sidebar(props) {
                 {/* Menu section */}
                 <nav className='d-flex flex-column'>
                     <Link
-                        to='/dashboard/all-schedule'
+                        to='/student/dashboard/all-schedule'
                         className={
                             props.activeMenu === 1
                                 ? classNavItemActive.join(' ')
