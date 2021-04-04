@@ -12,7 +12,7 @@ function StudentMyClass() {
     let classItems, len;
     useEffect(() => {
         axios
-            .get('http://localhost:8000/data/student/myclass/6')
+            .get('http://localhost:8000/data/student/my-class/6')
             .then((res) => {
                 setMyClassList(res.data.result);
             })

@@ -20,7 +20,7 @@ function StudentActivity() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/data/student/myclass/6')
+            .get('http://localhost:8000/data/student/my-class/6')
             .then((res) => {
                 setMyClassList(res.data.result);
             })
@@ -431,7 +431,7 @@ function StudentActivity() {
                             </div>
                             {classItems}
                             <small className='d-flex justify-content-center'>
-                                <Link to='/student/myclass'>
+                                <Link to='/student/my-class'>
                                     view all{' >'}
                                 </Link>
                             </small>

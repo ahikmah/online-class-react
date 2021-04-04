@@ -52,7 +52,7 @@ function App() {
                 exact
                 component={StudentActivity}
             />
-            <Route path='/student/myclass/' exact component={StudentMyClass} />
+            <Route path='/student/my-class/' exact component={StudentMyClass} />
             <Route
                 path='/student/class-detail/:id'
                 exact

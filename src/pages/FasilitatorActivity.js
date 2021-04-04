@@ -14,7 +14,7 @@ function FasilitatorActivity() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/data/instructor/mycourse/1')
+            .get('http://localhost:8000/data/instructor/my-course/1')
             .then((res) => {
                 setMyClassList(res.data.result);
             })
