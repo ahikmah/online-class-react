@@ -62,6 +62,7 @@ function Register() {
                 });
         }
     };
+
     let match;
 
     if (password === repassword && password && repassword) {

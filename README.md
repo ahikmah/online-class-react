@@ -1,30 +1,35 @@
-Available on  https://ahikmah-ocreact.netlify.app/
+# Online Class React App
 
-# Getting Started with Create React App
+This is a Massive Open Online Course (MOOC) Site, which is an online course that is held on a large scale and is open with the aim of allowing unlimited participation that can be accessed via the web.
 
-## Available Scripts
+### Tech Stack
 
-In the project directory, you can run:
+-   [React JS](https://reactjs.org/docs/create-a-new-react-app.html)
+-   [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+-   [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+-   [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+-   [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
-### `npm start`
+### Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can view a live demo over at https://ahikmah-ocreact.netlify.app/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get the frontend running locally
 
-### `npm test`
+-   Clone this repository
+-   `npm install` to install all required dependencies
+-   `npm start` to start the local server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Screenshot
 
-### `npm run build`
+Dashboard Page
+![dashboard page](./screenshot/dashboard.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Activity Page
+![activity page](./screenshot/activity.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Profile Page
+![profile page](./screenshot/profile.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Class Progress Page
+![class progress page](./screenshot/class%20progress.png)
