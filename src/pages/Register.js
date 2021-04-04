@@ -6,14 +6,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
 import axios from 'axios';
+import ModalComp from '../component/ModalComp';
 
 function Register() {
     const [username, setUsername] = useState();
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [repassword, setRePassword] = useState();
     const [usernameIsTaken, setUsernameIsTaken] = useState(false);
     const [emailIsTaken, setEmailIsTaken] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [requiredTxt, setRequiredTxt] = useState(false);
 
     const usernameHandler = (e) => {
         setUsername(e.target.value);
@@ -46,8 +49,7 @@ function Register() {
                     headers: { 'Content-Type': 'application/json' },
                 })
                 .then((res) => {
-                    history.push('/');
-                    alert('your account has been successfully registered');
+                    setModalShow(true);
                 })
                 .catch((err) => {
                     if (err.response.data.conflict === 'username') {
@@ -55,12 +57,11 @@ function Register() {
                     } else if (err.response.data.conflict === 'email') {
                         setEmailIsTaken(true);
                     } else {
-                        alert('Data cannot be empty');
+                        setRequiredTxt(true);
                     }
                 });
         }
     };
-
     let match;
 
     if (password === repassword && password && repassword) {
@@ -88,8 +89,14 @@ function Register() {
                         >
                             Username has already been taken.
                         </small>
+                    ) : requiredTxt && !username ? (
+                        <small
+                            className=' password d-flex justify-content-start'
+                            style={{ color: 'red', marginTop: '-10px' }}
+                        >
+                            Username is required
+                        </small>
                     ) : null}
-
                     <FormFloating
                         type='email'
                         id='email'
@@ -104,6 +111,13 @@ function Register() {
                         >
                             Email has already been taken.
                         </small>
+                    ) : requiredTxt && !email ? (
+                        <small
+                            className=' password d-flex justify-content-start'
+                            style={{ color: 'red', marginTop: '-10px' }}
+                        >
+                            Email is required
+                        </small>
                     ) : null}
                     <FormFloating
                         type='password'
@@ -111,7 +125,15 @@ function Register() {
                         ph='Password'
                         label='Password'
                         changed={passwordHandler}
-                    />
+                    />{' '}
+                    {requiredTxt && !password ? (
+                        <small
+                            className=' password d-flex justify-content-start'
+                            style={{ color: 'red', marginTop: '-10px' }}
+                        >
+                            Password is required
+                        </small>
+                    ) : null}
                     <FormFloating
                         type='password'
                         id='repassword'
@@ -119,7 +141,6 @@ function Register() {
                         label='Confirm Password'
                         changed={rePasswordHandler}
                     />
-
                     {match ? (
                         <small className='match password d-flex justify-content-start'>
                             Password match
@@ -132,7 +153,6 @@ function Register() {
                             Password not match
                         </small>
                     )}
-
                     <div className='button-group d-flex flex-column'>
                         <button
                             type='submit'
@@ -151,6 +171,14 @@ function Register() {
                     Already have account? <Link to='/'>Login</Link>
                 </p>
             </main>
+            <ModalComp
+                header='Register Success'
+                msg='your account has been successfully registered'
+                show={modalShow}
+                onHide={() => history.push('/')}
+                variant='success'
+                footermsg='Login Now'
+            />
         </div>
     );
 }

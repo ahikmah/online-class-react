@@ -5,11 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
 import axios from 'axios';
+import ModalComp from '../component/ModalComp';
 
 class Login extends Component {
     state = {
         username: null,
         password: null,
+        modalShow: false,
     };
 
     usernameHandler = (e) => {
@@ -20,6 +22,12 @@ class Login extends Component {
     passwordHandler = (e) => {
         this.setState({
             password: e.target.value,
+        });
+    };
+
+    openModalHandler = () => {
+        this.setState({
+            modalShow: true,
         });
     };
 
@@ -43,7 +51,9 @@ class Login extends Component {
                 }
             })
             .catch((err) => {
-                if (err.response.data.message) alert(err.response.data.message);
+                this.setState({
+                    modalShow: true,
+                });
             });
     };
 
@@ -95,6 +105,14 @@ class Login extends Component {
                         New user? <Link to='/register'> Register</Link>
                     </p>
                 </main>
+                <ModalComp
+                    header='Sign in Failed'
+                    msg='Sorry, your username or password is incorrect.'
+                    show={this.state.modalShow}
+                    onHide={() => this.setState({ modalShow: false })}
+                    variant='danger'
+                    footermsg='Try Again'
+                />
             </>
         );
     }
