@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/css/Sidebar.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import Avatar from '../assets/images/avatar.png';
 
@@ -17,10 +17,18 @@ import activityIconActive from '../assets/images/icon-activity-active.png';
 import ExpandNotif from '../component/ExpandNotif';
 
 function Sidebar(props) {
-    // Add active class to the activeMenu
+    const [notifFlag, setNotifFlag] = useState(false);
+    useEffect(() => {
+        if (notifFlag) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [notifFlag]);
+    const history = useHistory();
+    const roleFlag = history.location.pathname.includes('student');
     const classNavItem = ['side-nav-item nav-link'];
     const classNavItemActive = ['side-nav-item nav-link', 'active-sidebar'];
-
     const customProfile = {
         background: 'linear-gradient(180deg, white 60%, #5784BA 60%)',
     };
@@ -28,8 +36,6 @@ function Sidebar(props) {
         props.activeMenu === 0
             ? { border: 'white solid 0.14rem' }
             : { border: '#5784BA solid 0.14rem' };
-
-    const [notifFlag, setNotifFlag] = useState(false);
 
     const clickHandler = () => {
         setNotifFlag(!notifFlag);
@@ -43,7 +49,7 @@ function Sidebar(props) {
             >
                 {/* <!-- Notification --> */}
                 <div className='side-notif-section'>
-                    <Link to='?' onClick={clickHandler}>
+                    <Link to='#' onClick={clickHandler}>
                         <i
                             className='fas fa-bell'
                             style={{
@@ -62,7 +68,11 @@ function Sidebar(props) {
                         <img src={Avatar} alt='avatar' />
                     </div>
                     <Link
-                        to='/profile'
+                        to={
+                            roleFlag
+                                ? '/student/profile'
+                                : '/facilitator/profile'
+                        }
                         className={
                             props.activeMenu === 0
                                 ? 'side-name active-sidebar'
@@ -85,7 +95,11 @@ function Sidebar(props) {
                 {/* Menu section */}
                 <nav className='d-flex flex-column'>
                     <Link
-                        to='/student/dashboard/all-schedule'
+                        to={
+                            roleFlag
+                                ? '/student/dashboard/all-schedule'
+                                : '/facilitator/dashboard/'
+                        }
                         className={
                             props.activeMenu === 1
                                 ? classNavItemActive.join(' ')
@@ -103,7 +117,11 @@ function Sidebar(props) {
                         <span>Dashboard</span>
                     </Link>
                     <Link
-                        to='/student/activity'
+                        to={
+                            roleFlag
+                                ? '/student/activity'
+                                : '/facilitator/activity'
+                        }
                         className={
                             props.activeMenu === 2
                                 ? classNavItemActive.join(' ')
@@ -121,7 +139,11 @@ function Sidebar(props) {
                         <span>Activity</span>
                     </Link>
                     <Link
-                        to='/profile'
+                        to={
+                            roleFlag
+                                ? '/student/profile'
+                                : '/facilitator/profile'
+                        }
                         className={
                             props.activeMenu === 3
                                 ? classNavItemActive.join(' ')

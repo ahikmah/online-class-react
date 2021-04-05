@@ -24,7 +24,7 @@ function FasilitatorActivity() {
     }, []);
 
     if (myClassList) {
-        console.log(myClassList);
+        // console.log(myClassList);
         const myclasssize = 3;
         classItems = myClassList.slice(0, myclasssize).map((cl) => {
             return (
@@ -74,7 +74,7 @@ function FasilitatorActivity() {
                             </div>
                             {classItems}
                             <small className='d-flex justify-content-center'>
-                                <Link to='/student-myclass'>
+                                <Link to='/facilitator/my-class'>
                                     view all{' >'}
                                 </Link>
                             </small>

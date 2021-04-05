@@ -16,6 +16,7 @@ import StudentMyClass from './StudentMyClass';
 import StudentClassDetail from './StudentClassDetail';
 
 import FasilitatorActivity from './FasilitatorActivity';
+import FacilitatorMyClass from './FacilitatorMyClass';
 import FasilitatorClassDetail from './FasilitatorClassDetail';
 
 import Profile from './Profile';
@@ -24,45 +25,38 @@ function App() {
     return (
         <BrowserRouter>
             <Route path='/' exact component={Login} />
-            <Route path='/register' exact component={Register} />
-            <Route path='/reset-password' exact component={ResetPassword} />
-            <Route path='/verify-code' exact component={VerifyCode} />
-            <Route
-                path='/create-new-password'
-                exact
-                component={CreateNewPassword}
-            />
-            <Route path='/password-changed' exact component={PasswordChanged} />
+            <Route path='/register' component={Register} />
+            <Route path='/reset-password' component={ResetPassword} />
+            <Route path='/verify-code' component={VerifyCode} />
+            <Route path='/create-new-password' component={CreateNewPassword} />
+            <Route path='/password-changed' component={PasswordChanged} />
 
             {/* Dashboard page */}
             <Route
                 path='/student/dashboard/:id?'
-                exact
                 component={DashboardStudent}
             />
             <Route
                 path='/facilitator/dashboard'
-                exact
                 component={DashboardFasilitator}
             />
 
             {/* Activity page */}
-            <Route
-                path='/student/activity/'
-                exact
-                component={StudentActivity}
-            />
+            <Route path='/student/activity/' component={StudentActivity} />
             <Route path='/student/my-class/' exact component={StudentMyClass} />
             <Route
                 path='/student/class-detail/:id'
-                exact
                 component={StudentClassDetail}
             />
 
             <Route
                 path='/facilitator/activity'
-                exact
                 component={FasilitatorActivity}
+            />
+            <Route
+                path='/facilitator/my-class/'
+                exact
+                component={FacilitatorMyClass}
             />
             <Route
                 path='/facilitator/class-detail/:id'
@@ -76,7 +70,8 @@ function App() {
                 component={FasilitatorClassDetail}
             />
 
-            <Route path='/profile' exact component={Profile} />
+            <Route path='/student/profile' component={Profile} />
+            <Route path='/facilitator/profile' component={Profile} />
         </BrowserRouter>
     );
 }

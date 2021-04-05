@@ -6,6 +6,7 @@ import '../assets/css/ClassDetail.css';
 import BannerClass from '../assets/images/banner-class.png';
 import ThumbnailClass from '../assets/images/thumbnail-class.png';
 import Navbar from '../component/Navbar';
+
 function ClassDetail(props) {
     const activeMenu = props.menu;
     const activeClass = 'active';
@@ -20,7 +21,7 @@ function ClassDetail(props) {
                     <main className='col-sm-12 content-activity'>
                         <section className='container class-detail'>
                             <section className='label-section'>
-                                <Link to='student-activity'>
+                                <Link to='/student/activity'>
                                     <i className='fas fa-chevron-left '></i>
                                     <span style={{ marginLeft: '1rem' }}>
                                         {props.name}

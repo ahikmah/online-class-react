@@ -4,15 +4,16 @@ import Sidebar from '../component/Sidebar';
 import { Link, useHistory } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import '../assets/css/MyClass.css';
-import MyClassItem from '../component/MyClassItem';
+import FasMyClassItem from '../component/FasMyClassItem';
 import Navbar from '../component/Navbar';
 import axios from 'axios';
-function StudentMyClass() {
+
+function FacilitatorMyClass() {
     const [myClassList, setMyClassList] = useState();
     let classItems, len;
     useEffect(() => {
         axios
-            .get('http://localhost:8000/data/student/my-class/6')
+            .get('http://localhost:8000/data/instructor/my-course/1')
             .then((res) => {
                 setMyClassList(res.data.result);
             })
@@ -25,14 +26,15 @@ function StudentMyClass() {
         const myclasssize = 10;
         classItems = myClassList.slice(0, myclasssize).map((cl) => {
             return (
-                <MyClassItem
-                    key={cl.id}
+                <FasMyClassItem
+                    key={cl.course_id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}
-                    progress={cl.progress_in_percent}
-                    status={cl.status}
-                    score={cl.score}
+                    day={cl.day}
+                    start={cl.start_time}
+                    end={cl.end_time}
+                    students={cl.num_of_student}
                 />
             );
         });
@@ -161,4 +163,4 @@ function StudentMyClass() {
     );
 }
 
-export default StudentMyClass;
+export default FacilitatorMyClass;
