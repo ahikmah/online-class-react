@@ -272,7 +272,7 @@ span > a {
         font-size: 0.75rem;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 958px) {
     .tbh {
         display: none;
     }
@@ -295,7 +295,7 @@ span > a {
         width: fit-content;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 705px) {
     .theader,
     .theader2,
     .tdata,
@@ -314,6 +314,11 @@ span > a {
         padding-top: 4.5rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+        width: 100%;
+    }
+    main.col-sm-12.content-activity {
+        padding-left: 0 !important;
+        width: 100%;
     }
     section.search-group-myclass {
         display: flex;

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import googleIcon from '../assets/images/icon-google.png';
 import matchIcon from '../assets/images/match-icon.png';
 import { Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
-import axios from 'axios';
 import ModalComp from '../component/ModalComp';
 
-function Register() {
+import { connect } from 'react-redux';
+import { register } from '../redux/ActionCreators/auth';
+
+function Register(props) {
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -17,6 +19,8 @@ function Register() {
     const [emailIsTaken, setEmailIsTaken] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [requiredTxt, setRequiredTxt] = useState(false);
+
+    const { registerReducer, userRegister } = props;
 
     const usernameHandler = (e) => {
         setUsername(e.target.value);
@@ -36,7 +40,7 @@ function Register() {
 
     let history = useHistory();
 
-    const registerHandler = (e) => {
+    const regHandler = (e) => {
         e.preventDefault();
         if (password === repassword) {
             const dataUser = {
@@ -44,24 +48,67 @@ function Register() {
                 email: email,
                 password: password,
             };
-            axios
-                .post('http://localhost:8000/data/users', dataUser, {
-                    headers: { 'Content-Type': 'application/json' },
-                })
-                .then((res) => {
-                    setModalShow(true);
-                })
-                .catch((err) => {
-                    if (err.response.data.conflict === 'username') {
-                        setUsernameIsTaken(true);
-                    } else if (err.response.data.conflict === 'email') {
-                        setEmailIsTaken(true);
-                    } else {
-                        setRequiredTxt(true);
-                    }
-                });
+
+            userRegister(dataUser);
         }
     };
+
+    const ref = useRef();
+
+    useEffect(() => {
+        if (!ref.current) {
+            ref.current = true;
+        } else {
+            if (registerReducer.isPending) {
+                console.log('Loading');
+            } else if (registerReducer.isFulfilled) {
+                setModalShow(true);
+            } else if (registerReducer.isRejected) {
+                const conflict =
+                    props.registerReducer.result.response.data.error.conflict;
+
+                if (conflict === 'username') {
+                    setUsernameIsTaken(true);
+                } else if (conflict === 'email') {
+                    setEmailIsTaken(true);
+                } else {
+                    setRequiredTxt(true);
+                }
+            }
+        }
+    }, [
+        registerReducer.isFulfilled,
+        registerReducer.isPending,
+        registerReducer.isRejected,
+        props,
+    ]);
+
+    // const registerHandler = (e) => {
+    //     e.preventDefault();
+    //     if (password === repassword) {
+    //         const dataUser = {
+    //             username: username,
+    //             email: email,
+    //             password: password,
+    //         };
+    //         axios
+    //             .post('http://localhost:8000/data/auth', dataUser, {
+    //                 headers: { 'Content-Type': 'application/json' },
+    //             })
+    //             .then((res) => {
+    //                 setModalShow(true);
+    //             })
+    //             .catch((err) => {
+    //                 if (err.response.data.conflict === 'username') {
+    //                     setUsernameIsTaken(true);
+    //                 } else if (err.response.data.conflict === 'email') {
+    //                     setEmailIsTaken(true);
+    //                 } else {
+    //                     setRequiredTxt(true);
+    //                 }
+    //             });
+    //     }
+    // };
 
     let match;
 
@@ -158,7 +205,7 @@ function Register() {
                         <button
                             type='submit'
                             className='btn regis btn-primer'
-                            onClick={registerHandler}
+                            onClick={regHandler}
                         >
                             Register
                         </button>
@@ -184,4 +231,23 @@ function Register() {
     );
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    const { registerReducer } = state;
+    return {
+        registerReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userRegister: (data) =>
+            dispatch(register('http://localhost:8000/data/auth', data)),
+    };
+};
+
+const ConnectedRegister = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Register);
+
+export default ConnectedRegister;

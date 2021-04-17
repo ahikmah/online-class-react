@@ -4,15 +4,20 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
-import axios from 'axios';
+// import axios from 'axios';
 import ModalComp from '../component/ModalComp';
+
+import { connect } from 'react-redux';
+import { login, userData } from '../redux/ActionCreators/auth';
 
 class Login extends Component {
     state = {
-        username: null,
-        password: null,
+        username: '',
+        password: '',
         modalShow: false,
     };
+
+    // loginUser = this.props;
 
     usernameHandler = (e) => {
         this.setState({
@@ -31,7 +36,29 @@ class Login extends Component {
         });
     };
 
-    submitHandler = (e) => {
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.loginReducer.isPending) {
+            console.log('Loading...');
+        } else if (this.props.loginReducer.isFulfilled) {
+            // console.log('OK');
+            // console.log(this.props.loginReducer.result);
+            this.props.dataLogin(this.props.loginReducer.result);
+            this.props.history.push('/student/dashboard/all-schedule');
+        } else if (this.props.loginReducer.isRejected) {
+            // console.log('failed');
+            if (
+                prevProps.loginReducer !== this.props.loginReducer &&
+                prevState.modalShow === false
+            ) {
+                // console.log('failed2');
+                this.setState({
+                    modalShow: true,
+                });
+            }
+        }
+    }
+
+    loginHandler = (e) => {
         e.preventDefault();
         const dataLogin = {
             username: this.state.username,
@@ -39,30 +66,43 @@ class Login extends Component {
             password: this.state.password,
         };
 
-        axios
-            .post('http://localhost:8000/data/users/login', dataLogin)
-            .then((res) => {
-                if (res.data.success) {
-                    res.data.role === 'student'
-                        ? this.props.history.push(
-                              '/student/dashboard/all-schedule'
-                          )
-                        : this.props.history.push('/facilitator/dashboard');
-                }
-            })
-            .catch((err) => {
-                this.setState({
-                    modalShow: true,
-                });
-            });
+        this.props.userLogin(dataLogin);
     };
+
+    // submitHandler = (e) => {
+    //     e.preventDefault();
+    //     const dataLogin = {
+    //         username: this.state.username,
+    //         email: this.state.username,
+    //         password: this.state.password,
+    //     };
+
+    //     // this.authReducer.isFulfilled ? this.authReducer.result.
+
+    //     axios
+    //         .post('http://localhost:8000/data/users/login', dataLogin)
+    //         .then((res) => {
+    //             if (res.data.success) {
+    //                 res.data.role === 'student'
+    //                     ? this.props.history.push(
+    //                           '/student/dashboard/all-schedule'
+    //                       )
+    //                     : this.props.history.push('/facilitator/dashboard');
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             this.setState({
+    //                 modalShow: true,
+    //             });
+    //         });
+    // };
 
     render() {
         return (
             <>
                 <main className='container login'>
                     <h1 className='title login'>Login</h1>
-                    <form className='form login' onSubmit={this.submitHandler}>
+                    <form className='form login' onSubmit={this.loginHandler}>
                         <FormFloating
                             type='text'
                             id='username'
@@ -118,4 +158,21 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    const { loginReducer } = state;
+    return {
+        loginReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dataLogin: (data) => dispatch(userData(data)),
+        userLogin: (data) =>
+            dispatch(login('http://localhost:8000/data/auth/login', data)),
+    };
+};
+
+const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
+
+export default ConnectedLogin;

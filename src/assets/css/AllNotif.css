@@ -1,10 +1,10 @@
-.all-notif{
+.all-notif {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    margin-left:15rem;
+    margin-left: 15rem;
     margin-top: 1rem;
     padding: 2rem;
-    background-color: #5784BA;
+    background-color: #5784ba;
     height: 96%;
     width: 60%;
     border-radius: 1.25rem;
@@ -15,16 +15,16 @@
     z-index: 11;
 }
 
-.close-btn-notif{
+.close-btn-notif {
     position: absolute;
     right: 1rem;
     top: 1rem;
 }
-.head-timeline{
+.head-timeline {
     margin-top: 2rem;
     font-size: 1.25rem;
 }
-.list-notif{
+.list-notif {
     margin-top: 1rem;
 }
 
@@ -40,27 +40,27 @@
     z-index: 100;
 }
 
-@media (max-width:768px){
-    .all-notif{
+@media (max-width: 768px) {
+    .all-notif {
         font-size: 0.8rem;
     }
-    .col.list-notif-content{
+    .col.list-notif-content {
         margin-left: 1.5rem;
     }
 }
-@media (max-width:500px){
-    .all-notif{
+@media (max-width: 705px) {
+    .all-notif {
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
-        margin-left:0;
+        transform: translate(-50%, -50%);
+        margin-left: 0;
         width: 90%;
         z-index: 36;
         text-overflow: ellipsis;
         font-size: small;
         /* padding-left: 1rem; */
     }
-    .col.list-notif-content{
+    .col.list-notif-content {
         width: 50%;
         margin-left: 1.5rem;
         /* white-space: nowrap; */
