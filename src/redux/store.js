@@ -7,7 +7,8 @@ import {
     registerReducer,
     getDataUserReducer,
 } from './Reducers/auth';
-import { dataStudentReducer } from './Reducers/student';
+import { dataStudentReducer, progressStudentReducer } from './Reducers/student';
+import { dataFacilitatorReducer } from './Reducers/facilitator';
 import { dataCourseReducer } from './Reducers/course';
 
 const logger = createLogger();
@@ -17,6 +18,8 @@ const reducers = combineReducers({
     registerReducer,
     getDataUserReducer,
     dataStudentReducer,
+    dataFacilitatorReducer,
+    progressStudentReducer,
     dataCourseReducer,
 });
 const reduxStore = createStore(reducers, enhancers);

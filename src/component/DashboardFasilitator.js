@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/Dashboard.css';
@@ -11,8 +11,10 @@ import MessagePanel from './MessagePanel';
 import FasClassListCard from './FasClassListCard';
 import Navbar from './Navbar';
 import MessageButton from './MessageButton';
-import axios from 'axios';
-function DashboardFasilitator() {
+import { connect } from 'react-redux';
+import { getDataFacilitator } from '../redux/ActionCreators/facilitator';
+
+function DashboardFasilitator(props) {
     const [mySchedule, setMySchedule] = useState();
     const days = [
         'Sunday',
@@ -28,19 +30,41 @@ function DashboardFasilitator() {
     let classItems;
     // console.log(dayName);
 
+    const { dataFacilitatorReducer, getAllSchedule } = props;
+
+    const ref = useRef();
+
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get(
-                'http://localhost:8000/data/instructor/my-schedule/1?day=' +
+        if (!ref.current) {
+            getAllSchedule(
+                'http://localhost:8000/data/instructor/my-schedule?day=' +
                     dayName
-            )
-            .then((res) => {
-                setMySchedule(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [dayName]);
+            );
+            ref.current = true;
+        } else {
+            if (dataFacilitatorReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataFacilitatorReducer.isFulfilled) {
+                setMySchedule(dataFacilitatorReducer.result);
+            } else if (dataFacilitatorReducer.isRejected) {
+                console.log('Failed');
+            }
+        }
+    });
+    // useEffect(() => {
+    //     axios
+    //         .get(
+    //             'http://localhost:8000/data/instructor/my-schedule/1?day=' +
+    //                 dayName
+    //         )
+    //         .then((res) => {
+    //             setMySchedule(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [dayName]);
 
     if (mySchedule) {
         classItems = mySchedule.map((cl) => {
@@ -102,4 +126,23 @@ function DashboardFasilitator() {
     );
 }
 
-export default DashboardFasilitator;
+const mapStatetoProps = (state) => {
+    const { dataFacilitatorReducer } = state;
+    return {
+        dataFacilitatorReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllSchedule: (url) => dispatch(getDataFacilitator(url)),
+    };
+};
+
+const ConnectedDashboardFasilitator = connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(DashboardFasilitator);
+export default ConnectedDashboardFasilitator;
+
+// export default DashboardFasilitator;

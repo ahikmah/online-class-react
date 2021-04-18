@@ -9,3 +9,14 @@ export const getDataStudent = (url) => {
         }),
     };
 };
+
+export const getProgressStudent = (url) => {
+    const token = localStorage.token;
+
+    return {
+        type: 'GET_PROGRESS_STUDENT',
+        payload: axios.get(url, {
+            headers: { 'x-access-token': `Bearer ${token}` },
+        }),
+    };
+};

@@ -1,32 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import '../assets/css/MyClass.css';
 import MyClassItem from '../component/MyClassItem';
 import Navbar from '../component/Navbar';
-import axios from 'axios';
-function StudentMyClass() {
+
+import { connect } from 'react-redux';
+import { getDataStudent } from '../redux/ActionCreators/student';
+
+function StudentMyClass(props) {
     const [myClassList, setMyClassList] = useState();
-    let classItems, len;
+    const [info, setInfo] = useState();
+    const { dataStudentReducer, getMyClass } = props;
+    let classItems;
+    let numPage = [];
+    const ref = useRef();
+
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/data/student/my-class/6')
-            .then((res) => {
-                setMyClassList(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+        if (!ref.current) {
+            getMyClass('http://localhost:8000/data/student/my-class');
+            ref.current = true;
+        } else {
+            if (dataStudentReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataStudentReducer.isFulfilled) {
+                setMyClassList(dataStudentReducer.result);
+
+                setInfo(dataStudentReducer.info);
+                // console.log('info', dataStudentReducer.info);
+            } else if (dataStudentReducer.isRejected) {
+                console.log('Failed');
+            }
+        }
+    });
+    // useEffect(() => {
+    //     axios
+    //         .get('http://localhost:8000/data/student/my-class/6')
+    //         .then((res) => {
+    //             setMyClassList(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
     // Display top 10 My Class list
     if (myClassList) {
-        const myclasssize = 10;
-        classItems = myClassList.slice(0, myclasssize).map((cl) => {
+        classItems = myClassList.map((cl) => {
             return (
                 <MyClassItem
                     key={cl.id}
+                    idCourse={cl.id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}
@@ -36,7 +62,32 @@ function StudentMyClass() {
                 />
             );
         });
-        len = myClassList.length;
+        // len = myClassList.length;
+    }
+
+    if (info) {
+        for (let i = 0; i < info.totalPage; i++) {
+            numPage.push(
+                <span
+                    style={{
+                        color: info.page === i + 1 ? 'white' : 'black',
+                    }}
+                    key={i}
+                    className={info.page === i + 1 ? 'pg active-pg' : 'pg'}
+                    onClick={() =>
+                        getMyClass(
+                            i === 0
+                                ? 'http://localhost:8000/data/student/my-class'
+                                : 'http://localhost:8000/data/student/my-class?pages=' +
+                                      (Number(i) + 1)
+                        )
+                    }
+                >
+                    {i + 1}
+                </span>
+            );
+        }
+        // console.log('iinfo', info);
     }
 
     const history = useHistory();
@@ -133,23 +184,39 @@ function StudentMyClass() {
                             {classItems}
                             <div className='pagination'>
                                 <div className='col d-flex justify-content-start align-items-center'>
-                                    Showing {len > 10 ? 10 : len} out of {len}
+                                    Showing{' '}
+                                    {myClassList && info
+                                        ? (info.page - 1) * 5 +
+                                          1 +
+                                          '-' +
+                                          Math.floor(
+                                              (info.page - 1) * 5 +
+                                                  myClassList.length
+                                          )
+                                        : null}{' '}
+                                    out of {info ? info.count : null}
                                 </div>
                                 <div className='col d-flex justify-content-end align-items-center'>
-                                    <span className='pg'>
-                                        <Link to=''>{'<'}</Link>
+                                    <span
+                                        className='pg'
+                                        onClick={
+                                            info
+                                                ? () => getMyClass(info.prev)
+                                                : null
+                                        }
+                                    >
+                                        {'<'}
                                     </span>
-                                    <span className='pg active-pg'>
-                                        <Link to=''>1</Link>
-                                    </span>
-                                    <span className='pg'>
-                                        <Link to=''>2</Link>
-                                    </span>
-                                    <span className='pg'>
-                                        <Link to=''>3</Link>
-                                    </span>
-                                    <span className=' pg '>
-                                        <Link to=' '>{'>'}</Link>
+                                    {numPage}
+                                    <span
+                                        className='pg'
+                                        onClick={
+                                            info
+                                                ? () => getMyClass(info.next)
+                                                : null
+                                        }
+                                    >
+                                        {'>'}
                                     </span>
                                 </div>
                             </div>
@@ -161,4 +228,22 @@ function StudentMyClass() {
     );
 }
 
-export default StudentMyClass;
+const mapStatetoProps = (state) => {
+    const { dataStudentReducer } = state;
+    return {
+        dataStudentReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMyClass: (url) => dispatch(getDataStudent(url)),
+    };
+};
+
+const ConnectedStudentMyClass = connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(StudentMyClass);
+// export default ConnectedStudentActivity;
+export default ConnectedStudentMyClass;

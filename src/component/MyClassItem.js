@@ -1,4 +1,5 @@
 import React from 'react';
+
 import iconList from '../assets/images/icon-list.png';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +28,12 @@ function MyClassItem(props) {
                     <span className='checkmark'></span>
                 </div>
                 <div className='col col-2 overflow-hidden'>
-                    <Link to='/student/class-detail/information'>
+                    <Link
+                        to={
+                            '/student/class-detail/information/' +
+                            props.idCourse
+                        }
+                    >
                         {props.name}
                     </Link>
                 </div>

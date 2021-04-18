@@ -14,13 +14,15 @@ import DashboardStudent from '../component/DashboardStudent';
 import DashboardFasilitator from '../component/DashboardFasilitator';
 
 import Activity from './Activity';
-
 import StudentActivity from '../component/StudentActivity';
-import StudentMyClass from './StudentMyClass';
+import FasilitatorActivity from '../component/FasilitatorActivity';
+
+import MyClass from './MyClass';
+import StudentMyClass from '../component/StudentMyClass';
+import FacilitatorMyClass from '../component/FacilitatorMyClass';
+
 import StudentClassDetail from './StudentClassDetail';
 
-import FasilitatorActivity from '../component/FasilitatorActivity';
-import FacilitatorMyClass from './FacilitatorMyClass';
 import FasilitatorClassDetail from './FasilitatorClassDetail';
 
 import Profile from './Profile';
@@ -128,6 +130,12 @@ function App() {
                 />
 
                 <PrivateRoute
+                    path='/my-class'
+                    isLogin={isLogin}
+                    exact
+                    Component={MyClass}
+                />
+                <PrivateRoute
                     path='/student/my-class/'
                     isLogin={isLogin}
                     exact
@@ -140,7 +148,7 @@ function App() {
                 />
 
                 <PrivateRoute
-                    path='/student/class-detail/:id'
+                    path='/student/class-detail/:id/:course'
                     isLogin={isLogin}
                     Component={StudentClassDetail}
                 />

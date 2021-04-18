@@ -16,7 +16,6 @@ function StudentActivity(props) {
     const [myClassList, setMyClassList] = useState();
     const [newClassList, setNewClassList] = useState();
     const [info, setInfo] = useState();
-    // const [numPage, setNumPage] = useState([]);
     const [searchCourse, setSearchCourse] = useState();
     const [filterCategory, setFilterCategory] = useState();
     const [filterLevel, setFilterLevel] = useState();
@@ -30,7 +29,6 @@ function StudentActivity(props) {
         getAllClass,
     } = props;
     let numPage = [];
-    let counter = 0;
     const ref = useRef();
 
     // eslint-disable-next-line
@@ -85,6 +83,7 @@ function StudentActivity(props) {
             return (
                 <MyClassItem
                     key={cl.id}
+                    idCourse={cl.id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}
@@ -108,6 +107,7 @@ function StudentActivity(props) {
             return (
                 <NewClassItem
                     key={nc.id}
+                    idCourse={nc.id}
                     name={nc.name}
                     category={nc.category}
                     desc={nc.description}
@@ -501,9 +501,7 @@ function StudentActivity(props) {
                             {classItems}
                             <small className='d-flex justify-content-center'>
                                 {classItems ? (
-                                    <Link to='/student/my-class'>
-                                        view all{' >'}
-                                    </Link>
+                                    <Link to='/my-class'>view all{' >'}</Link>
                                 ) : (
                                     'Welcome to the void. There is nothing here.'
                                 )}

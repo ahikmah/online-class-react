@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 function ClassProgressItem(props) {
     let scoreColor;
     if (Number(props.score) > 90) {
@@ -34,24 +33,24 @@ function ClassProgressItem(props) {
                 <div className='col-1'>
                     <input
                         type='checkbox'
-                        checked={props.score === 'unfinished' ? false : true}
+                        checked={props.score === 'Unfinished' ? false : true}
                         disabled='disabled'
                     />
                     <span className='checkmark'></span>
                 </div>
-                <div className='col'>
-                    <Link to=' '>{props.name}</Link>
-                </div>
+                <div className='col'>{props.name}</div>
                 <div
                     className={
-                        props.score === 'unfinished'
+                        props.score === 'Unfinished'
                             ? classActive[0]
                             : classActive.join(' ')
                     }
                 >
-                    {props.note}
+                    {props.score === 'Unfinished'
+                        ? `${props.schedule}\n ${props.start}-${props.end}`
+                        : 'You have completed this topic'}
                 </div>
-                {props.score === 'unfinished' ? colUnfinished : colScore}
+                {props.score === 'Unfinished' ? colUnfinished : colScore}
             </div>
         </div>
     );

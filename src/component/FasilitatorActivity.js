@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { Link } from 'react-router-dom';
@@ -6,22 +6,42 @@ import '../assets/css/Activity.css';
 import '../assets/css/FasilitatorActivity.css';
 import FasMyClassItem from '../component/FasMyClassItem';
 import Navbar from '../component/Navbar';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { getDataFacilitator } from '../redux/ActionCreators/facilitator';
 
-function FasilitatorActivity() {
+function FasilitatorActivity(props) {
     const [myClassList, setMyClassList] = useState();
+    const { dataFacilitatorReducer, getMyClass } = props;
+
     let classItems;
 
+    const ref = useRef();
+
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/data/instructor/my-course/1')
-            .then((res) => {
-                setMyClassList(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+        if (!ref.current) {
+            getMyClass('http://localhost:8000/data/instructor/my-course');
+            ref.current = true;
+        } else {
+            if (dataFacilitatorReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataFacilitatorReducer.isFulfilled) {
+                setMyClassList(dataFacilitatorReducer.result);
+            } else if (dataFacilitatorReducer.isRejected) {
+                console.log('Failed');
+            }
+        }
+    });
+    // useEffect(() => {
+    //     axios
+    //         .get('http://localhost:8000/data/instructor/my-course/1')
+    //         .then((res) => {
+    //             setMyClassList(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     if (myClassList) {
         // console.log(myClassList);
@@ -74,9 +94,11 @@ function FasilitatorActivity() {
                             </div>
                             {classItems}
                             <small className='d-flex justify-content-center'>
-                                <Link to='/facilitator/my-class'>
-                                    view all{' >'}
-                                </Link>
+                                {classItems ? (
+                                    <Link to='/my-class'>view all{' >'}</Link>
+                                ) : (
+                                    'Welcome to the void. There is nothing here.'
+                                )}
                             </small>
                         </section>
                         {/* <!-- End of My Class --> */}
@@ -212,4 +234,22 @@ function FasilitatorActivity() {
     );
 }
 
-export default FasilitatorActivity;
+const mapStatetoProps = (state) => {
+    const { dataFacilitatorReducer } = state;
+    return {
+        dataFacilitatorReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMyClass: (url) => dispatch(getDataFacilitator(url)),
+    };
+};
+
+const ConnectedFasilitatorActivity = connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(FasilitatorActivity);
+export default ConnectedFasilitatorActivity;
+// export default FasilitatorActivity;

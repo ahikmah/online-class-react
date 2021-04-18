@@ -6,6 +6,8 @@ import '../assets/css/ClassDetail.css';
 import BannerClass from '../assets/images/banner-class.png';
 import ThumbnailClass from '../assets/images/thumbnail-class.png';
 import Navbar from '../component/Navbar';
+// import { connect } from 'react-redux';
+// import { getCourseData } from '../redux/ActionCreators/course';
 
 function ClassDetail(props) {
     const activeMenu = props.menu;
@@ -46,13 +48,8 @@ function ClassDetail(props) {
                                     <span>Category: {props.category}</span>
                                     <span>Price: {props.price}</span>
                                 </div>
-                                {activeMenu === 0 ? (
-                                    <button className='btn btn-register'>
-                                        Register
-                                    </button>
-                                ) : null}
 
-                                {activeMenu === 1 ? (
+                                {props.score ? (
                                     <div id='bn-score'>
                                         <div id='score-label'>Your score</div>
                                         <div
@@ -62,7 +59,11 @@ function ClassDetail(props) {
                                             {props.score}
                                         </div>
                                     </div>
-                                ) : null}
+                                ) : (
+                                    <button className='btn btn-register'>
+                                        Register
+                                    </button>
+                                )}
 
                                 {activeMenu === 1 ? (
                                     <small id='bn-progress'>
@@ -92,7 +93,10 @@ function ClassDetail(props) {
                             <section className='body-wrapper'>
                                 <div id='tab-menu'>
                                     <Link
-                                        to='/student/class-detail/information'
+                                        to={
+                                            '/student/class-detail/information/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 0
                                                 ? activeClass
@@ -102,7 +106,10 @@ function ClassDetail(props) {
                                         Information
                                     </Link>
                                     <Link
-                                        to='/student/class-detail/progress'
+                                        to={
+                                            '/student/class-detail/progress/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 1
                                                 ? activeClass
@@ -112,7 +119,10 @@ function ClassDetail(props) {
                                         Class Progress
                                     </Link>
                                     <Link
-                                        to='/student/class-detail/discussion'
+                                        to={
+                                            '/student/class-detail/discussion/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 2
                                                 ? activeClass
@@ -135,4 +145,22 @@ function ClassDetail(props) {
     );
 }
 
+// const mapStatetoProps = (state) => {
+//     const { dataCourseReducer } = state;
+//     return {
+//         dataCourseReducer,
+//     };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getCourse: (url) => dispatch(getCourseData(url)),
+//     };
+// };
+
+// const ConnectedClassDetail = connect(
+//     mapStatetoProps,
+//     mapDispatchToProps
+// )(ClassDetail);
+// export default ConnectedClassDetail;
 export default ClassDetail;

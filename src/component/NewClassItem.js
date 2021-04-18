@@ -7,7 +7,14 @@ function NewClassItem(props) {
         <>
             <div className='row tdata2'>
                 <div className='col nm '>
-                    <Link to='className-detail.html'>{props.name}</Link>
+                    <Link
+                        to={
+                            '/student/class-detail/information/' +
+                            props.idCourse
+                        }
+                    >
+                        {props.name}
+                    </Link>
                 </div>
                 <div
                     className='col tbh
