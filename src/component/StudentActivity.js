@@ -15,6 +15,8 @@ import { getCourseData } from '../redux/ActionCreators/course';
 function StudentActivity(props) {
     const [myClassList, setMyClassList] = useState();
     const [newClassList, setNewClassList] = useState();
+    const [info, setInfo] = useState();
+    // const [numPage, setNumPage] = useState([]);
     const [searchCourse, setSearchCourse] = useState();
     const [filterCategory, setFilterCategory] = useState();
     const [filterLevel, setFilterLevel] = useState();
@@ -27,14 +29,15 @@ function StudentActivity(props) {
         getMyClass,
         getAllClass,
     } = props;
-
+    let numPage = [];
+    let counter = 0;
     const ref = useRef();
 
     // eslint-disable-next-line
     useEffect(() => {
         if (!ref.current) {
             getMyClass();
-            getAllClass();
+            getAllClass('http://localhost:8000/data/courses');
             ref.current = true;
         } else {
             if (dataStudentReducer.isPending && dataCourseReducer.isPending) {
@@ -44,7 +47,10 @@ function StudentActivity(props) {
                 dataCourseReducer.isFulfilled
             ) {
                 setMyClassList(dataStudentReducer.result);
+
                 setNewClassList(dataCourseReducer.result);
+                setInfo(dataCourseReducer.info);
+                // console.log('info', dataCourseReducer.info);
             } else if (
                 dataStudentReducer.isRejected &&
                 dataCourseReducer.isRejected
@@ -110,6 +116,34 @@ function StudentActivity(props) {
                 />
             );
         });
+    }
+
+    const pageHandler = (url) => {
+        getAllClass(url);
+    };
+
+    if (info) {
+        for (let i = 0; i < info.totalPage; i++) {
+            numPage.push(
+                <span
+                    style={{
+                        color: info.page === i + 1 ? 'white' : 'black',
+                    }}
+                    key={i}
+                    className={info.page === i + 1 ? 'pg active-pg' : 'pg'}
+                    onClick={() =>
+                        pageHandler(
+                            i === 0
+                                ? 'http://localhost:8000/data/courses'
+                                : 'http://localhost:8000/data/courses?pages=' +
+                                      (Number(i) + 1)
+                        )
+                    }
+                >
+                    {i + 1}
+                </span>
+            );
+        }
     }
 
     const searchValue = (e) => {
@@ -577,43 +611,43 @@ function StudentActivity(props) {
                                 </div>
                                 {newClassItems}
 
-                                <div className='pagination'>
+                                <div className='info'>
                                     <div className='col d-flex justify-content-start align-items-center'>
-                                        Showing 10 out of 64
+                                        Showing{' '}
+                                        {newClassList && info
+                                            ? (info.page - 1) * 5 +
+                                              1 +
+                                              '-' +
+                                              Math.floor(
+                                                  (info.page - 1) * 5 +
+                                                      newClassList.length
+                                              )
+                                            : null}{' '}
+                                        out of {info ? info.count : null}
                                     </div>
                                     <div className='col d-flex justify-content-end align-items-center'>
-                                        <span className='pg'>
-                                            <Link to=''>{'<'}</Link>
-                                        </span>
-                                        <span className='pg active-pg'>
-                                            <Link to=''>1</Link>
-                                        </span>
-                                        <span className='pg'>
-                                            <Link to=''>2</Link>
-                                        </span>
                                         <span
-                                            className='pg 
-                                    '
+                                            className='pg'
+                                            onClick={
+                                                info
+                                                    ? () =>
+                                                          getAllClass(info.prev)
+                                                    : null
+                                            }
                                         >
-                                            <Link to=''>3</Link>
+                                            {'<'}
                                         </span>
+                                        {numPage}
                                         <span
-                                            className='pg 
-                                    '
+                                            className='pg'
+                                            onClick={
+                                                info
+                                                    ? () =>
+                                                          getAllClass(info.next)
+                                                    : null
+                                            }
                                         >
-                                            <Link to=''>4</Link>
-                                        </span>
-                                        <span
-                                            className='pg 
-                                    '
-                                        >
-                                            <Link to=''>5</Link>
-                                        </span>
-                                        <span style={{ paddingTop: '0.3rem' }}>
-                                            <Link to=' '>...</Link>
-                                        </span>
-                                        <span className=' pg '>
-                                            <Link to=' '>{'>'}</Link>
+                                            {'>'}
                                         </span>
                                     </div>
                                 </div>
@@ -639,8 +673,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(
                 getDataStudent('http://localhost:8000/data/student/my-class')
             ),
-        getAllClass: () =>
-            dispatch(getCourseData('http://localhost:8000/data/courses')),
+        getAllClass: (url) => dispatch(getCourseData(url)),
     };
 };
 

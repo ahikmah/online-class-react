@@ -18,7 +18,6 @@ function Dashboard(props) {
             if (getDataUserReducer.isPending) {
                 console.log('Loading...');
             } else if (getDataUserReducer.isFulfilled) {
-                // onClickAuth();
                 localStorage.setItem(
                     'full_name',
                     getDataUserReducer.currentUser.full_name

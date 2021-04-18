@@ -1,5 +1,6 @@
 const initialState = {
     result: {},
+    info: {},
     isPending: false,
     isFulfilled: false,
     isRejected: false,
@@ -21,6 +22,7 @@ export const dataCourseReducer = (state = initialState, { type, payload }) => {
                 isFulfilled: true,
                 isPending: false,
                 result: payload.data.result,
+                info: payload.data.info,
             };
         case 'GET_DATA_COURSE_REJECTED':
             return {
