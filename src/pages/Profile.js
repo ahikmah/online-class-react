@@ -18,7 +18,7 @@ function Profile() {
             <Navbar activeMenu={0} />
             <div className='container-fluid profile'>
                 <div className='row'>
-                    <Sidebar activeMenu={0} name='Buddy Gaines' />
+                    <Sidebar activeMenu={0} />
 
                     {/* <!-- Content --> */}
                     <main className='content-profile'>

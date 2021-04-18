@@ -21,7 +21,7 @@ function Dashboard(props) {
             <div className='container-fluid dashboard'>
                 <div className='row'>
                     {/* <!-- Sidebar --> */}
-                    <Sidebar activeMenu={1} name='Buddy Gaines' />
+                    <Sidebar activeMenu={1} />
 
                     {/* <!-- Content --> */}
                     <main className='col-7 content-dashboard'>

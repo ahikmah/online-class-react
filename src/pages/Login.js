@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/LoginRegister.css';
 import FormFloating from '../component/FormFloating';
-// import axios from 'axios';
 import ModalComp from '../component/ModalComp';
 
 import { connect } from 'react-redux';
-import { login, userData } from '../redux/ActionCreators/auth';
+import { login, loginUser } from '../redux/ActionCreators/auth';
 
 class Login extends Component {
     state = {
@@ -16,8 +15,6 @@ class Login extends Component {
         password: '',
         modalShow: false,
     };
-
-    // loginUser = this.props;
 
     usernameHandler = (e) => {
         this.setState({
@@ -40,17 +37,22 @@ class Login extends Component {
         if (this.props.loginReducer.isPending) {
             console.log('Loading...');
         } else if (this.props.loginReducer.isFulfilled) {
-            // console.log('OK');
-            // console.log(this.props.loginReducer.result);
-            this.props.dataLogin(this.props.loginReducer.result);
-            this.props.history.push('/student/dashboard/all-schedule');
+            if (prevProps.loginReducer !== this.props.loginReducer) {
+                localStorage.setItem(
+                    'token',
+                    this.props.loginReducer.result.token
+                );
+
+                this.props.dataLogin(this.props.loginReducer.result);
+
+                console.log('status login', this.props.isLogin);
+                this.props.history.push('/dashboard');
+            }
         } else if (this.props.loginReducer.isRejected) {
-            // console.log('failed');
             if (
                 prevProps.loginReducer !== this.props.loginReducer &&
                 prevState.modalShow === false
             ) {
-                // console.log('failed2');
                 this.setState({
                     modalShow: true,
                 });
@@ -65,8 +67,11 @@ class Login extends Component {
             email: this.state.username,
             password: this.state.password,
         };
-
         this.props.userLogin(dataLogin);
+
+        console.log('loginpage', this.props.isLogin, this.props.onClickAuth);
+
+        // this.props.getUser();
     };
 
     // submitHandler = (e) => {
@@ -159,17 +164,20 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { loginReducer } = state;
+    const { loginReducer, getDataUserReducer } = state;
     return {
         loginReducer,
+        getDataUserReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dataLogin: (data) => dispatch(userData(data)),
+        dataLogin: (data) => dispatch(loginUser(data)),
         userLogin: (data) =>
             dispatch(login('http://localhost:8000/data/auth/login', data)),
+        // getUser: () =>
+        //     dispatch(getDataUser('http://localhost:8000/data/users/')),
     };
 };
 

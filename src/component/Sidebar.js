@@ -16,6 +16,9 @@ import activityIconActive from '../assets/images/icon-activity-active.png';
 
 import ExpandNotif from '../component/ExpandNotif';
 
+import { connect } from 'react-redux';
+import { logoutUser } from '../redux/ActionCreators/auth';
+
 function Sidebar(props) {
     const [notifFlag, setNotifFlag] = useState(false);
     useEffect(() => {
@@ -25,6 +28,7 @@ function Sidebar(props) {
             document.body.style.overflow = 'unset';
         }
     }, [notifFlag]);
+
     const history = useHistory();
     const roleFlag = history.location.pathname.includes('student');
     const classNavItem = ['side-nav-item nav-link'];
@@ -39,6 +43,16 @@ function Sidebar(props) {
 
     const clickHandler = () => {
         setNotifFlag(!notifFlag);
+    };
+
+    const { userLogout } = props;
+
+    const logoutHandler = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('full_name');
+        userLogout();
+        history.push('/');
     };
 
     return (
@@ -79,7 +93,8 @@ function Sidebar(props) {
                                 : 'side-name'
                         }
                     >
-                        {props.name}
+                        {/* {getDataUserReducer.currentUser.full_name} */}
+                        {localStorage.full_name}
                     </Link>
                     <small
                         className={
@@ -139,11 +154,7 @@ function Sidebar(props) {
                         <span>Activity</span>
                     </Link>
                     <Link
-                        to={
-                            roleFlag
-                                ? '/student/profile'
-                                : '/facilitator/profile'
-                        }
+                        to='/profile'
                         className={
                             props.activeMenu === 3
                                 ? classNavItemActive.join(' ')
@@ -171,6 +182,7 @@ function Sidebar(props) {
                                 ? classNavItemActive.join(' ')
                                 : classNavItem.join(' ')
                         }
+                        onClick={logoutHandler}
                     >
                         <img src={logoutIcon} alt='icon logout' />
                         <span>Logout</span>
@@ -186,4 +198,19 @@ function Sidebar(props) {
     );
 }
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+    const { getDataUserReducer } = state;
+    return {
+        getDataUserReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userLogout: () => dispatch(logoutUser()),
+    };
+};
+
+const ConnectedSidebar = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+
+export default ConnectedSidebar;

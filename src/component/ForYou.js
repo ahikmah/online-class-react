@@ -1,35 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TimelineItem from './TimelineItem';
 import FinanceIcon from '../assets/images/Finance Icon.png';
-import axios from 'axios';
 
-function ForYou() {
+import { connect } from 'react-redux';
+import { getDataStudent } from '../redux/ActionCreators/student';
+
+function ForYou(props) {
     const [mySchedule, setMySchedule] = useState();
     let classItems8, classItems11, classItems13;
-    const days = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-    ];
-    const d = new Date();
-    const dayName = days[d.getDay()];
+
+    const { dataStudentReducer, getMySchedule } = props;
+
+    const ref = useRef();
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get(
-                'http://localhost:8000/data/student/all-schedule/6?day=' +
-                    dayName
-            )
-            .then((res) => {
-                setMySchedule(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [dayName]);
+        if (!ref.current) {
+            getMySchedule();
+            ref.current = true;
+        } else {
+            if (dataStudentReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataStudentReducer.isFulfilled) {
+                setMySchedule(dataStudentReducer.result);
+            } else if (dataStudentReducer.isRejected) {
+                console.log('Failed');
+            }
+        }
+    });
+    // useEffect(() => {
+    //     axios
+    //         .get(
+    //             'http://localhost:8000/data/student/all-schedule/6?day=' +
+    //                 dayName
+    //         )
+    //         .then((res) => {
+    //             setMySchedule(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [dayName]);
 
     if (mySchedule) {
         classItems8 = mySchedule
@@ -109,5 +119,36 @@ function ForYou() {
         </>
     );
 }
+const mapStatetoProps = (state) => {
+    const { dataStudentReducer } = state;
+    return {
+        dataStudentReducer,
+    };
+};
 
-export default ForYou;
+const mapDispatchToProps = (dispatch) => {
+    const days = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+    ];
+    const d = new Date();
+    const dayName = days[d.getDay()];
+    // console.log('hari ini', dayName);
+    return {
+        getMySchedule: () =>
+            dispatch(
+                getDataStudent(
+                    'http://localhost:8000/data/student/all-schedule?day=' +
+                        dayName
+                )
+            ),
+    };
+};
+
+const ConnectedForYou = connect(mapStatetoProps, mapDispatchToProps)(ForYou);
+export default ConnectedForYou;

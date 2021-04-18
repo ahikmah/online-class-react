@@ -1,5 +1,5 @@
 // import '../App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import React, { useState } from 'react';
 
 import Login from '../pages/Login';
@@ -9,6 +9,7 @@ import VerifyCode from './VerifyCode';
 import CreateNewPassword from './CreateNewPassword';
 import PasswordChanged from './PasswordChanged';
 
+import Dashboard from './Dashboard';
 import DashboardStudent from './DashboardStudent';
 import DashboardFasilitator from './DashboardFasilitator';
 
@@ -23,28 +24,77 @@ import FasilitatorClassDetail from './FasilitatorClassDetail';
 import Profile from './Profile';
 
 import PrivateRoute from '../component/PrivateRoute';
+import PrivateRouteAuth from '../component/PrivateRouteAuth';
 
 function App() {
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
 
     const onClickAuth = () => {
-        setIsLogin(true);
+        setIsLogin(!isLogin);
     };
     return (
         <BrowserRouter>
             <Switch>
-                <Route path='/' exact component={Login} />
-                <Route path='/register' component={Register} />
-                <Route path='/reset-password' component={ResetPassword} />
-                <Route path='/verify-code' component={VerifyCode} />
-                <Route
+                {/* <Route path='/' exact component={Login} /> */}
+                <PrivateRouteAuth
+                    path='/'
+                    exact
+                    Component={Login}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
+                />
+                {/* <Route path='/register' component={Register} /> */}
+                <PrivateRouteAuth
+                    path='/register'
+                    exact
+                    Component={Register}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
+                />
+                {/* <Route path='/reset-password' component={ResetPassword} /> */}
+                <PrivateRouteAuth
+                    path='/reset-password'
+                    exact
+                    Component={ResetPassword}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
+                />
+
+                {/* <Route path='/verify-code' component={VerifyCode} /> */}
+                <PrivateRouteAuth
+                    path='/verify-code'
+                    exact
+                    Component={VerifyCode}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
+                />
+                {/* <Route
                     path='/create-new-password'
                     component={CreateNewPassword}
+                /> */}
+                <PrivateRouteAuth
+                    path='/create-new-password'
+                    exact
+                    Component={CreateNewPassword}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
                 />
-                <Route path='/password-changed' component={PasswordChanged} />
+                {/* <Route path='/password-changed' component={PasswordChanged} /> */}
+                <PrivateRouteAuth
+                    path='/password-changed'
+                    exact
+                    Component={PasswordChanged}
+                    isLogin={isLogin}
+                    onClickAuth={onClickAuth}
+                />
 
                 {/* Dashboard page */}
 
+                <PrivateRoute
+                    path='/dashboard'
+                    isLogin={isLogin}
+                    Component={Dashboard}
+                />
                 <PrivateRoute
                     path='/student/dashboard/:id?'
                     isLogin={isLogin}

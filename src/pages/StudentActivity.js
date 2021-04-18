@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,11 @@ import NewClassItem from '../component/NewClassItem';
 import Navbar from '../component/Navbar';
 import axios from 'axios';
 
-function StudentActivity() {
+import { connect } from 'react-redux';
+import { getDataStudent } from '../redux/ActionCreators/student';
+import { getCourseData } from '../redux/ActionCreators/course';
+
+function StudentActivity(props) {
     const [myClassList, setMyClassList] = useState();
     const [newClassList, setNewClassList] = useState();
     const [searchCourse, setSearchCourse] = useState();
@@ -17,26 +21,57 @@ function StudentActivity() {
     const [filterPrice, setFilterPrice] = useState();
 
     let classItems, newClassItems, newClassFilter;
+    const {
+        dataStudentReducer,
+        dataCourseReducer,
+        getMyClass,
+        getAllClass,
+    } = props;
 
+    const ref = useRef();
+
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/data/student/my-class/6')
-            .then((res) => {
-                setMyClassList(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        if (!ref.current) {
+            getMyClass();
+            getAllClass();
+            ref.current = true;
+        } else {
+            if (dataStudentReducer.isPending && dataCourseReducer.isPending) {
+                console.log('Loading...');
+            } else if (
+                dataStudentReducer.isFulfilled &&
+                dataCourseReducer.isFulfilled
+            ) {
+                setMyClassList(dataStudentReducer.result);
+                setNewClassList(dataCourseReducer.result);
+            } else if (
+                dataStudentReducer.isRejected &&
+                dataCourseReducer.isRejected
+            ) {
+                console.log('Failed');
+            }
+        }
+    });
+    // useEffect(() => {
+    //     axios
+    //         .get('http://localhost:8000/data/student/my-class/6')
+    //         .then((res) => {
+    //             setMyClassList(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
 
-        axios
-            .get('http://localhost:8000/data/courses')
-            .then((res) => {
-                setNewClassList(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    //     axios
+    //         .get('http://localhost:8000/data/courses')
+    //         .then((res) => {
+    //             setNewClassList(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     if (myClassList) {
         const myclasssize = 3;
@@ -62,8 +97,8 @@ function StudentActivity() {
             });
         });
 
-        const newclasssize = 10;
-        newClassItems = newClassFilter.slice(0, newclasssize).map((nc) => {
+        // const newclasssize = 5;
+        newClassItems = newClassFilter.map((nc) => {
             return (
                 <NewClassItem
                     key={nc.id}
@@ -586,5 +621,27 @@ function StudentActivity() {
         </>
     );
 }
+const mapStatetoProps = (state) => {
+    const { dataStudentReducer, dataCourseReducer } = state;
+    return {
+        dataStudentReducer,
+        dataCourseReducer,
+    };
+};
 
-export default StudentActivity;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMyClass: () =>
+            dispatch(
+                getDataStudent('http://localhost:8000/data/student/my-class')
+            ),
+        getAllClass: () =>
+            dispatch(getCourseData('http://localhost:8000/data/courses')),
+    };
+};
+
+const ConnectedStudentActivity = connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(StudentActivity);
+export default ConnectedStudentActivity;

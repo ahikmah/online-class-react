@@ -48,7 +48,7 @@ function StudentMyClass() {
             <Navbar activeMenu={2} />
             <div className='container-fluid activity'>
                 <div className='row'>
-                    <Sidebar activeMenu={2} name='Buddy Gaines' />
+                    <Sidebar activeMenu={2} />
 
                     <main className='col-sm-12 content-activity'>
                         <section className='container my-class'>

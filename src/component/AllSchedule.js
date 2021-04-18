@@ -1,22 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TimelineItem from '../component/TimelineItem';
 import SoftwareIcon from '../assets/images/Finance Icon.png';
-import axios from 'axios';
 
-function AllSchedule() {
+import { connect } from 'react-redux';
+import { getDataStudent } from '../redux/ActionCreators/student';
+
+function AllSchedule(props) {
     const [mySchedule, setMySchedule] = useState();
     let classItems8, classItems11, classItems13;
 
+    const { dataStudentReducer, getAllSchedule } = props;
+
+    const ref = useRef();
+
+    // eslint-disable-next-line
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/data/student/all-schedule/6')
-            .then((res) => {
-                setMySchedule(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+        if (!ref.current) {
+            getAllSchedule();
+            ref.current = true;
+        } else {
+            if (dataStudentReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataStudentReducer.isFulfilled) {
+                setMySchedule(dataStudentReducer.result);
+            } else if (dataStudentReducer.isRejected) {
+                console.log('Failed');
+            }
+        }
+    });
+
+    // useEffect(() => {
+    //     axios
+    //         .get('http://localhost:8000/data/student/all-schedule/6')
+    //         .then((res) => {
+    //             setMySchedule(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     if (mySchedule) {
         classItems8 = mySchedule
@@ -97,4 +119,26 @@ function AllSchedule() {
     );
 }
 
-export default AllSchedule;
+const mapStatetoProps = (state) => {
+    const { dataStudentReducer } = state;
+    return {
+        dataStudentReducer,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllSchedule: () =>
+            dispatch(
+                getDataStudent(
+                    'http://localhost:8000/data/student/all-schedule'
+                )
+            ),
+    };
+};
+
+const ConnectedAllSchedule = connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(AllSchedule);
+export default ConnectedAllSchedule;
