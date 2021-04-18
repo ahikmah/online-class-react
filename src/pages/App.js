@@ -154,14 +154,14 @@ function App() {
                 />
 
                 <PrivateRoute
-                    path='/facilitator/class-detail/:id'
+                    path='/facilitator/class-detail/:id/:course'
                     isLogin={isLogin}
                     exact
                     Component={FasilitatorClassDetail}
                 />
 
                 <PrivateRoute
-                    path='/facilitator/class-detail/member/:id'
+                    path='/facilitator/class-detail/member/:course/:user'
                     isLogin={isLogin}
                     exact
                     Component={FasilitatorClassDetail}

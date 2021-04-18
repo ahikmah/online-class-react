@@ -18,6 +18,7 @@ function ClassDetail(props) {
         popClass.pop();
         document.body.style.overflow = 'hidden';
     }
+    console.log(props.idCourse);
 
     return (
         <>
@@ -75,7 +76,10 @@ function ClassDetail(props) {
                             <section className='body-wrapper'>
                                 <div id='tab-menu'>
                                     <Link
-                                        to='/facilitator/class-detail/information'
+                                        to={
+                                            '/facilitator/class-detail/information/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 0
                                                 ? activeClass
@@ -85,7 +89,10 @@ function ClassDetail(props) {
                                         Information
                                     </Link>
                                     <Link
-                                        to='/facilitator/class-detail/progress'
+                                        to={
+                                            '/facilitator/class-detail/progress/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 1
                                                 ? activeClass
@@ -95,7 +102,10 @@ function ClassDetail(props) {
                                         Class Progress
                                     </Link>
                                     <Link
-                                        to='/facilitator/class-detail/discussion'
+                                        to={
+                                            '/facilitator/class-detail/discussion/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 2
                                                 ? activeClass
@@ -105,7 +115,10 @@ function ClassDetail(props) {
                                         Class Discusion
                                     </Link>
                                     <Link
-                                        to='/facilitator/class-detail/member'
+                                        to={
+                                            '/facilitator/class-detail/member/' +
+                                            props.idCourse
+                                        }
                                         className={
                                             activeMenu === 3
                                                 ? activeClass
@@ -121,7 +134,12 @@ function ClassDetail(props) {
                                 {props.body}
 
                                 <div className={popClass.join(' ')}>
-                                    {<ProgressModal i={Number(props.user)} />}
+                                    {
+                                        <ProgressModal
+                                            i={Number(props.user)}
+                                            idCourse={props.idCourse}
+                                        />
+                                    }
                                 </div>
                             </section>
                         </section>

@@ -12,7 +12,7 @@ function ProgressPopup(props) {
     return (
         <div className='row d-flex justify-content-center'>
             <div className='card card-progress'>
-                <Link to='/facilitator/class-detail/member'>
+                <Link to={'/facilitator/class-detail/member/' + props.idCourse}>
                     {' '}
                     <img
                         className='cls-button card-progress'

@@ -50,6 +50,7 @@ function FasilitatorActivity(props) {
             return (
                 <FasMyClassItem
                     key={cl.course_id}
+                    idCourse={cl.course_id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}

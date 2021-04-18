@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import '../assets/css/MyClass.css';
 import FasMyClassItem from '../component/FasMyClassItem';

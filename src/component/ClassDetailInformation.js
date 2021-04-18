@@ -7,6 +7,7 @@ function ClassDetailInformation(props) {
     const [courseDetail, setCourseDetail] = useState();
     let objectives, requirements;
     const ref = useRef();
+    // console.log(props.idCourse);
 
     // eslint-disable-next-line
     useEffect(() => {
