@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import DashboardTemplate from '../templates/DashboardTemp';
-import AllSchedule from '../component/AllSchedule';
-import ForYou from '../component/ForYou';
+import AllSchedule from './AllSchedule';
+import ForYou from './ForYou';
 
 function Dashboard() {
     let { id } = useParams();

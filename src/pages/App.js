@@ -10,14 +10,16 @@ import CreateNewPassword from './CreateNewPassword';
 import PasswordChanged from './PasswordChanged';
 
 import Dashboard from './Dashboard';
-import DashboardStudent from './DashboardStudent';
-import DashboardFasilitator from './DashboardFasilitator';
+import DashboardStudent from '../component/DashboardStudent';
+import DashboardFasilitator from '../component/DashboardFasilitator';
 
-import StudentActivity from './StudentActivity';
+import Activity from './Activity';
+
+import StudentActivity from '../component/StudentActivity';
 import StudentMyClass from './StudentMyClass';
 import StudentClassDetail from './StudentClassDetail';
 
-import FasilitatorActivity from './FasilitatorActivity';
+import FasilitatorActivity from '../component/FasilitatorActivity';
 import FacilitatorMyClass from './FacilitatorMyClass';
 import FasilitatorClassDetail from './FasilitatorClassDetail';
 
@@ -110,15 +112,31 @@ function App() {
                 {/* Activity page */}
 
                 <PrivateRoute
-                    path='/student/activity/'
+                    path='/activity'
+                    isLogin={isLogin}
+                    Component={Activity}
+                />
+                <PrivateRoute
+                    path='/student/activity'
                     isLogin={isLogin}
                     Component={StudentActivity}
                 />
+                <PrivateRoute
+                    path='/facilitator/activity'
+                    isLogin={isLogin}
+                    Component={FasilitatorActivity}
+                />
+
                 <PrivateRoute
                     path='/student/my-class/'
                     isLogin={isLogin}
                     exact
                     Component={StudentMyClass}
+                />
+                <PrivateRoute
+                    path='/facilitator/my-class/'
+                    isLogin={isLogin}
+                    Component={FacilitatorMyClass}
                 />
 
                 <PrivateRoute
@@ -128,27 +146,19 @@ function App() {
                 />
 
                 <PrivateRoute
-                    path='/facilitator/activity'
-                    isLogin={isLogin}
-                    Component={FasilitatorActivity}
-                />
-                <PrivateRoute
-                    path='/facilitator/my-class/'
-                    isLogin={isLogin}
-                    Component={FacilitatorMyClass}
-                />
-                <PrivateRoute
                     path='/facilitator/class-detail/:id'
                     isLogin={isLogin}
                     exact
                     Component={FasilitatorClassDetail}
                 />
+
                 <PrivateRoute
                     path='/facilitator/class-detail/member/:id'
                     isLogin={isLogin}
                     exact
                     Component={FasilitatorClassDetail}
                 />
+
                 <PrivateRoute
                     path='/profile'
                     isLogin={isLogin}

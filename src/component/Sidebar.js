@@ -30,7 +30,7 @@ function Sidebar(props) {
     }, [notifFlag]);
 
     const history = useHistory();
-    const roleFlag = history.location.pathname.includes('student');
+    // const roleFlag = history.location.pathname.includes('student');
     const classNavItem = ['side-nav-item nav-link'];
     const classNavItemActive = ['side-nav-item nav-link', 'active-sidebar'];
     const customProfile = {
@@ -82,11 +82,7 @@ function Sidebar(props) {
                         <img src={Avatar} alt='avatar' />
                     </div>
                     <Link
-                        to={
-                            roleFlag
-                                ? '/student/profile'
-                                : '/facilitator/profile'
-                        }
+                        to='/profile'
                         className={
                             props.activeMenu === 0
                                 ? 'side-name active-sidebar'
@@ -110,11 +106,7 @@ function Sidebar(props) {
                 {/* Menu section */}
                 <nav className='d-flex flex-column'>
                     <Link
-                        to={
-                            roleFlag
-                                ? '/student/dashboard/all-schedule'
-                                : '/facilitator/dashboard/'
-                        }
+                        to='/dashboard'
                         className={
                             props.activeMenu === 1
                                 ? classNavItemActive.join(' ')
@@ -132,11 +124,7 @@ function Sidebar(props) {
                         <span>Dashboard</span>
                     </Link>
                     <Link
-                        to={
-                            roleFlag
-                                ? '/student/activity'
-                                : '/facilitator/activity'
-                        }
+                        to='/activity'
                         className={
                             props.activeMenu === 2
                                 ? classNavItemActive.join(' ')

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Sidebar from '../component/Sidebar';
+import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import '../assets/css/Activity.css';
-import MyClassItem from '../component/MyClassItem';
-import NewClassItem from '../component/NewClassItem';
-import Navbar from '../component/Navbar';
+import MyClassItem from './MyClassItem';
+import NewClassItem from './NewClassItem';
+import Navbar from './Navbar';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ function StudentActivity(props) {
     const [filterLevel, setFilterLevel] = useState();
     const [filterPrice, setFilterPrice] = useState();
 
-    let classItems, newClassItems, newClassFilter;
+    let classItems, newClassItems;
     const {
         dataStudentReducer,
         dataCourseReducer,
@@ -90,15 +90,15 @@ function StudentActivity(props) {
         });
     }
 
-    if (newClassList && myClassList) {
-        newClassFilter = newClassList.filter((el) => {
-            return myClassList.every((f) => {
-                return f.course_name !== el.name;
-            });
-        });
+    if (newClassList) {
+        // newClassFilter = newClassList.filter((el) => {
+        //     return myClassList.every((f) => {
+        //         return f.course_name !== el.name;
+        //     });
+        // });
 
         // const newclasssize = 5;
-        newClassItems = newClassFilter.map((nc) => {
+        newClassItems = newClassList.map((nc) => {
             return (
                 <NewClassItem
                     key={nc.id}
@@ -466,9 +466,13 @@ function StudentActivity(props) {
                             </div>
                             {classItems}
                             <small className='d-flex justify-content-center'>
-                                <Link to='/student/my-class'>
-                                    view all{' >'}
-                                </Link>
+                                {classItems ? (
+                                    <Link to='/student/my-class'>
+                                        view all{' >'}
+                                    </Link>
+                                ) : (
+                                    'Welcome to the void. There is nothing here.'
+                                )}
                             </small>
                         </section>
                         {/* <!-- End of My Class --> */}

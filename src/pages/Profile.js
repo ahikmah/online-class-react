@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,27 @@ import NotifIcon from '../assets/images/Notif Icon.png';
 import SecurityIcon from '../assets/images/Security Icon.png';
 import StorageIcon from '../assets/images/Storage Icon.png';
 import Navbar from '../component/Navbar';
-function Profile() {
+
+import { connect } from 'react-redux';
+import { getDataUser } from '../redux/ActionCreators/auth';
+
+function Profile(props) {
+    const { getUser, getDataUserReducer } = props;
+    const [fullname, setFullname] = useState('');
+    const ref = useRef();
+
+    // eslint-disable-next-line
+    useEffect(() => {
+        if (!ref.current) {
+            getUser();
+            ref.current = true;
+        } else {
+            if (getDataUserReducer.isFulfilled) {
+                setFullname(getDataUserReducer.currentUser.full_name);
+            }
+        }
+    });
+    // console.log(fullname);
     return (
         <>
             <Navbar activeMenu={0} />
@@ -43,7 +63,7 @@ function Profile() {
                                         ></i>
                                     </Link>
                                 </div>
-                                <div id='bn-name'>Buddy Gaines</div>
+                                <div id='bn-name'>{fullname}</div>
                             </div>
 
                             {/* <!-- Main Section --> */}
@@ -176,4 +196,17 @@ function Profile() {
     );
 }
 
-export default Profile;
+const mapStatetoProps = (state) => {
+    const { getDataUserReducer } = state;
+    return {
+        getDataUserReducer,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUser: () =>
+            dispatch(getDataUser('http://localhost:8000/data/users/')),
+    };
+};
+const ConnectedProfile = connect(mapStatetoProps, mapDispatchToProps)(Profile);
+export default ConnectedProfile;

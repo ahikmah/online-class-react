@@ -7,7 +7,7 @@ import FormFloating from '../component/FormFloating';
 import ModalComp from '../component/ModalComp';
 
 import { connect } from 'react-redux';
-import { login, loginUser } from '../redux/ActionCreators/auth';
+import { login } from '../redux/ActionCreators/auth';
 
 class Login extends Component {
     state = {
@@ -43,9 +43,6 @@ class Login extends Component {
                     this.props.loginReducer.result.token
                 );
 
-                this.props.dataLogin(this.props.loginReducer.result);
-
-                console.log('status login', this.props.isLogin);
                 this.props.history.push('/dashboard');
             }
         } else if (this.props.loginReducer.isRejected) {
@@ -68,8 +65,6 @@ class Login extends Component {
             password: this.state.password,
         };
         this.props.userLogin(dataLogin);
-
-        console.log('loginpage', this.props.isLogin, this.props.onClickAuth);
 
         // this.props.getUser();
     };
@@ -164,16 +159,15 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { loginReducer, getDataUserReducer } = state;
+    const { loginReducer } = state;
     return {
         loginReducer,
-        getDataUserReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dataLogin: (data) => dispatch(loginUser(data)),
+        // dataLogin: (data) => dispatch(loginUser(data)),
         userLogin: (data) =>
             dispatch(login('http://localhost:8000/data/auth/login', data)),
         // getUser: () =>
