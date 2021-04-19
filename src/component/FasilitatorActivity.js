@@ -1,19 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import '../assets/css/FasilitatorActivity.css';
 import FasMyClassItem from '../component/FasMyClassItem';
 import Navbar from '../component/Navbar';
 import { connect } from 'react-redux';
 import { getMyClass } from '../redux/ActionCreators/user';
+import { getCourseCategory } from '../redux/ActionCreators/course';
+import ModalComp from '../component/ModalComp';
+import axios from 'axios';
 
 function FasilitatorActivity(props) {
     const [myClassList, setMyClassList] = useState();
-    const { dataUserReducer, getMyClass } = props;
+    const [categoryList, setCategoryList] = useState();
+    const [modalShow, setModalShow] = useState(false);
 
-    let classItems;
+    const [className, setClassName] = useState();
+    const [classCategory, setClassCategory] = useState();
+    const [classPrice, setClassPrice] = useState();
+    const [classSchedule, setClassSchedule] = useState();
+    const [classStart, setClassStart] = useState();
+    const [classEnd, setClassEnd] = useState();
+    const [classIcon, setClassIcon] = useState();
+    const [classDescription, setClassDescription] = useState();
+
+    const {
+        dataUserReducer,
+        getMyClass,
+        courseCategoryReducer,
+        getCategory,
+    } = props;
+
+    let classItems, categoryItems;
+    const history = useHistory();
 
     const ref = useRef();
 
@@ -21,30 +42,93 @@ function FasilitatorActivity(props) {
     useEffect(() => {
         if (!ref.current) {
             getMyClass('http://localhost:8000/data/instructor/my-course');
+            getCategory('http://localhost:8000/data/courses/categories');
             ref.current = true;
         } else {
-            if (dataUserReducer.isPending) {
+            if (dataUserReducer.isPending && courseCategoryReducer.isPending) {
                 console.log('Loading...');
-            } else if (dataUserReducer.isFulfilled) {
+            } else if (
+                dataUserReducer.isFulfilled &&
+                courseCategoryReducer.isFulfilled
+            ) {
                 setMyClassList(dataUserReducer.myClass);
+                setCategoryList(courseCategoryReducer.result);
             } else if (dataUserReducer.isRejected) {
                 console.log('Failed');
             }
         }
     });
-    // useEffect(() => {
-    //     axios
-    //         .get('http://localhost:8000/data/instructor/my-course/1')
-    //         .then((res) => {
-    //             setMyClassList(res.data.result);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
+
+    const classNameInput = (e) => {
+        setClassName(e.target.value);
+    };
+
+    const classCategoryInput = (e) => {
+        setClassCategory(e.currentTarget.value);
+    };
+
+    const classPriceInput = (e) => {
+        setClassPrice(e.target.value);
+    };
+
+    const classScheduleInput = (e) => {
+        setClassSchedule(e.currentTarget.value);
+    };
+
+    const classStartInput = (e) => {
+        setClassStart(e.target.value);
+    };
+    const classEndInput = (e) => {
+        setClassEnd(e.target.value);
+    };
+
+    const classIconInput = (e) => {
+        setClassIcon(e.target.files[0]);
+    };
+
+    const classDescriptionInput = (e) => {
+        setClassDescription(e.target.value);
+    };
+
+    const createCourseHandler = (e) => {
+        e.preventDefault();
+        const token = localStorage.token;
+        let formData = new FormData();
+        formData.append('name', className);
+        formData.append('category_id', classCategory);
+        formData.append('description', classDescription);
+        formData.append('price', classPrice);
+        formData.append('schedule', classSchedule);
+        formData.append('start_time', classStart);
+        formData.append('end_time', classEnd);
+        formData.append('banner', classIcon);
+
+        axios
+            .post('http://localhost:8000/data/courses/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-access-token': `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                console.log('Success');
+                setModalShow(true);
+                setClassName();
+                setClassCategory();
+                setClassPrice();
+                setClassSchedule();
+                setClassStart();
+                setClassEnd();
+                setClassIcon();
+                setClassDescription();
+                // setModalShow(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     if (myClassList) {
-        // console.log(myClassList);
         const myclasssize = 3;
         classItems = myClassList.slice(0, myclasssize).map((cl) => {
             return (
@@ -63,7 +147,11 @@ function FasilitatorActivity(props) {
         });
     }
 
-    // Display top 3 My Class list
+    if (categoryList) {
+        categoryItems = categoryList.map((item) => {
+            return <option value={item.id}>{item.name}</option>;
+        });
+    }
 
     return (
         <>
@@ -109,7 +197,7 @@ function FasilitatorActivity(props) {
                             <div className='sub-label '>Create New Class</div>
                             <div className='container new-class'>
                                 <form className='create-new-class'>
-                                    <div className='row d-flex'>
+                                    <div className='d-flex'>
                                         <div className='col-5 d-flex form-group cnc'>
                                             <label
                                                 htmlFor='className'
@@ -121,10 +209,14 @@ function FasilitatorActivity(props) {
                                             <input
                                                 type='text'
                                                 className='col class-name-input'
+                                                onChange={classNameInput}
                                             />
                                         </div>
 
-                                        <div className='col d-flex justify-content-start  form-group cnc pick-pricing'>
+                                        <div
+                                            className='col d-flex justify-content-start  form-group cnc pick-pricing'
+                                            onChange={classPriceInput}
+                                        >
                                             <label
                                                 htmlFor='pricing'
                                                 className='col col-2'
@@ -137,7 +229,7 @@ function FasilitatorActivity(props) {
                                                 className='form-check-input'
                                                 id='free'
                                                 name='pricing'
-                                                value='free'
+                                                value='0'
                                             />
                                             <label
                                                 htmlFor='free'
@@ -150,7 +242,7 @@ function FasilitatorActivity(props) {
                                                 className='form-check-input'
                                                 id='paid'
                                                 name='pricing'
-                                                value='paid'
+                                                value='10'
                                             />
                                             <label
                                                 htmlFor='paid'
@@ -161,7 +253,7 @@ function FasilitatorActivity(props) {
                                         </div>
                                     </div>
 
-                                    <div className='row d-flex'>
+                                    <div className='d-flex'>
                                         <div className='col-5 d-flex form-group cnc'>
                                             <label
                                                 htmlFor='className'
@@ -170,24 +262,25 @@ function FasilitatorActivity(props) {
                                                 Categories
                                             </label>
                                             <p className='col col-1 tbh'>:</p>
-                                            <select className='selectpicker cnc'>
-                                                <option>Software</option>
-                                                <option>History</option>
-                                                <option>Psychology</option>
-                                                <option>Finance</option>
-                                                <option>Math</option>
+                                            <select
+                                                className='selectpicker cnc'
+                                                onChange={classCategoryInput}
+                                            >
+                                                {categoryItems}
                                             </select>
                                         </div>
 
                                         <div className='col d-flex justify-content-start  form-group cnc sch'>
-                                            <label
-                                                htmlFor='className'
-                                                className='col col-2'
-                                            >
+                                            <label className='col col-2'>
                                                 Schedule
                                             </label>
                                             <p className='col col-1 tbh'>:</p>
-                                            <select className='selectpicker cnc input-time'>
+                                            <input
+                                                type='date'
+                                                value='2021-05-19'
+                                                onChange={classScheduleInput}
+                                            />
+                                            {/* <select className='selectpicker cnc input-time'>
                                                 <option>Sunday</option>
                                                 <option>Monday</option>
                                                 <option>Tuesday</option>
@@ -195,17 +288,31 @@ function FasilitatorActivity(props) {
                                                 <option>Thursday</option>
                                                 <option>Friday</option>
                                                 <option>Saturday</option>
-                                            </select>
+                                            </select> */}
                                             <input
                                                 type='time'
                                                 className='input-time'
+                                                onChange={classStartInput}
                                             />
                                             -
                                             <input
                                                 type='time'
                                                 className='input-time'
+                                                onChange={classEndInput}
                                             />
                                         </div>
+                                    </div>
+                                    <div
+                                        className='row d-flex'
+                                        style={{ marginBottom: '1rem' }}
+                                    >
+                                        <label for='banner'>Course Icon</label>
+                                        <input
+                                            type='file'
+                                            className='form-control-file cnc'
+                                            id='banner'
+                                            onChange={classIconInput}
+                                        />
                                     </div>
 
                                     <div className='row'>
@@ -215,15 +322,17 @@ function FasilitatorActivity(props) {
                                         <textarea
                                             className='form-control cnc'
                                             rows='12'
+                                            onChange={classDescriptionInput}
                                         ></textarea>
                                     </div>
 
                                     <div className='d-flex justify-content-end'>
-                                        <Link to='#'>
-                                            <div className='btn btn-create'>
-                                                Create
-                                            </div>
-                                        </Link>
+                                        <div
+                                            className='btn btn-create'
+                                            onClick={createCourseHandler}
+                                        >
+                                            Create
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -231,20 +340,30 @@ function FasilitatorActivity(props) {
                     </main>
                 </div>
             </div>
+            <ModalComp
+                header='Class Created'
+                msg='Your new class has been created'
+                show={modalShow}
+                onHide={() => history.push('/facilitator/my-class')}
+                variant='success'
+                footermsg='OK'
+            />
         </>
     );
 }
 
 const mapStatetoProps = (state) => {
-    const { dataUserReducer } = state;
+    const { dataUserReducer, courseCategoryReducer } = state;
     return {
         dataUserReducer,
+        courseCategoryReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getMyClass: (url) => dispatch(getMyClass(url)),
+        getCategory: (url) => dispatch(getCourseCategory(url)),
     };
 };
 

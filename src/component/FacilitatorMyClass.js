@@ -30,7 +30,7 @@ function FacilitatorMyClass(props) {
                 console.log('Loading...');
             } else if (dataUserReducer.isFulfilled) {
                 setMyClassList(dataUserReducer.myClass);
-                setInfo(dataUserReducer.info);
+                setInfo(dataUserReducer.myClassPage);
             } else if (dataUserReducer.isRejected) {
                 console.log('Failed');
             }

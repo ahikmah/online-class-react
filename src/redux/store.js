@@ -9,7 +9,11 @@ import {
 } from './Reducers/auth';
 import { dataUserReducer, progressStudentReducer } from './Reducers/user';
 import { progressMemberReducer } from './Reducers/facilitator';
-import { dataCourseReducer, courseMemberReducer } from './Reducers/course';
+import {
+    dataCourseReducer,
+    courseMemberReducer,
+    courseCategoryReducer,
+} from './Reducers/course';
 
 const logger = createLogger();
 const enhancers = applyMiddleware(rpm, logger);
@@ -22,6 +26,7 @@ const reducers = combineReducers({
     progressStudentReducer,
     dataCourseReducer,
     courseMemberReducer,
+    courseCategoryReducer,
 });
 const reduxStore = createStore(reducers, enhancers);
 

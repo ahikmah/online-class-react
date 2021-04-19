@@ -49,16 +49,18 @@ function ModalComp(props) {
                 >
                     {props.footermsg}
                 </Button>
-                <Button
-                    onClick={props.onConfirm}
-                    variant={props.variant2}
-                    style={{
-                        fontSize: '1rem',
-                        height: 'fit-content',
-                    }}
-                >
-                    {props.footermsg2}
-                </Button>
+                {props.onConfirm ? (
+                    <Button
+                        onClick={props.onConfirm}
+                        variant={props.variant2}
+                        style={{
+                            fontSize: '1rem',
+                            height: 'fit-content',
+                        }}
+                    >
+                        {props.footermsg2}
+                    </Button>
+                ) : null}
             </Modal.Footer>
         </Modal>
     );

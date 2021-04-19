@@ -10,6 +10,16 @@ export const getCourseData = (url) => {
     };
 };
 
+export const getCourseCategory = (url) => {
+    const token = localStorage.token;
+    return {
+        type: 'GET_COURSE_CATEGORY',
+        payload: axios.get(url, {
+            headers: { 'x-access-token': `Bearer ${token}` },
+        }),
+    };
+};
+
 export const getCourseMember = (url) => {
     const token = localStorage.token;
     return {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { useHistory } from 'react-router-dom';
@@ -8,7 +8,7 @@ import MyClassItem from '../component/MyClassItem';
 import Navbar from '../component/Navbar';
 
 import { connect } from 'react-redux';
-import { getSchedule } from '../redux/ActionCreators/user';
+import { getMyClass, getSchedule } from '../redux/ActionCreators/user';
 
 function StudentMyClass(props) {
     const [myClassList, setMyClassList] = useState();
@@ -16,12 +16,22 @@ function StudentMyClass(props) {
     const { dataUserReducer, getMyClass } = props;
     let classItems;
     let numPage = [];
+    const ref = useRef();
 
     // eslint-disable-next-line
     useEffect(() => {
-        if (dataUserReducer.isFulfilled) {
-            setMyClassList(dataUserReducer.myClass);
-            setInfo(dataUserReducer.myClassPage);
+        if (!ref.current) {
+            getMyClass('http://localhost:8000/data/student/my-class/');
+            ref.current = true;
+        } else {
+            if (dataUserReducer.isPending) {
+                console.log('Loading...');
+            } else if (dataUserReducer.isFulfilled) {
+                setMyClassList(dataUserReducer.myClass);
+                setInfo(dataUserReducer.myClassPage);
+            } else if (dataUserReducer.isRejected) {
+                console.log('Failed');
+            }
         }
     });
 
@@ -226,7 +236,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMyClass: (url) => dispatch(getSchedule(url)),
+        getMyClass: (url) => dispatch(getMyClass(url)),
     };
 };
 
