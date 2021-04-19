@@ -18,7 +18,6 @@ function ClassDetail(props) {
         popClass.pop();
         document.body.style.overflow = 'hidden';
     }
-    console.log(props.idCourse);
 
     return (
         <>
@@ -56,7 +55,9 @@ function ClassDetail(props) {
                                 </div>
 
                                 <small id='bn-progress'>
-                                    {props.progress}% to complete
+                                    {props.progress
+                                        ? `${props.progress} % to complete`
+                                        : "This class hasn't started yet"}
                                 </small>
                                 <div
                                     className='progress'

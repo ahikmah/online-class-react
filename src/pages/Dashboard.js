@@ -22,6 +22,10 @@ function Dashboard(props) {
                     'full_name',
                     getDataUserReducer.currentUser.full_name
                 );
+                localStorage.setItem(
+                    'avatar',
+                    getDataUserReducer.currentUser.avatar
+                );
                 dataLogin(getDataUserReducer.currentUser);
                 history.replace(
                     getDataUserReducer.currentUser.role === 'student'

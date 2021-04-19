@@ -67,7 +67,9 @@ function ClassDetail(props) {
 
                                 {activeMenu === 1 ? (
                                     <small id='bn-progress'>
-                                        {props.progress}% to complete
+                                        {props.progress
+                                            ? `${props.progress} % to complete`
+                                            : "This class hasn't started yet"}
                                     </small>
                                 ) : null}
                                 {activeMenu === 1 ? (

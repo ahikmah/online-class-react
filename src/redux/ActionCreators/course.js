@@ -9,3 +9,13 @@ export const getCourseData = (url) => {
         }),
     };
 };
+
+export const getCourseMember = (url) => {
+    const token = localStorage.token;
+    return {
+        type: 'GET_COURSE_MEMBER',
+        payload: axios.get(url, {
+            headers: { 'x-access-token': `Bearer ${token}` },
+        }),
+    };
+};

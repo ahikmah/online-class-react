@@ -19,6 +19,11 @@
 .card-progress > header > h5 {
     margin-left: 1rem;
 }
+.card-progress > header > img{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+}
 
 img.cls-button.card-progress {
     position: absolute;

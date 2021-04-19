@@ -1,5 +1,8 @@
 .group-person>a>.ava-member{
     margin-right: 2rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
 }
 
 .member-list{

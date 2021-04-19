@@ -51,6 +51,7 @@ function Sidebar(props) {
         e.preventDefault();
         localStorage.removeItem('token');
         localStorage.removeItem('full_name');
+        localStorage.removeItem('avatar');
         userLogout();
         history.push('/');
     };
@@ -79,7 +80,15 @@ function Sidebar(props) {
                 <div className="side-profile-section d-flex flex-column 'active-sidebar'">
                     <div className='side-avatar'>
                         {' '}
-                        <img src={Avatar} alt='avatar' />
+                        <img
+                            src={
+                                localStorage.avatar
+                                    ? 'http://localhost:8000' +
+                                      localStorage.avatar
+                                    : Avatar
+                            }
+                            alt='avatar'
+                        />
                     </div>
                     <Link
                         to='/profile'

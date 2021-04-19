@@ -51,6 +51,9 @@ a {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
 }
 
 #banner-wrapper-profile>div#bn-setting {

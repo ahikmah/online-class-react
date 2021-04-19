@@ -51,7 +51,17 @@ function Profile(props) {
                                     alt=''
                                 />
                                 <span id='bn-shadow'></span>
-                                <img id='bn-ava' src={ProfilePicture} alt='' />
+                                <img
+                                    id='bn-ava'
+                                    src={
+                                        getDataUserReducer.currentUser
+                                            ? 'http://localhost:8000' +
+                                              getDataUserReducer.currentUser
+                                                  .avatar
+                                            : ProfilePicture
+                                    }
+                                    alt=''
+                                />
                                 <div id='bn-setting'>
                                     <Link to=''>
                                         <i

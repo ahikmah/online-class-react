@@ -5,14 +5,20 @@ import ClassDetailInformation from '../component/ClassDetailInformation';
 import ClassDetailProgress from '../component/ClassDetailProgress';
 import MemberList from '../component/MemberList';
 import { connect } from 'react-redux';
-import { getCourseData } from '../redux/ActionCreators/course';
+import { getCourseData, getCourseMember } from '../redux/ActionCreators/course';
 function FasilitatorClassDetail(props) {
     let { id, course, user } = useParams();
     // console.log('ini class',id);
     let content, active, userid;
-    const { getCourse, dataCourseReducer } = props;
+    const {
+        getCourse,
+        dataCourseReducer,
+        courseMemberReducer,
+        getMember,
+    } = props;
 
     const [courseDetail, setCourseDetail] = useState();
+    const [memberList, setMemberList] = useState();
 
     const ref = useRef();
 
@@ -20,14 +26,25 @@ function FasilitatorClassDetail(props) {
     useEffect(() => {
         if (!ref.current) {
             getCourse('http://localhost:8000/data/courses/detail/' + course);
+            getMember(
+                'http://localhost:8000/data/instructor/course-member/' + course
+            );
             ref.current = true;
         } else {
-            if (dataCourseReducer.isPending) {
+            if (dataCourseReducer.isPending && courseMemberReducer.isPending) {
                 console.log('Loading...');
-            } else if (dataCourseReducer.isFulfilled) {
+            } else if (
+                dataCourseReducer.isFulfilled &&
+                courseMemberReducer.isFulfilled
+            ) {
                 setCourseDetail(dataCourseReducer.result[0]);
+                setMemberList(courseMemberReducer.result);
+
                 // console.log('info', dataCourseReducer.info);
-            } else if (dataCourseReducer.isRejected) {
+            } else if (
+                dataCourseReducer.isRejected &&
+                courseMemberReducer.isRejected
+            ) {
                 console.log('Failed');
             }
         }
@@ -47,7 +64,12 @@ function FasilitatorClassDetail(props) {
         );
         active = 2;
     } else if (id === 'member') {
-        content = <MemberList idCourse={course} />;
+        content = (
+            <MemberList
+                idCourse={course}
+                dataMember={memberList ? memberList : null}
+            />
+        );
         active = 3;
     } else if (Number(user) > 0) {
         userid = Number(user);
@@ -73,15 +95,17 @@ function FasilitatorClassDetail(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataCourseReducer } = state;
+    const { dataCourseReducer, courseMemberReducer } = state;
     return {
         dataCourseReducer,
+        courseMemberReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getCourse: (url) => dispatch(getCourseData(url)),
+        getMember: (url) => dispatch(getCourseMember(url)),
     };
 };
 

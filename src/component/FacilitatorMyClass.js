@@ -53,6 +53,7 @@ function FacilitatorMyClass(props) {
             return (
                 <FasMyClassItem
                     key={cl.course_id}
+                    idCourse={cl.course_id}
                     name={cl.course_name}
                     category={cl.category}
                     desc={cl.description}
@@ -170,16 +171,13 @@ function FacilitatorMyClass(props) {
                                 <div className='col th'>Class Name</div>
                                 <div className='col th tbh'>Category</div>
                                 <div className='col th tbh'>Description</div>
-                                <div className='col pr th d-flex justify-content-center'>
-                                    Progress
+                                <div className='col th d-flex justify-content-center'>
+                                    Schedule
                                 </div>
-                                <div className='col badge-pr th tbh'>
-                                    Status
+                                <div className='col th d-flex justify-content-center'>
+                                    Students
                                 </div>
-                                <div className='col th  d-flex justify-content-center'>
-                                    Score
-                                </div>
-                                <div className='col col-1 th  tbh'></div>
+                                <div className='col col-1 th d-flex justify-content-center'></div>
                             </div>
 
                             {classItems}
