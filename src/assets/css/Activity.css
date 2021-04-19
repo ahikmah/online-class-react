@@ -46,16 +46,17 @@ small {
     padding: 0.3rem;
 }
 
-.badge-rg > a > span {
+.badge-rg > span {
     background-color: #57ba61;
     color: white;
     border-radius: 0.9375rem;
     padding: 0.5rem;
 }
 
-.badge-rg > a > span:hover {
+.badge-rg > span:hover {
     background-color: white;
     color: #57ba61;
+    cursor: pointer;
 }
 
 .scr {

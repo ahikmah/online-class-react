@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { getCourseData, getCourseMember } from '../redux/ActionCreators/course';
 function FasilitatorClassDetail(props) {
     let { id, course, user } = useParams();
-    // console.log('ini class',id);
     let content, active, userid;
     const {
         getCourse,
@@ -67,6 +66,7 @@ function FasilitatorClassDetail(props) {
         content = (
             <MemberList
                 idCourse={course}
+                idUser={user}
                 dataMember={memberList ? memberList : null}
             />
         );

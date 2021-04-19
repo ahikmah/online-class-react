@@ -18,7 +18,7 @@ import { getDataUser } from '../redux/ActionCreators/auth';
 
 function Profile(props) {
     const { getUser, getDataUserReducer } = props;
-    const [fullname, setFullname] = useState('');
+    const [fullname, setFullname] = useState();
     const ref = useRef();
 
     // eslint-disable-next-line

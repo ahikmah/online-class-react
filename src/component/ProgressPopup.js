@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../assets/css/ModalMember.css';
 
 import ProfilePicture from '../assets/images/profile-picture.png';
@@ -12,40 +12,26 @@ import { getCourseMember } from '../redux/ActionCreators/course';
 
 function ProgressPopup(props) {
     const { courseMemberReducer, getMember } = props;
-    const [memberList, setMemberList] = useState();
-    // // const ava = ClassMemberList.map((x) => x.ava);
-    // // const name = ClassMemberList.map((x) => x.name);
-    let ava, name;
 
+    let index, ava, name;
     const ref = useRef();
-
-    // eslint-disable-next-line
     useEffect(() => {
         if (!ref.current) {
             getMember(
                 'http://localhost:8000/data/instructor/course-member/' +
                     props.idCourse
             );
-            ref.current = true;
-        } else {
-            if (courseMemberReducer.isPending) {
-                console.log('Loading...');
-            } else if (courseMemberReducer.isFulfilled) {
-                setMemberList(courseMemberReducer.result);
 
-                // console.log('info', courseMemberReducer.info);
-            } else if (courseMemberReducer.isRejected) {
-                console.log('Failed');
-            }
+            ref.current = true;
         }
     });
-    let index;
-    if (memberList && props.i) {
-        index = memberList.findIndex((el) => el.id === props.i);
-        ava = memberList.map((item) => {
+
+    if (courseMemberReducer.isFulfilled && props.i) {
+        index = courseMemberReducer.result.findIndex((el) => el.id === props.i);
+        ava = courseMemberReducer.result.map((item) => {
             return item.avatar;
         });
-        name = memberList.map((item) => {
+        name = courseMemberReducer.result.map((item) => {
             return item.full_name;
         });
     }
@@ -64,7 +50,7 @@ function ProgressPopup(props) {
                 <header className='d-flex align-items-center'>
                     <img
                         src={
-                            memberList && props.i
+                            courseMemberReducer.isFulfilled && props.i
                                 ? ava[index]
                                     ? 'http://localhost:8000' + ava[index]
                                     : ProfilePicture
@@ -72,11 +58,18 @@ function ProgressPopup(props) {
                         }
                         alt='avatar'
                     ></img>
-                    <h5>{memberList && props.i ? name[index] : null}</h5>
+                    <h5>
+                        {courseMemberReducer.isFulfilled && props.i
+                            ? name[index]
+                            : null}
+                    </h5>
                 </header>
                 <hr />
                 <div className='progress-prev-wrapper'>
-                    <ProgressPreview />
+                    <ProgressPreview
+                        idCourse={props.idCourse}
+                        idUser={props.i}
+                    />
                 </div>
             </div>
         </div>

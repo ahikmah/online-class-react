@@ -2,12 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { loginUser, getDataUser } from '../redux/ActionCreators/auth';
+import { getDataUser } from '../redux/ActionCreators/auth';
 
 function Dashboard(props) {
     const history = useHistory();
 
-    const { getUser, getDataUserReducer, dataLogin } = props;
+    const { getUser, getDataUserReducer } = props;
     const ref = useRef();
     // eslint-disable-next-line
     useEffect(() => {
@@ -26,7 +26,7 @@ function Dashboard(props) {
                     'avatar',
                     getDataUserReducer.currentUser.avatar
                 );
-                dataLogin(getDataUserReducer.currentUser);
+
                 history.replace(
                     getDataUserReducer.currentUser.role === 'student'
                         ? '/student/dashboard/all-schedule'
@@ -49,7 +49,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dataLogin: (data) => dispatch(loginUser(data)),
         getUser: () =>
             dispatch(getDataUser('http://localhost:8000/data/users/')),
     };

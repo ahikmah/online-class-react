@@ -33,7 +33,7 @@ function ClassProgressItem(props) {
                 <div className='col-8'>
                     <Link to=' '>{props.name}</Link>
                 </div>
-                {props.score === 'unfinished' ? colUnfinished : colScore}
+                {props.score === 'Unfinished' ? colUnfinished : colScore}
             </div>
         </div>
     );

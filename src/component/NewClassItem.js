@@ -1,8 +1,13 @@
 import React from 'react';
 import iconList from '../assets/images/icon-list.png';
 import { Link } from 'react-router-dom';
+import ModalComp from '../component/ModalComp';
+
+import { connect } from 'react-redux';
+import { register } from '../redux/ActionCreators/auth';
 
 function NewClassItem(props) {
+    const registerHandler = (e) => {};
     return (
         <>
             <div className='row tdata2'>
@@ -30,10 +35,8 @@ function NewClassItem(props) {
                 </div>
                 <div className='col'>{props.level}</div>
                 <div className='col'>{props.pricing}</div>
-                <div className='col badge-rg'>
-                    <Link to=''>
-                        <span>Register</span>
-                    </Link>
+                <div className='col badge-rg' onClick={registerHandler}>
+                    <span>Register</span>
                 </div>
                 <div className='col col-1 ls tbh'>
                     <Link to=''>
