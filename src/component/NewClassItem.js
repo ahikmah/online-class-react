@@ -21,7 +21,7 @@ function NewClassItem(props) {
                 }
             )
             .then((res) => {
-                console.log('Success');
+                console.log('Success', res);
                 setModalShow(false);
             })
             .catch((err) => {

@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import iconList from '../assets/images/icon-list.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import studentIcon from '../assets/images/Student Icon.png';
+import ModalComp from '../component/ModalComp';
+import axios from 'axios';
 
 function MyClassItem(props) {
+    const [modalShow, setModalShow] = useState(false);
+    const history = useHistory();
+    const confirmation = () => {
+        setModalShow(true);
+    };
+
+    const deleteCourseHandler = (e) => {
+        const token = localStorage.token;
+        axios
+            .delete('http://localhost:8000/data/courses/' + props.idCourse, {
+                headers: { 'x-access-token': `Bearer ${token}` },
+            })
+            .then((res) => {
+                console.log('Success', res);
+                setModalShow(false);
+                history.go(0);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     const schedule = `${props.day}, ${props.start.slice(
         0,
         5
@@ -39,11 +63,25 @@ function MyClassItem(props) {
                     <img src={studentIcon} alt='Student Icon' />
                 </div>
                 <div className='col col-1  d-flex justify-content-center'>
-                    <Link to=''>
-                        <img src={iconList} alt='icon list' />
-                    </Link>
+                    <img
+                        style={{ cursor: 'pointer' }}
+                        src={iconList}
+                        alt='icon list'
+                        onClick={confirmation}
+                    />
                 </div>
             </div>
+            <ModalComp
+                header='Delete Confirmation'
+                msg='Are you sure you want to delete this class?'
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                onConfirm={() => deleteCourseHandler()}
+                variant='danger'
+                footermsg='Cancel'
+                variant2='primary'
+                footermsg2='Delete'
+            />
         </>
     );
 }

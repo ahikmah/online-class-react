@@ -31,15 +31,19 @@ function ClassDetailInformation(props) {
     if (courseDetail) {
         // const objective = courseDetail.objectives.split('#');
         objectives = courseDetail.objectives
-            .split('#')
-            .filter((i) => i !== '')
-            .map((i) => {
-                return <li key={i}> {i}</li>;
-            });
+            ? courseDetail.objectives
+                  .split('#')
+                  .filter((i) => i !== '')
+                  .map((i) => {
+                      return <li key={i}> {i}</li>;
+                  })
+            : null;
         requirements = courseDetail.requirements
-            .split('#')
-            .filter((i) => i !== '')
-            .map((i) => <li key={i}>{i}</li>);
+            ? courseDetail.requirements
+                  .split('#')
+                  .filter((i) => i !== '')
+                  .map((i) => <li key={i}>{i}</li>)
+            : null;
     }
     // console.log(courseDetail);
     return (

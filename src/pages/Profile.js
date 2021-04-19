@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../assets/css/Profile.css';
 import BannerProfile from '../assets/images/banner-profile.png';
 import ProfilePicture from '../assets/images/profile-picture.png';
@@ -12,12 +12,16 @@ import NotifIcon from '../assets/images/Notif Icon.png';
 import SecurityIcon from '../assets/images/Security Icon.png';
 import StorageIcon from '../assets/images/Storage Icon.png';
 import Navbar from '../component/Navbar';
-
+import ModalComp from '../component/ModalComp';
 import { connect } from 'react-redux';
 import { getDataUser } from '../redux/ActionCreators/auth';
+import axios from 'axios';
 
 function Profile(props) {
+    const [modalShow, setModalShow] = useState(false);
     const { getUser, getDataUserReducer } = props;
+
+    const history = useHistory();
     const ref = useRef();
 
     // eslint-disable-next-line
@@ -28,6 +32,26 @@ function Profile(props) {
         }
     });
 
+    const avatarUpdateHandler = (e) => {
+        const token = localStorage.token;
+        let formData = new FormData();
+        formData.append('avatar', e.target.files[0]);
+
+        axios
+            .patch('http://localhost:8000/data/users', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-access-token': `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                setModalShow(true);
+                console.log('Success', res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     // console.log(fullname);
     return (
         <>
@@ -47,6 +71,7 @@ function Profile(props) {
                                     alt=''
                                 />
                                 <span id='bn-shadow'></span>
+
                                 <img
                                     id='bn-ava'
                                     src={
@@ -60,16 +85,28 @@ function Profile(props) {
                                     }
                                     alt=''
                                 />
+
                                 <div id='bn-setting'>
-                                    <Link to=''>
+                                    <label htmlFor='avatar'>
                                         <i
                                             className='fas fa-edit'
                                             style={{
                                                 color:
                                                     'rgba(255, 255, 255, 0.5)',
+                                                cursor: 'pointer',
                                             }}
                                         ></i>
-                                    </Link>
+                                        <input
+                                            type='file'
+                                            id='avatar'
+                                            style={{ display: 'none' }}
+                                            name='image'
+                                            accept='image/gif,image/jpeg,image/jpg,image/png'
+                                            multiple=''
+                                            data-original-title='upload photos'
+                                            onChange={avatarUpdateHandler}
+                                        />
+                                    </label>
                                 </div>
                                 <div id='bn-name'>
                                     {getDataUserReducer.isFulfilled
@@ -205,6 +242,14 @@ function Profile(props) {
                     {/* <!-- End of Content --> */}
                 </div>
             </div>
+            <ModalComp
+                header='Update is Successful'
+                msg='Your avatar has been updated successfully'
+                show={modalShow}
+                onHide={() => history.go(0)}
+                variant='success'
+                footermsg='OK'
+            />
         </>
     );
 }

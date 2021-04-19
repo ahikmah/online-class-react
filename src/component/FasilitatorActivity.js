@@ -149,7 +149,11 @@ function FasilitatorActivity(props) {
 
     if (categoryList) {
         categoryItems = categoryList.map((item) => {
-            return <option value={item.id}>{item.name}</option>;
+            return (
+                <option key={item.id} value={item.id}>
+                    {item.name}
+                </option>
+            );
         });
     }
 
@@ -277,7 +281,6 @@ function FasilitatorActivity(props) {
                                             <p className='col col-1 tbh'>:</p>
                                             <input
                                                 type='date'
-                                                value='2021-05-19'
                                                 onChange={classScheduleInput}
                                             />
                                             {/* <select className='selectpicker cnc input-time'>
@@ -306,11 +309,14 @@ function FasilitatorActivity(props) {
                                         className='row d-flex'
                                         style={{ marginBottom: '1rem' }}
                                     >
-                                        <label for='banner'>Course Icon</label>
+                                        <label htmlFor='banner'>
+                                            Course Icon
+                                        </label>
                                         <input
                                             type='file'
                                             className='form-control-file cnc'
                                             id='banner'
+                                            accept='image/gif,image/jpeg,image/jpg,image/png'
                                             onChange={classIconInput}
                                         />
                                     </div>

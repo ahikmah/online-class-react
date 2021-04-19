@@ -8,7 +8,7 @@ import MyClassItem from '../component/MyClassItem';
 import Navbar from '../component/Navbar';
 
 import { connect } from 'react-redux';
-import { getMyClass, getSchedule } from '../redux/ActionCreators/user';
+import { getMyClass } from '../redux/ActionCreators/user';
 
 function StudentMyClass(props) {
     const [myClassList, setMyClassList] = useState();

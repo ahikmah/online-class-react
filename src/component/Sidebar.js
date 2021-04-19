@@ -18,6 +18,7 @@ import ExpandNotif from '../component/ExpandNotif';
 
 import { connect } from 'react-redux';
 import { logoutUser } from '../redux/ActionCreators/auth';
+import ModalComp from '../component/ModalComp';
 
 function Sidebar(props) {
     const [notifFlag, setNotifFlag] = useState(false);
@@ -47,8 +48,12 @@ function Sidebar(props) {
 
     const { userLogout } = props;
 
-    const logoutHandler = (e) => {
-        e.preventDefault();
+    const [modalShow, setModalShow] = useState(false);
+    const confirmation = () => {
+        setModalShow(true);
+    };
+
+    const logoutHandler = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('full_name');
         localStorage.removeItem('avatar');
@@ -173,13 +178,13 @@ function Sidebar(props) {
                         <span>Help</span>
                     </Link>
                     <Link
-                        to='/'
+                        to='#'
                         className={
                             props.activeMenu === 5
                                 ? classNavItemActive.join(' ')
                                 : classNavItem.join(' ')
                         }
-                        onClick={logoutHandler}
+                        onClick={confirmation}
                     >
                         <img src={logoutIcon} alt='icon logout' />
                         <span>Logout</span>
@@ -191,6 +196,18 @@ function Sidebar(props) {
             {notifFlag ? (
                 <ExpandNotif clc={clickHandler} flg={notifFlag} />
             ) : null}
+
+            <ModalComp
+                header='Logout'
+                msg='Are you sure you want to logout?'
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                onConfirm={() => logoutHandler()}
+                variant='danger'
+                footermsg='Cancel'
+                variant2='primary'
+                footermsg2='Yes'
+            />
         </>
     );
 }
