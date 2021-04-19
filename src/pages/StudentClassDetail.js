@@ -4,19 +4,14 @@ import StudentDetailActivityTemp from '../templates/StudentDetailActivityTemp';
 import ClassDetailInformation from '../component/ClassDetailInformation';
 import ClassDetailProgress from '../component/ClassDetailProgress';
 import { connect } from 'react-redux';
-import { getDataStudent } from '../redux/ActionCreators/student';
+import { getSchedule } from '../redux/ActionCreators/user';
 import { getCourseData } from '../redux/ActionCreators/course';
 
 function StudentClassDetail(props) {
     let { id, course } = useParams();
     let content, active, score;
 
-    const {
-        getCourse,
-        dataCourseReducer,
-        getMyClass,
-        dataStudentReducer,
-    } = props;
+    const { getCourse, dataCourseReducer, getMyClass, dataUserReducer } = props;
 
     const [courseDetail, setCourseDetail] = useState('');
     const [courseUser, setCourseUser] = useState('');
@@ -33,7 +28,7 @@ function StudentClassDetail(props) {
                 console.log('Loading...');
             } else if (dataCourseReducer.isFulfilled) {
                 setCourseDetail(dataCourseReducer.result[0]);
-                setCourseUser(dataStudentReducer.result);
+                setCourseUser(dataUserReducer.result);
                 // console.log('info', dataCourseReducer.info);
             } else if (dataCourseReducer.isRejected) {
                 console.log('Failed');
@@ -87,10 +82,10 @@ function StudentClassDetail(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataCourseReducer, dataStudentReducer } = state;
+    const { dataCourseReducer, dataUserReducer } = state;
     return {
         dataCourseReducer,
-        dataStudentReducer,
+        dataUserReducer,
     };
 };
 
@@ -98,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMyClass: () =>
             dispatch(
-                getDataStudent('http://localhost:8000/data/student/my-class')
+                getSchedule('http://localhost:8000/data/student/my-class')
             ),
         getCourse: (url) => dispatch(getCourseData(url)),
     };

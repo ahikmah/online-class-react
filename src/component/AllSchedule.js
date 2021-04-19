@@ -3,13 +3,13 @@ import TimelineItem from '../component/TimelineItem';
 import SoftwareIcon from '../assets/images/Finance Icon.png';
 
 import { connect } from 'react-redux';
-import { getDataStudent } from '../redux/ActionCreators/student';
+import { getSchedule } from '../redux/ActionCreators/user';
 
 function AllSchedule(props) {
     const [mySchedule, setMySchedule] = useState();
     let classItems8, classItems11, classItems13;
 
-    const { dataStudentReducer, getAllSchedule } = props;
+    const { dataUserReducer, getAllSchedule } = props;
 
     const ref = useRef();
 
@@ -19,11 +19,11 @@ function AllSchedule(props) {
             getAllSchedule();
             ref.current = true;
         } else {
-            if (dataStudentReducer.isPending) {
+            if (dataUserReducer.isPending) {
                 console.log('Loading...');
-            } else if (dataStudentReducer.isFulfilled) {
-                setMySchedule(dataStudentReducer.result);
-            } else if (dataStudentReducer.isRejected) {
+            } else if (dataUserReducer.isFulfilled) {
+                setMySchedule(dataUserReducer.result);
+            } else if (dataUserReducer.isRejected) {
                 console.log('Failed');
             }
         }
@@ -120,9 +120,9 @@ function AllSchedule(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataStudentReducer } = state;
+    const { dataUserReducer } = state;
     return {
-        dataStudentReducer,
+        dataUserReducer,
     };
 };
 
@@ -130,9 +130,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllSchedule: () =>
             dispatch(
-                getDataStudent(
-                    'http://localhost:8000/data/student/all-schedule'
-                )
+                getSchedule('http://localhost:8000/data/student/all-schedule')
             ),
     };
 };

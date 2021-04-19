@@ -8,12 +8,12 @@ import FasMyClassItem from '../component/FasMyClassItem';
 import Navbar from '../component/Navbar';
 // import axios from 'axios';
 import { connect } from 'react-redux';
-import { getDataFacilitator } from '../redux/ActionCreators/facilitator';
+import { getMyClass } from '../redux/ActionCreators/user';
 function FacilitatorMyClass(props) {
     const [myClassList, setMyClassList] = useState();
     const [info, setInfo] = useState();
 
-    const { dataFacilitatorReducer, getMyClass } = props;
+    const { dataUserReducer, getMyClass } = props;
 
     let classItems;
     let numPage = [];
@@ -26,12 +26,12 @@ function FacilitatorMyClass(props) {
             getMyClass('http://localhost:8000/data/instructor/my-course');
             ref.current = true;
         } else {
-            if (dataFacilitatorReducer.isPending) {
+            if (dataUserReducer.isPending) {
                 console.log('Loading...');
-            } else if (dataFacilitatorReducer.isFulfilled) {
-                setMyClassList(dataFacilitatorReducer.result);
-                setInfo(dataFacilitatorReducer.info);
-            } else if (dataFacilitatorReducer.isRejected) {
+            } else if (dataUserReducer.isFulfilled) {
+                setMyClassList(dataUserReducer.myClass);
+                setInfo(dataUserReducer.info);
+            } else if (dataUserReducer.isRejected) {
                 console.log('Failed');
             }
         }
@@ -228,15 +228,15 @@ function FacilitatorMyClass(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataFacilitatorReducer } = state;
+    const { dataUserReducer } = state;
     return {
-        dataFacilitatorReducer,
+        dataUserReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMyClass: (url) => dispatch(getDataFacilitator(url)),
+        getMyClass: (url) => dispatch(getMyClass(url)),
     };
 };
 

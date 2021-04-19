@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import ClassProgressItem from './ClassProgressItemPrev';
-import ClassProgressList from '../assets/data/classprogress';
 import '../assets/css/ClassProgress.css';
 
 import { connect } from 'react-redux';

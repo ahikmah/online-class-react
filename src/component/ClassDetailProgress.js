@@ -3,7 +3,7 @@ import ClassProgressItem from './ClassProgressItem';
 import '../assets/css/ClassProgress.css';
 
 import { connect } from 'react-redux';
-import { getProgressStudent } from '../redux/ActionCreators/student';
+import { getProgressStudent } from '../redux/ActionCreators/user';
 
 function ClassDetailProgress(props) {
     const [studentProgress, setStudentProgress] = useState();

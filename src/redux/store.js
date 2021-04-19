@@ -7,11 +7,8 @@ import {
     registerReducer,
     getDataUserReducer,
 } from './Reducers/auth';
-import { dataStudentReducer, progressStudentReducer } from './Reducers/student';
-import {
-    dataFacilitatorReducer,
-    progressMemberReducer,
-} from './Reducers/facilitator';
+import { dataUserReducer, progressStudentReducer } from './Reducers/user';
+import { progressMemberReducer } from './Reducers/facilitator';
 import { dataCourseReducer, courseMemberReducer } from './Reducers/course';
 
 const logger = createLogger();
@@ -20,8 +17,7 @@ const reducers = combineReducers({
     loginReducer,
     registerReducer,
     getDataUserReducer,
-    dataStudentReducer,
-    dataFacilitatorReducer,
+    dataUserReducer,
     progressMemberReducer,
     progressStudentReducer,
     dataCourseReducer,

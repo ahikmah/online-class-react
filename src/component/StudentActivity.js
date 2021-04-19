@@ -9,7 +9,7 @@ import Navbar from './Navbar';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { getDataStudent } from '../redux/ActionCreators/student';
+import { getMyClass } from '../redux/ActionCreators/user';
 import { getCourseData } from '../redux/ActionCreators/course';
 
 function StudentActivity(props) {
@@ -23,7 +23,7 @@ function StudentActivity(props) {
 
     let classItems, newClassItems;
     const {
-        dataStudentReducer,
+        dataUserReducer,
         dataCourseReducer,
         getMyClass,
         getAllClass,
@@ -38,19 +38,19 @@ function StudentActivity(props) {
             getAllClass('http://localhost:8000/data/courses');
             ref.current = true;
         } else {
-            if (dataStudentReducer.isPending && dataCourseReducer.isPending) {
+            if (dataUserReducer.isPending && dataCourseReducer.isPending) {
                 console.log('Loading...');
             } else if (
-                dataStudentReducer.isFulfilled &&
+                dataUserReducer.isFulfilled &&
                 dataCourseReducer.isFulfilled
             ) {
-                setMyClassList(dataStudentReducer.result);
+                setMyClassList(dataUserReducer.myClass);
 
                 setNewClassList(dataCourseReducer.result);
                 setInfo(dataCourseReducer.info);
                 // console.log('info', dataCourseReducer.info);
             } else if (
-                dataStudentReducer.isRejected &&
+                dataUserReducer.isRejected &&
                 dataCourseReducer.isRejected
             ) {
                 console.log('Failed');
@@ -658,9 +658,9 @@ function StudentActivity(props) {
     );
 }
 const mapStatetoProps = (state) => {
-    const { dataStudentReducer, dataCourseReducer } = state;
+    const { dataUserReducer, dataCourseReducer } = state;
     return {
-        dataStudentReducer,
+        dataUserReducer,
         dataCourseReducer,
     };
 };
@@ -668,9 +668,7 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getMyClass: () =>
-            dispatch(
-                getDataStudent('http://localhost:8000/data/student/my-class')
-            ),
+            dispatch(getMyClass('http://localhost:8000/data/student/my-class')),
         getAllClass: (url) => dispatch(getCourseData(url)),
     };
 };

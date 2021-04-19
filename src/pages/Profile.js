@@ -18,7 +18,6 @@ import { getDataUser } from '../redux/ActionCreators/auth';
 
 function Profile(props) {
     const { getUser, getDataUserReducer } = props;
-    const [fullname, setFullname] = useState();
     const ref = useRef();
 
     // eslint-disable-next-line
@@ -26,12 +25,9 @@ function Profile(props) {
         if (!ref.current) {
             getUser();
             ref.current = true;
-        } else {
-            if (getDataUserReducer.isFulfilled) {
-                setFullname(getDataUserReducer.currentUser.full_name);
-            }
         }
     });
+
     // console.log(fullname);
     return (
         <>
@@ -54,11 +50,13 @@ function Profile(props) {
                                 <img
                                     id='bn-ava'
                                     src={
-                                        getDataUserReducer.currentUser
-                                            ? 'http://localhost:8000' +
-                                              getDataUserReducer.currentUser
-                                                  .avatar
-                                            : ProfilePicture
+                                        getDataUserReducer.isFulfilled
+                                            ? getDataUserReducer.currentUser
+                                                ? 'http://localhost:8000' +
+                                                  getDataUserReducer.currentUser
+                                                      .avatar
+                                                : ProfilePicture
+                                            : null
                                     }
                                     alt=''
                                 />
@@ -73,7 +71,12 @@ function Profile(props) {
                                         ></i>
                                     </Link>
                                 </div>
-                                <div id='bn-name'>{fullname}</div>
+                                <div id='bn-name'>
+                                    {getDataUserReducer.isFulfilled
+                                        ? getDataUserReducer.currentUser
+                                              .full_name
+                                        : null}
+                                </div>
                             </div>
 
                             {/* <!-- Main Section --> */}

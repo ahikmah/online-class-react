@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../component/Sidebar';
 import { useHistory } from 'react-router-dom';
@@ -8,34 +8,23 @@ import MyClassItem from '../component/MyClassItem';
 import Navbar from '../component/Navbar';
 
 import { connect } from 'react-redux';
-import { getDataStudent } from '../redux/ActionCreators/student';
+import { getSchedule } from '../redux/ActionCreators/user';
 
 function StudentMyClass(props) {
     const [myClassList, setMyClassList] = useState();
     const [info, setInfo] = useState();
-    const { dataStudentReducer, getMyClass } = props;
+    const { dataUserReducer, getMyClass } = props;
     let classItems;
     let numPage = [];
-    const ref = useRef();
 
     // eslint-disable-next-line
     useEffect(() => {
-        if (!ref.current) {
-            getMyClass('http://localhost:8000/data/student/my-class');
-            ref.current = true;
-        } else {
-            if (dataStudentReducer.isPending) {
-                console.log('Loading...');
-            } else if (dataStudentReducer.isFulfilled) {
-                setMyClassList(dataStudentReducer.result);
-
-                setInfo(dataStudentReducer.info);
-                // console.log('info', dataStudentReducer.info);
-            } else if (dataStudentReducer.isRejected) {
-                console.log('Failed');
-            }
+        if (dataUserReducer.isFulfilled) {
+            setMyClassList(dataUserReducer.myClass);
+            setInfo(dataUserReducer.myClassPage);
         }
     });
+
     // useEffect(() => {
     //     axios
     //         .get('http://localhost:8000/data/student/my-class/6')
@@ -229,15 +218,15 @@ function StudentMyClass(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataStudentReducer } = state;
+    const { dataUserReducer } = state;
     return {
-        dataStudentReducer,
+        dataUserReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMyClass: (url) => dispatch(getDataStudent(url)),
+        getMyClass: (url) => dispatch(getSchedule(url)),
     };
 };
 

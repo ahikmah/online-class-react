@@ -12,8 +12,8 @@ import FasClassListCard from './FasClassListCard';
 import Navbar from './Navbar';
 import MessageButton from './MessageButton';
 import { connect } from 'react-redux';
-import { getDataFacilitator } from '../redux/ActionCreators/facilitator';
-
+// import { getDataFacilitator } from '../redux/ActionCreators/facilitator';
+import { getSchedule } from '../redux/ActionCreators/user';
 function DashboardFasilitator(props) {
     const [mySchedule, setMySchedule] = useState();
     const days = [
@@ -30,7 +30,8 @@ function DashboardFasilitator(props) {
     let classItems;
     // console.log(dayName);
 
-    const { dataFacilitatorReducer, getAllSchedule } = props;
+    // const { dataUserReducer, getAllSchedule } = props;
+    const { dataUserReducer, getAllSchedule } = props;
 
     const ref = useRef();
 
@@ -43,11 +44,11 @@ function DashboardFasilitator(props) {
             );
             ref.current = true;
         } else {
-            if (dataFacilitatorReducer.isPending) {
+            if (dataUserReducer.isPending) {
                 console.log('Loading...');
-            } else if (dataFacilitatorReducer.isFulfilled) {
-                setMySchedule(dataFacilitatorReducer.result);
-            } else if (dataFacilitatorReducer.isRejected) {
+            } else if (dataUserReducer.isFulfilled) {
+                setMySchedule(dataUserReducer.result);
+            } else if (dataUserReducer.isRejected) {
                 console.log('Failed');
             }
         }
@@ -127,15 +128,15 @@ function DashboardFasilitator(props) {
 }
 
 const mapStatetoProps = (state) => {
-    const { dataFacilitatorReducer } = state;
+    const { dataUserReducer } = state;
     return {
-        dataFacilitatorReducer,
+        dataUserReducer,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllSchedule: (url) => dispatch(getDataFacilitator(url)),
+        getAllSchedule: (url) => dispatch(getSchedule(url)),
     };
 };
 

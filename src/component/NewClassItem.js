@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import iconList from '../assets/images/icon-list.png';
 import { Link } from 'react-router-dom';
 import ModalComp from '../component/ModalComp';
-
-import { connect } from 'react-redux';
-import { register } from '../redux/ActionCreators/auth';
+import axios from 'axios';
 
 function NewClassItem(props) {
-    const registerHandler = (e) => {};
+    const [modalShow, setModalShow] = useState(false);
+
+    const confirmation = () => {
+        setModalShow(true);
+    };
+    const registerHandler = () => {
+        const token = localStorage.token;
+        axios
+            .post(
+                'http://localhost:8000/data/courses/register',
+                { course_id: props.idCourse },
+                {
+                    headers: { 'x-access-token': `Bearer ${token}` },
+                }
+            )
+            .then((res) => {
+                console.log('Success');
+                setModalShow(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <>
             <div className='row tdata2'>
@@ -35,7 +55,7 @@ function NewClassItem(props) {
                 </div>
                 <div className='col'>{props.level}</div>
                 <div className='col'>{props.pricing}</div>
-                <div className='col badge-rg' onClick={registerHandler}>
+                <div className='col badge-rg' onClick={confirmation}>
                     <span>Register</span>
                 </div>
                 <div className='col col-1 ls tbh'>
@@ -44,6 +64,18 @@ function NewClassItem(props) {
                     </Link>
                 </div>
             </div>
+
+            <ModalComp
+                header='Register Confirmation'
+                msg='Are you sure you want to register?'
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                onConfirm={() => registerHandler()}
+                variant='danger'
+                footermsg='Cancel'
+                variant2='success'
+                footermsg2='Register Now'
+            />
         </>
     );
 }
