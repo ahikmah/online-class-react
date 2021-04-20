@@ -172,6 +172,7 @@ function Register(props) {
                         id='password'
                         ph='Password'
                         label='Password'
+                        autocomplete='current-password'
                         changed={passwordHandler}
                     />{' '}
                     {requiredTxt && !password ? (
@@ -187,6 +188,7 @@ function Register(props) {
                         id='repassword'
                         ph='Re-type Password'
                         label='Confirm Password'
+                        autocomplete='current-password'
                         changed={rePasswordHandler}
                     />
                     {match ? (

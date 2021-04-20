@@ -29,6 +29,8 @@ import Profile from './Profile';
 
 import PrivateRoute from '../component/PrivateRoute';
 import PrivateRouteAuth from '../component/PrivateRouteAuth';
+import PrivateRouteStudent from '../component/PrivateRouteStudent';
+import PrivateRouteFacilitator from '../component/PrivateRouteFacilitator';
 
 function App() {
     const [isLogin, setIsLogin] = useState(false);
@@ -99,13 +101,13 @@ function App() {
                     isLogin={isLogin}
                     Component={Dashboard}
                 />
-                <PrivateRoute
+                <PrivateRouteStudent
                     path='/student/dashboard/:id?'
                     isLogin={isLogin}
                     Component={DashboardStudent}
                 />
 
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/facilitator/dashboard'
                     isLogin={isLogin}
                     Component={DashboardFasilitator}
@@ -118,12 +120,12 @@ function App() {
                     isLogin={isLogin}
                     Component={Activity}
                 />
-                <PrivateRoute
+                <PrivateRouteStudent
                     path='/student/activity'
                     isLogin={isLogin}
                     Component={StudentActivity}
                 />
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/facilitator/activity'
                     isLogin={isLogin}
                     Component={FasilitatorActivity}
@@ -135,32 +137,32 @@ function App() {
                     exact
                     Component={MyClass}
                 />
-                <PrivateRoute
+                <PrivateRouteStudent
                     path='/student/my-class/'
                     isLogin={isLogin}
                     exact
                     Component={StudentMyClass}
                 />
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/facilitator/my-class/'
                     isLogin={isLogin}
                     Component={FacilitatorMyClass}
                 />
 
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/student/class-detail/:id/:course'
                     isLogin={isLogin}
                     Component={StudentClassDetail}
                 />
 
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/facilitator/class-detail/:id/:course'
                     isLogin={isLogin}
                     exact
                     Component={FasilitatorClassDetail}
                 />
 
-                <PrivateRoute
+                <PrivateRouteFacilitator
                     path='/facilitator/class-detail/member/:course/:user'
                     isLogin={isLogin}
                     exact

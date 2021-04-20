@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import iconList from '../assets/images/icon-list.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ModalComp from '../component/ModalComp';
 import axios from 'axios';
 
 function NewClassItem(props) {
     const [modalShow, setModalShow] = useState(false);
-
+    const history = useHistory();
     const confirmation = () => {
         setModalShow(true);
     };
@@ -23,6 +23,7 @@ function NewClassItem(props) {
             .then((res) => {
                 console.log('Success', res);
                 setModalShow(false);
+                history.go(0);
             })
             .catch((err) => {
                 console.log(err);

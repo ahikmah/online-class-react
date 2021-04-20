@@ -23,6 +23,10 @@ function Dashboard(props) {
                     getDataUserReducer.currentUser.full_name
                 );
                 localStorage.setItem(
+                    'role',
+                    getDataUserReducer.currentUser.role
+                );
+                localStorage.setItem(
                     'avatar',
                     getDataUserReducer.currentUser.avatar
                 );

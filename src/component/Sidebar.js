@@ -202,7 +202,7 @@ function Sidebar(props) {
                 msg='Are you sure you want to logout?'
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                onConfirm={() => logoutHandler()}
+                onConfirmation={() => logoutHandler()}
                 variant='danger'
                 footermsg='Cancel'
                 variant2='primary'

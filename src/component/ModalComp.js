@@ -51,7 +51,7 @@ function ModalComp(props) {
                 </Button>
                 {props.onConfirm ? (
                     <Button
-                        onClick={props.onConfirm}
+                        onClick={props.onConfirmation}
                         variant={props.variant2}
                         style={{
                             fontSize: '1rem',

@@ -115,6 +115,7 @@ class Login extends Component {
                             id='password'
                             ph='Password'
                             label='Password'
+                            autocomplete='current-password'
                             changed={this.passwordHandler}
                         />
 
