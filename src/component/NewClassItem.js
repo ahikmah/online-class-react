@@ -71,7 +71,7 @@ function NewClassItem(props) {
                 msg='Are you sure you want to register?'
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                onConfirm={() => registerHandler()}
+                onConfirmation={() => registerHandler()}
                 variant='danger'
                 footermsg='Cancel'
                 variant2='success'

@@ -49,9 +49,9 @@ function ModalForm(props) {
                 >
                     {props.footermsg}
                 </Button>
-                {props.onConfirm ? (
+                {props.onConfirmation ? (
                     <Button
-                        onClick={props.onConfirm}
+                        onClick={props.onConfirmation}
                         variant={props.variant2}
                         style={{
                             fontSize: '1rem',

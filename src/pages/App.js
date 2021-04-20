@@ -108,7 +108,7 @@ function App() {
                 />
 
                 <PrivateRouteFacilitator
-                    path='/facilitator/dashboard'
+                    path='/facilitator/dashboard/'
                     isLogin={isLogin}
                     Component={DashboardFasilitator}
                 />

@@ -49,7 +49,7 @@ function ModalComp(props) {
                 >
                     {props.footermsg}
                 </Button>
-                {props.onConfirm ? (
+                {props.onConfirmation ? (
                     <Button
                         onClick={props.onConfirmation}
                         variant={props.variant2}

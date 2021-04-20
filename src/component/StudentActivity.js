@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../assets/css/Activity.css';
 import MyClassItem from './MyClassItem';
 import NewClassItem from './NewClassItem';
@@ -20,6 +20,9 @@ function StudentActivity(props) {
     const [filterCategory, setFilterCategory] = useState();
     const [filterLevel, setFilterLevel] = useState();
     const [filterPrice, setFilterPrice] = useState();
+    const [sorting, setSorting] = useState();
+
+    const history = useHistory();
 
     let classItems, newClassItems;
     const {
@@ -31,11 +34,14 @@ function StudentActivity(props) {
     let numPage = [];
     const ref = useRef();
 
+    const currentUrl = props.location.pathname;
+
     // eslint-disable-next-line
     useEffect(() => {
         if (!ref.current) {
             getMyClass();
             getAllClass('http://localhost:8000/data/courses');
+
             ref.current = true;
         } else {
             if (dataUserReducer.isPending && dataCourseReducer.isPending) {
@@ -57,25 +63,8 @@ function StudentActivity(props) {
             }
         }
     });
-    // useEffect(() => {
-    //     axios
-    //         .get('http://localhost:8000/data/student/my-class/6')
-    //         .then((res) => {
-    //             setMyClassList(res.data.result);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
 
-    //     axios
-    //         .get('http://localhost:8000/data/courses')
-    //         .then((res) => {
-    //             setNewClassList(res.data.result);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
+    console.log(props);
 
     if (myClassList) {
         const myclasssize = 3;
@@ -148,78 +137,63 @@ function StudentActivity(props) {
 
     const searchValue = (e) => {
         setSearchCourse(e.target.value);
+        history.replace(currentUrl + `?q=${e.target.value}`);
     };
 
     const filterHandler = (e) => {
         e.preventDefault();
         if (searchCourse && !filterCategory && !filterLevel && !filterPrice) {
-            axios
-                .get(
-                    'http://localhost:8000/data/courses/filter?q=' +
-                        searchCourse
-                )
-                .then((res) => {
-                    setNewClassList(res.data.result);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            getAllClass(
+                'http://localhost:8000/data/courses/?q=' + searchCourse
+            );
         } else if (
             !searchCourse &&
             filterCategory &&
             !filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
-            axios
-                .get(
-                    'http://localhost:8000/data/courses/filter?category=' +
-                        filterCategory
-                )
-                .then((res) => {
-                    setNewClassList(res.data.result);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            getAllClass(
+                'http://localhost:8000/data/courses/?category=' + filterCategory
+            );
+            history.replace(currentUrl + `?category=${filterCategory}`);
         } else if (
             !searchCourse &&
             !filterCategory &&
             filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
-            axios
-                .get(
-                    'http://localhost:8000/data/courses/filter?level=' +
-                        filterLevel
-                )
-                .then((res) => {
-                    setNewClassList(res.data.result);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            getAllClass(
+                'http://localhost:8000/data/courses/?level=' + filterLevel
+            );
+            history.replace(currentUrl + `?level=${filterLevel}`);
         } else if (
             !searchCourse &&
             !filterCategory &&
             !filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
-            axios
-                .get(
-                    'http://localhost:8000/data/courses/filter?price=' +
-                        filterPrice
-                )
-                .then((res) => {
-                    setNewClassList(res.data.result);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            getAllClass(
+                'http://localhost:8000/data/courses/?price=' + filterPrice
+            );
+            history.replace(currentUrl + `?price=${filterPrice}`);
+        } else if (
+            !searchCourse &&
+            !filterCategory &&
+            !filterLevel &&
+            !filterPrice &&
+            sorting
+        ) {
+            getAllClass('http://localhost:8000/data/courses/?sort=' + sorting);
+            history.replace(currentUrl + `?sort=${sorting}`);
         } else if (
             !searchCourse &&
             filterCategory &&
             filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -238,7 +212,8 @@ function StudentActivity(props) {
             !searchCourse &&
             filterCategory &&
             !filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -257,7 +232,8 @@ function StudentActivity(props) {
             !searchCourse &&
             !filterCategory &&
             filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -276,7 +252,8 @@ function StudentActivity(props) {
             !searchCourse &&
             filterCategory &&
             filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -297,7 +274,8 @@ function StudentActivity(props) {
             searchCourse &&
             filterCategory &&
             !filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -316,7 +294,8 @@ function StudentActivity(props) {
             searchCourse &&
             !filterCategory &&
             filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -335,7 +314,8 @@ function StudentActivity(props) {
             searchCourse &&
             !filterCategory &&
             !filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -354,7 +334,8 @@ function StudentActivity(props) {
             searchCourse &&
             filterCategory &&
             filterLevel &&
-            !filterPrice
+            !filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -375,7 +356,8 @@ function StudentActivity(props) {
             searchCourse &&
             filterCategory &&
             !filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -396,7 +378,8 @@ function StudentActivity(props) {
             searchCourse &&
             !filterCategory &&
             filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -417,7 +400,8 @@ function StudentActivity(props) {
             searchCourse &&
             filterCategory &&
             filterLevel &&
-            filterPrice
+            filterPrice &&
+            !sorting
         ) {
             axios
                 .get(
@@ -436,7 +420,13 @@ function StudentActivity(props) {
                 .catch((err) => {
                     console.log(err);
                 });
-        } else if (!searchCourse) {
+        } else if (
+            !searchCourse &&
+            filterCategory &&
+            filterLevel &&
+            filterPrice &&
+            !sorting
+        ) {
             axios
                 .get('http://localhost:8000/data/courses/filter')
                 .then((res) => {
@@ -446,6 +436,8 @@ function StudentActivity(props) {
                     console.log(err);
                 });
         } else {
+            getAllClass('http://localhost:8000/data/courses');
+            history.replace(currentUrl);
             setSearchCourse();
             setFilterCategory();
             setFilterLevel();
@@ -460,6 +452,9 @@ function StudentActivity(props) {
     };
     const priceHandler = (e) => {
         setFilterPrice(e.currentTarget.value);
+    };
+    const sortingHandler = (e) => {
+        setSorting(e.currentTarget.value);
     };
 
     return (
@@ -581,6 +576,32 @@ function StudentActivity(props) {
                                         <option value=''>Pricing</option>
                                         <option value='free'>Free</option>
                                         <option value='paid'>Paid</option>
+                                    </select>
+                                    <select
+                                        className='selectpicker sel-filter'
+                                        style={{ width: '4.2rem' }}
+                                        onClick={filterHandler}
+                                        onChange={sortingHandler}
+                                    >
+                                        <option value=''>Sort</option>
+                                        <option value='price-AZ'>
+                                            Price A-Z
+                                        </option>
+                                        <option value='price-ZA'>
+                                            Price Z-A
+                                        </option>
+                                        <option value='category-AZ'>
+                                            Category A-Z
+                                        </option>
+                                        <option value='category-ZA'>
+                                            Category Z-A
+                                        </option>
+                                        <option value='level-AZ'>
+                                            Level A-Z
+                                        </option>
+                                        <option value='level-ZA'>
+                                            Level Z-A
+                                        </option>
                                     </select>
                                 </div>
 

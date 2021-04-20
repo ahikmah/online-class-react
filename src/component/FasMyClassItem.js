@@ -76,7 +76,7 @@ function MyClassItem(props) {
                 msg='Are you sure you want to delete this class?'
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                onConfirm={() => deleteCourseHandler()}
+                onConfirmation={() => deleteCourseHandler()}
                 variant='danger'
                 footermsg='Cancel'
                 variant2='primary'
